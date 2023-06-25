@@ -1,0 +1,371 @@
+﻿@model AVA.Web.Mvc.Models.ArticleViewModel
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Controller;
+@{
+    string ModuleName = "Article";
+}
+<update-title title="{{'Article' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'Article' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'Article' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'Article' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'Article' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+@if (!ViewBag.VipEnabled)
+{
+    <div class="alert alert-danger" role="alert"> <strong>هشدار:</strong>کاربر گرامی جهت ارسال مقاله ثبت شده شما به داوری و شرکت در همایش باید برای عضویت در انجمن اقدام فرمایید.<br /></div>
+    <button ui-sref="UserProfile.PayVip" class="btn btn-primary">عضویت در انجمن</button>
+    <hr />
+}
+
+@using (Html.BeginForm("Submit" + ModuleName, "", null, FormMethod.Post, new { id = "form-" + ModuleName, ng_controller = "MySubmitController" }))
+{
+    <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+    @*<div class="alert alert-danger" role="alert"> <strong>هشدار:</strong>برای ارسال مقاله باید داری عضویت انجمن باشید. </div>*@
+    <div class="container animated fadeIn animation-delay-7">
+        <!-- SmartWizard html -->
+        <div id="smartwizard" class="smartwizard">
+            <ul>
+                <li>
+                    <a data-step="#step-1">
+                        مرحله 1<br />
+                        <small>مشخصات مقاله</small>
+                    </a>
+                </li>
+                <li>
+                    <a data-step="#step-2">
+                        مرحله 2<br />
+                        <small>بارگذاری فایل مقاله</small>
+                    </a>
+                </li>
+                <li>
+                    <a data-step="#step-3">
+                        مرحله 3<br />
+                        <small>مشخصات نویسندگان</small>
+                    </a>
+                </li>
+            </ul>
+
+            <div>
+                <div id="step-1" class="">
+                    <h4>مشخصات مقاله</h4>
+                    <div class="mb-4 bg-faded p-3 rounded mb-4">
+                        <div class="row">
+                            <div class="col-md-6 mt-2">
+                                @Html.LabelFor(model => model.Title, new { @class = "" })
+                                @Html.TextBoxFor(model => model.Title, new
+                                {
+                                    @class = "form-control",
+                                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Title).Name,
+                                    placeholder = CommonHelper.GetDisplayName(Model, m => m.Title),
+                                    ng_disabled = "!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name,
+                                })
+                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(model => model.EnglishTitle, new { @class = "" })
+                                @Html.TextBoxFor(model => model.EnglishTitle, new
+                                {
+                                    @class = "form-control",
+                                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.EnglishTitle).Name,
+                                    placeholder = CommonHelper.GetDisplayName(Model, m => m.EnglishTitle),
+                                    ng_disabled = "!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name,
+                                })
+                                @Html.ValidationMessageFor(model => model.EnglishTitle, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(model => model.ArticleLanguageSelectedID, new { @class = "" })
+                                <select class="form-control"
+                                        ng-model="@("model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ArticleLanguageSelectedID).Name)"
+                                        ng-options="language.Value as language.Text for language in @("model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Languages).Name)"
+                                        ng-disabled=@("!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name)></select>
+                                @Html.ValidationMessageFor(model => model.ArticleLanguageSelectedID, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(model => model.ArticleFields, new { @class = "" })
+                                <div class="form-check">
+                                    <label class="form-check-label" ng-repeat="item in model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Fields).Name)">
+                                        <input type="checkbox" class="form-check-input" ,
+                                               ng-disabled=@("!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name)
+                                               ng-model="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.Field, m => m.IsChecked).Name)">
+                                        {{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.Field, m => m.Text).Name)}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4 bg-faded p-3 rounded mb-4">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                @Html.LabelFor(model => model.Keywords, new { @class = "" })
+                                @Html.TextAreaFor(model => model.Keywords, new
+                                {
+                                    @class = "form-control",
+                                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Keywords).Name,
+                                    placeholder = CommonHelper.GetDisplayName(Model, m => m.Keywords),
+                                    rows = "3",
+                                    ng_disabled = "!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name
+                                })
+                                @Html.ValidationMessageFor(model => model.Keywords, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 bg-faded p-3 rounded mb-4">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                @Html.LabelFor(model => model.Summary, new { @class = "" })
+                                @Html.TextAreaFor(model => model.Summary, new
+                                {
+                                    @class = "form-control",
+                                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Summary).Name,
+                                    placeholder = CommonHelper.GetDisplayName(Model, m => m.Summary),
+                                    rows = "3",
+                                    ng_disabled = "!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name
+                                })
+                                @Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="step-2" class="">
+                    <h4>بارگذاری فایل مقاله</h4>
+                    <div class="mb-4 bg-faded p-3 rounded mb-4" id="billing4">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <div class="row px-3">
+                                    @Html.LabelFor(model => model.ArticleFile, new { @class = "" })
+                                    <input type="file" class="form-control-file col-md-7"
+                                           @( Model.ObjectState == AVA.UI.Helpers.Base.ObjectState.Insert ? "data-val = 'true' data-val-required = 'فایل مقاله ضروری است'" : "")
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ArticleFile).Name)"
+                                           ng-disabled=@("!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name) />
+                                </div>
+
+                                <span class="text-danger field-validation-error">
+                                    @Html.ValidationMessage("ArticleFile")
+                                </span>
+                                <small id="filePDF" class="form-text text-muted">پسوند فایل باید pdf باشد.</small>
+                                <small class="form-text text-muted">حداکثر حجم فایل باید 10 مگابایت و پسوند آن pdf باشد.</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <div class="row px-3">
+                                    @Html.LabelFor(model => model.ArticleWordFile, new { @class = "" })
+                                    <input type="file" class="form-control-file col-md-7"
+                                           @( Model.ObjectState == AVA.UI.Helpers.Base.ObjectState.Insert ? "data-val = 'true' data-val-required = 'فایل مقاله ضروری است'" : "")
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ArticleWordFile).Name)"
+                                           ng-disabled=@("!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name) />
+                                </div>
+
+                                <span class="text-danger field-validation-error">
+                                    @Html.ValidationMessage("ArticleFile")
+                                    @Html.ValidationMessage("ArticleWordFile")
+                                </span>
+                                <small id="filePDF" class="form-text text-muted">پسوند فایل باید docx باشد.</small>
+                                <small class="form-text text-muted">حداکثر حجم فایل باید 10 مگابایت و پسوند آن docx باشد.</small>
+                            </div>
+                        </div>
+                        @if (Model.ArticlePresentTypeID == (int)AVA.UI.Helpers.Enums.ArticlePresentType.Poster)
+                        {
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <div class="row px-3">
+                                        @Html.LabelFor(model => model.PosterFile, new { @class = "" })
+                                        <input type="file" class="form-control-file col-md-7"
+                                               @( Model.ObjectState == AVA.UI.Helpers.Base.ObjectState.Update ? "data-val = 'true' data-val-required = 'فایل پوستر مقاله ضروری است'" : "")
+                                               name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.PosterFile).Name)" />
+                                    </div>
+                                    <span class="text-danger field-validation-error">
+                                        @Html.ValidationMessage("PosterFile")
+                                    </span>
+                                    <small id="filePDF" class="form-text text-muted">پسوند فایل باید JPG باشد.</small>
+                                    <small class="form-text text-muted">حداکثر حجم فایل باید 5 مگابایت و پسوند آن JPG باشد.</small>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div id="step-3" class="">
+                    <h4>مشخصات نویسندگان</h4>
+                    <div class="mb-4 bg-faded p-3 rounded mb-4">
+                        <div class="mb-4 bg-faded p-3 rounded mb-4 text-sm" ng-form name="writerForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(model => model.Writer.FirstName, new { @class = "" })
+                                    @Html.TextBoxFor(model => model.Writer.FirstName, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Writer).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.FirstName).Name,
+                                        placeholder = CommonHelper.GetDisplayName(Model.Writer, m => m.FirstName),
+                                        Name = "FirstName",
+                                        required = ""
+                                    })
+                                    <span class="text-danger" ng-show="@("writerForm." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.FirstName).Name).$invalid  && submitted">
+                                        <span>نام ضروری است</span>
+                                    </span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(model => model.Writer.LastName, new { @class = "" })
+                                    @Html.TextBoxFor(model => model.Writer.LastName, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Writer).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.LastName).Name,
+                                        placeholder = CommonHelper.GetDisplayName(Model.Writer, m => m.LastName),
+                                        Name = "LastName",
+                                        required = ""
+                                    })
+                                    <span class="text-danger" ng-show="@("writerForm." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.LastName).Name).$invalid  && submitted">
+                                        <span>نام خانوادگی ضروری است</span>
+                                    </span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(model => model.Writer.Email, new { @class = "" })
+                                    @Html.TextBoxFor(model => model.Writer.Email, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Writer).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.Email).Name,
+                                        placeholder = CommonHelper.GetDisplayName(Model.Writer, m => m.Email),
+                                        Name = "Email",
+                                        ng_pattern = @"/^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/",
+                                        required = ""
+                                    })
+                                    <span class="text-danger" ng-show="@("writerForm." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.Email).Name).$invalid  && submitted">
+                                        <span>ایمیل ضروری است</span>
+                                    </span>
+                                    <span class="text-danger" ng-show="@("writerForm." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.Email).Name).$error.pattern">
+                                        ایمیل معتبر نیست
+                                    </span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(model => model.Writer.Cellphone, new { @class = "" })
+                                    @Html.TextBoxFor(model => model.Writer.Cellphone, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Writer).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.Cellphone).Name,
+                                        placeholder = CommonHelper.GetDisplayName(Model.Writer, m => m.Cellphone),
+                                        Name = "Cellphone",
+                                        required = "",
+                                        ng_pattern = "/" + ControllerHelper.MobileRegEx + "/"
+                                    })
+                                    <span class="text-danger" ng-show="@("writerForm." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.Cellphone).Name).$error.required  && submitted">
+                                        <span>تلفن همراه ضروری است</span>
+                                    </span>
+                                    <span class="text-danger" ng-show="@("writerForm." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.Cellphone).Name).$error.pattern ">
+                                        تلفن همراه معتبر نیست
+                                    </span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            @Html.CheckBoxFor(model => model.Writer.IsMainWriter, new
+                                            {
+                                                @class = "form-check-input",
+                                                ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Writer).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.IsMainWriter).Name,
+                                                Name = "IsMainWriter",                                                
+                                            })
+                                            @Html.LabelFor(model => model.Writer.IsMainWriter, new { @class = "" })
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <hr class="mb-3" />
+                                    <button type="submit" class="btn btn-primary"
+                                            ng-click="AddTempWriter($event,writerForm.$valid)"
+                                            ng-disabled=@("!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name)>
+                                        <i class="fa fa-plus pl-2"></i>ثبت نویسنده
+                                    </button>
+                                </div>
+                                <span class="text-danger field-validation-error" ng-show="@("model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Writers).Name).length==0">
+                                    <span for="Summary" class="">
+                                        نویسنده ای برای این مقاله ثبت نشده است
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="mt-4">لیست نویسندگان</h4>
+                    <div class="container mb-4">
+                        <div class="row">
+                            <table class="table table-bordered text-sm">
+                                <thead class="thead-default ">
+                                    <tr>
+                                        <th class="w-5">ردیف</th>
+                                        <th class="w-10">نام </th>
+                                        <th class="w-20">نام خانوادگی</th>
+                                        <th class="w-10">ایمیل</th>
+                                        <th class="w-10">همراه</th>
+                                        <th class="w-10">مسئول</th>
+                                        <th class="w-10"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Writers).Name)">
+                                        <td scope="row">{{$index}}</td>
+                                        <td>{{item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.FirstName).Name}}</td>
+                                        <td>{{item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.LastName).Name}}</td>
+                                        <td>{{item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.Email).Name}}</td>
+                                        <td>{{item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.Cellphone).Name}}</td>
+                                        <td><input type="checkbox" ng-model="item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.IsMainWriter).Name" disabled /></td>
+                                        <td>
+                                            <button type="submit" class="btn btn-danger btn-sm btn-block"
+                                                    ng-disabled=@("!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name)
+                                                    ng-click="RemoveTempWriter($event,$index)">
+                                                <i class="fa fa-times pl-2"></i>حذف
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <button type="button" class="mb-1 btn-lg btn btn-block btn-green-bright"
+                            ng-disabled=@("!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name)
+                            ng-click="submitForm($event,'@Url.Action("Submit" + ModuleName, "Home")','form-@ModuleName',1,false)">
+                        @(Model.ObjectState == AVA.UI.Helpers.Base.ObjectState.Insert ? "ثبت نهایی" : "ارسال مجدد")
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+    var PersonVariableName='@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Writer).Name)';
+    @(Model.ObjectState==AVA.UI.Helpers.Base.ObjectState.Insert?
+        "CurrentModel."+CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Writers).Name+"=[];"
+        :""
+     )
+    var CurrentStep = 'step-1';
+    var wizard;
+    $(document).ready(function () {
+        // Smart Wizard
+        wizard= $('#smartwizard').smartWizard({
+            selected: 0,
+            theme: 'arrows',
+            transitionEffect: 'fade',
+            lang: {  // Language variables
+                next: ' مرحله بعدی',
+                previous: 'مرحله قبلی'
+            },
+            toolbarSettings: {
+                toolbarPosition: 'bottom',
+                // toolbarExtraButtons: [btnFinish, btnCancel],
+                toolbarButtonPosition: 'left',
+            }
+        });
+        $("#smartwizard").on("leaveStep", function(e, anchorObject, stepNumber, stepDirection) {
+            var elmForm = $("#@("form-" + ModuleName)");
+            // stepDirection === 'forward' :- this condition allows to do the form validation
+            // only on forward navigation, that makes easy navigation on backwards still do the validation when going next
+            if(stepDirection === 'forward' && elmForm){
+                $('#smartwizard').children("div").finish().animate({ height: $(CurrentStep).outerHeight() + 50 }, '400', function () { });
+                return validateForm(elmForm);
+            }
+            return true;
+        });
+
+    });
+</script>
+

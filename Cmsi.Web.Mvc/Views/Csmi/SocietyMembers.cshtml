@@ -1,0 +1,162 @@
+﻿@model AVA.Web.Mvc.Models.SocietyMemberListViewModel
+@using AVA.UI.Helpers.Common;
+<update-title title="{{'SocietyMembers' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'SocietyMembers' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'SocietyMembers' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'SocietyMembers' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'SocietyMembers' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<div id="content">
+    <div class="container">
+        <h3 class="title-divider"></h3>
+        <ul class="nav nav-tabs nav-tabs-bold flex-column flex-lg-row">
+            @{
+                int index = 0;
+                foreach (var group in Model.SocietyMemberGroupList)
+                {
+                    <li class="nav-item">
+                        <a data-target="#@group.PeriodName" class="nav-link @(index == 0 ? "active" : "")" data-toggle="tab">
+                            <mdall class="d-block">@group.PeriodName</mdall>
+                        </a>
+                    </li>
+                    index++;
+                }
+
+            }
+            @*<li class="nav-item">
+                    <a data-target="#tab-extended2" class="nav-link" data-toggle="tab">
+                        <mdall class="d-block">1390-1393</mdall>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-target="#tab-extended3" class="nav-link" data-toggle="tab">
+                        <mdall class="d-block">1387-1390</mdall>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-target="#tab-extended4" class="nav-link" data-toggle="tab">
+                        <mdall class="d-block">پیش از سال 1387</mdall>
+                    </a>
+                </li>*@
+        </ul>
+        <div class="tab-content">
+            @{
+                int index2 = 0;
+                foreach (var group in Model.SocietyMemberGroupList)
+                {
+
+
+                    <div class="tab-pane fade show @(index2==0?"active":"")" id="@group.PeriodName">
+
+                        <div class="row mb-5">
+                            @{
+                                var List = Model.SocietyMembers.Where(memb => memb.PeriodID == group.PeriodID).ToList();
+                                foreach (var member in List)
+                                {
+                                    <div class="col-md-2 col-sm-4 p-2">
+                                        <img src="@(member.PersonalImageUrl != "" ? Url.Content(member.PersonalImageUrl) : "")" alt="@(member.Name + " " + member.Family)" class="img-fluid border-white border-w-5" />
+                                    </div>
+                                    <div class="col-md-4 col-sm-8 flex-valign p-2 ">
+                                        <h5 class="text-uppercase   mt-0 mb-1 text-inverse font-weight-bold">@(member.Name + " " + member.Family)</h5>
+                                        <hr class="hr-primary w-70 mr-0 ml-md-auto mr-md-0 mb-3" />
+                                        <h5 class="my-0 font-weight-normal">
+                                            <label>
+                                                @CommonHelper.GetDisplayName(Model.SingleSocietyMember, m => m.Position):
+                                                <em>@(member.Position == null ? "" : member.Position)</em>
+                                            </label>
+                                        </h5>
+                                        <label>@CommonHelper.GetDisplayName(Model.SingleSocietyMember, m => m.Email):<span>@(member.Email == null ? "" : member.Email)</span></label>
+                                        <!-- Post share links -->
+                                        <div class="mt-3">
+                                            @if (member.ResumeUrl != "")
+                                            {
+                                                <a class="mb-1 btn btn-outline-green-bright btn-rounded border-w-2" target="_blank" href="@(member.ResumeUrl != "" ? Url.Content(member.ResumeUrl) : "")"><i class="fa fa-download fa-1x pl-2"></i>@CommonHelper.GetDisplayName(Model.SingleSocietyMember, m => m.ResumeUrl)</a>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                    index2++;
+                }
+
+
+            }
+            @*<div class="tab-pane fade" id="tab-extended2">
+                    <div class="row mb-5">
+                        <div class="col-md-2 col-sm-4 p-2">
+                            <img src="~/assets/img/Managers/uploads201712111584Dr%20.%20kohsary.jpg" alt="Personal Trainer 1" class="img-fluid border-white border-w-5    " />
+                        </div>
+                        <div class="col-md-4 col-sm-8 flex-valign p-2 ">
+                            <h5 class="text-uppercase   mt-0 mb-1 text-inverse font-weight-bold">دکتر امیرحسین کوهساری</h5>
+                            <hr class="hr-primary w-70 mr-0 ml-md-auto mr-md-0 mb-3" />
+                            <h5 class="my-0 font-weight-normal">
+                                <label>سمت: <em>رییس هیت مدیره</em></label>
+                            </h5>
+                            <label>پست الکترونیکی:<span>kohsary@yazduni.ac.ir</span></label>
+                            <!-- Post share links -->
+                            <div class="mt-3">
+                                <button class="mb-1 btn btn-outline-green-bright btn-rounded border-w-2" type="button"><i class="fa fa-download fa-1x pl-2"></i>دانلود سوابق کاری و تحصیلی</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tab-extended3">
+                    <div class="row mb-5">
+                        <div class="col-md-2 col-sm-4 p-2">
+                            <img src="~/assets/img/Managers/uploads201712111584Dr%20.%20kohsary.jpg" alt="Personal Trainer 1" class="img-fluid border-white border-w-5    " />
+                        </div>
+                        <div class="col-md-4 col-sm-8 flex-valign p-2 ">
+                            <h5 class="text-uppercase   mt-0 mb-1 text-inverse font-weight-bold">دکتر امیرحسین کوهساری</h5>
+                            <hr class="hr-primary w-70 mr-0 ml-md-auto mr-md-0 mb-3" />
+                            <h5 class="my-0 font-weight-normal">
+                                <label>سمت: <em>رییس هیت مدیره</em></label>
+                            </h5>
+                            <label>پست الکترونیکی:<span>kohsary@yazduni.ac.ir</span></label>
+                            <!-- Post share links -->
+                            <div class="mt-3">
+                                <button class="mb-1 btn btn-outline-green-bright btn-rounded border-w-2" type="button"><i class="fa fa-download fa-1x pl-2"></i>دانلود سوابق کاری و تحصیلی</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tab-extended4">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class="bg-success text-white">
+                                <th>#</th>
+                                <th>نام و نام خانوادگي</th>
+                                <th>رتبه علمي</th>
+                                <th>آدرس</th>
+                                <th>پست الکترونيکي</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>دکتر عباس طائب</td>
+                                <td>استاد</td>
+                                <td>دانشگاه علم و صنعت</td>
+                                <td>bas.taeb@gmail.com</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>دکتر مهدي ذاکر</td>
+                                <td>دانشيار</td>
+                                <td>دانشگاه علم و صنعت</td>
+                                <td>-----</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>دکتر ناصر تجبر</td>
+                                <td>استاد</td>
+                                <td>دانشگاه فردوسي مشهد</td>
+                                <td>ntajabor@yahoo.com</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>*@
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+﻿@model AVA.Web.Mvc.Models.ArticleViewModel
+@using AVA.UI.Helpers.Common;
+@using System.Configuration;
+<update-title title="@Model.Title"></update-title>
+<update-meta property="og:title" content="@Model.Title"></update-meta>
+<update-meta name="description" content="@(ConfigurationManager.AppSettings["description"].ToString()+ "-" +Model.Title)"></update-meta>
+<update-meta itemprop="description" content="@(ConfigurationManager.AppSettings["description"].ToString()+ "-" +Model.Title)"></update-meta>
+<update-meta name="keywords" content="@(ConfigurationManager.AppSettings["keyword"].ToString()+ "," +Model.Title)"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<div id="content" class="pt-0">
+    <div class="container  animated fadeIn animation-delay-7">
+        <h3 class="title-divider">
+            <span>@Model.Title</span>
+            <small>
+                <a ui-sref="ArticleList({ConferenceID:@Model.ConferenceID})"><i class="fa fa-arrow-right mx-1"></i>{{'ArticleList' | translate}}</a>
+            </small>
+        </h3>
+        <!-- Product view -->
+        <div class="card product-card mb-4">
+            <!-- Content -->
+            <div class="card-body p-4 pos-relative">
+                <!-- Product details -->
+                <div class="col-10  px-0">
+                    <h5 class="card-title mb-2 text-left">@Model.EnglishTitle</h5>
+                    <h5 class="card-title my-2">@Model.Title</h5>
+                    <span class="text-muted my-2 text-sm">
+                        <span class="d-block d-md-inline"><i class="fa fa-diamond ml-1"></i>@Model.ConferenceName</span>
+                        <span class="d-block d-md-inline"><i class="fa fa-map-marker  mr-md-3 ml-1"></i>@Model.ConferencePlace</span>
+                        <span class="d-block d-md-inline"><i class="fa fa-globe text-primary mr-md-3 ml-1"></i>@Model.FieldNames</span>
+                        <span class="d-block d-md-inline"><i class="fa fa-eye  mr-md-3 ml-1"></i>@Model.Visit @(CommonHelper.GetDisplayName(Model, m => m.Visit))</span>
+                    </span>
+                    <div class="product-offer-countdown my-2 ">
+                        <h5 class="mb-0">@(CommonHelper.GetDisplayName(Model, m => m.WriterNames)):</h5>
+                        <div class="countdown">
+                            <span class="count">@Model.WriterNames</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pos-md-absolute pos-t  mt-3 text-md-left col-md-2 col-sm-5 mt-6" ng-controller="translateCtrl" ng-class="{'pos-l': isActive('fa'),'pos-r': isActive('en')}">
+                    <a href="@Model.FileUrl" class="btn btn-primary btn-block" target="_blank"><i class="fa fa-download mx-2"></i>{{'Download' | translate}}</a>
+                </div>
+                <hr class="my-3" />
+                <h5 class="mb-t mb-0">@(CommonHelper.GetDisplayName(Model, m => m.Summary)):</h5>
+                <p class="text-muted text-sm">@Model.Summary</p>
+                <div class="tag-cloud post-tag-cloud">
+                    <h5 class="mb-t mb-0 text-xs">
+                        کلیدواژه ها:
+                    </h5>
+                    @foreach (var keyword in Model.Keywords.Split(','))
+                    {
+                        <a href="#" class="badge badge-secondary">@keyword</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,1173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ArticleClientQuickFilterViewModel_Fields" xml:space="preserve">
+    <value>زمینه کاری</value>
+  </data>
+  <data name="ArticleClientQuickFilterViewModel_Keyword" xml:space="preserve">
+    <value>کلید واژه ها</value>
+  </data>
+  <data name="ArticleClientQuickFilterViewModel_Title" xml:space="preserve">
+    <value>عنوان مقاله</value>
+  </data>
+  <data name="ArticleClientQuickFilterViewModel_Writer" xml:space="preserve">
+    <value>نام نویسنده</value>
+  </data>
+  <data name="AspUserMembershipViewModel_ConfirmPassword" xml:space="preserve">
+    <value>تکرار رمز عبور</value>
+  </data>
+  <data name="AspUserMembershipViewModel_ConfirmPassword_Compare" xml:space="preserve">
+    <value>رمز عبور با تکرار آن مطابقت ندارد</value>
+  </data>
+  <data name="AspUserMembershipViewModel_ConfirmPassword_ReqMsg" xml:space="preserve">
+    <value>تکرار رمز عبور ضروری است</value>
+  </data>
+  <data name="AspUserMembershipViewModel_CreateDateConverted" xml:space="preserve">
+    <value>تاریخ ثبت</value>
+  </data>
+  <data name="AspUserMembershipViewModel_Email" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="AspUserMembershipViewModel_Email_EmailValidation" xml:space="preserve">
+    <value>ایمیل صحیح نیست</value>
+  </data>
+  <data name="AspUserMembershipViewModel_Email_ReqMsg" xml:space="preserve">
+    <value>ایمیل ضروری است</value>
+  </data>
+  <data name="AspUserMembershipViewModel_Enable" xml:space="preserve">
+    <value>فعال</value>
+  </data>
+  <data name="AspUserMembershipViewModel_FirstName" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="AspUserMembershipViewModel_FirstName_ReqMsg" xml:space="preserve">
+    <value>نام ضروری است</value>
+  </data>
+  <data name="AspUserMembershipViewModel_invite" xml:space="preserve">
+    <value>نحوه آشنایی</value>
+  </data>
+  <data name="AspUserMembershipViewModel_LastName" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
+  <data name="AspUserMembershipViewModel_LastName_ReqMsg" xml:space="preserve">
+    <value>نام خانوادگی ضروری است</value>
+  </data>
+  <data name="AspUserMembershipViewModel_MeliCardUrl" xml:space="preserve">
+    <value>کارت دانشجویی</value>
+  </data>
+  <data name="AspUserMembershipViewModel_Password" xml:space="preserve">
+    <value>رمز عبور </value>
+  </data>
+  <data name="AspUserMembershipViewModel_Password_ReqMsg" xml:space="preserve">
+    <value>رمز عبور ضروری است</value>
+  </data>
+  <data name="AspUserMembershipViewModel_PersonalImageUrl" xml:space="preserve">
+    <value>عکس پرسنلی</value>
+  </data>
+  <data name="AspUserMembershipViewModel_PhoneNumber" xml:space="preserve">
+    <value>شماره همراه</value>
+  </data>
+  <data name="AspUserMembershipViewModel_UniversityCardUrl" xml:space="preserve">
+    <value>پیوست کارت دانشجویی</value>
+  </data>
+  <data name="BookViewModel_CreateDateConverted" xml:space="preserve">
+    <value>تاریخ ثبت</value>
+  </data>
+  <data name="BookViewModel_ImageUrl" xml:space="preserve">
+    <value>تصویر کتاب</value>
+  </data>
+  <data name="BookViewModel_LanguageName" xml:space="preserve">
+    <value>زبان</value>
+  </data>
+  <data name="BookViewModel_Name" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="BookViewModel_Name_ReqMsg" xml:space="preserve">
+    <value>نام ضروری است</value>
+  </data>
+  <data name="BookViewModel_PrintPeriod" xml:space="preserve">
+    <value>شماره چاپ</value>
+  </data>
+  <data name="BookViewModel_PrintPeriod_ReqMsg" xml:space="preserve">
+    <value>شماره چاپ ضروری است</value>
+  </data>
+  <data name="BookViewModel_Writer" xml:space="preserve">
+    <value>نام نویسنده</value>
+  </data>
+  <data name="BookViewModel_Writer_ReqMsg" xml:space="preserve">
+    <value>نام نویسنده ضروری است</value>
+  </data>
+  <data name="BookViewModel_Year" xml:space="preserve">
+    <value>سال چاپ</value>
+  </data>
+  <data name="BookViewModel_Year_ReqMsg" xml:space="preserve">
+    <value>سال چاپ ضروری است</value>
+  </data>
+  <data name="CompanionViewModel_BornDate" xml:space="preserve">
+    <value>تاریخ تولد</value>
+  </data>
+  <data name="CompanionViewModel_BornDate_ReqMsg" xml:space="preserve">
+    <value>تاریخ تولد ضروی است</value>
+  </data>
+  <data name="CompanionViewModel_CreateDateConverted" xml:space="preserve">
+    <value>تاریخ ثبت</value>
+  </data>
+  <data name="CompanionViewModel_Degree" xml:space="preserve">
+    <value>آخرین مدرک تحصیلی</value>
+  </data>
+  <data name="CompanionViewModel_Degree_ReqMsg" xml:space="preserve">
+    <value>آخرین مدرک تحصیلی ضروی است</value>
+  </data>
+  <data name="CompanionViewModel_Email" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="CompanionViewModel_Email_EmailValidation" xml:space="preserve">
+    <value>ایمیل صحیح نیست</value>
+  </data>
+  <data name="CompanionViewModel_Email_ReqMsg" xml:space="preserve">
+    <value>ایمیل ضروی است</value>
+  </data>
+  <data name="CompanionViewModel_FieldOfStudy" xml:space="preserve">
+    <value>رشته تحصیلی</value>
+  </data>
+  <data name="CompanionViewModel_FieldOfStudy_ReqMsg" xml:space="preserve">
+    <value>رشته تحصیلی ضروی است</value>
+  </data>
+  <data name="CompanionViewModel_FirstName" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="CompanionViewModel_FirstName_ReqMsg" xml:space="preserve">
+    <value>نام ضروی است</value>
+  </data>
+  <data name="CompanionViewModel_LastName" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
+  <data name="CompanionViewModel_LastName_ReqMsg" xml:space="preserve">
+    <value>نام خانوادگی ضروی است</value>
+  </data>
+  <data name="CompanionViewModel_Melicode" xml:space="preserve">
+    <value>کد ملی </value>
+  </data>
+  <data name="CompanionViewModel_Melicode_ReqMsg" xml:space="preserve">
+    <value>کد ملی ضروری است</value>
+  </data>
+  <data name="CompanionViewModel_PayReceiptFileImage" xml:space="preserve">
+    <value>پیوست تصویر فیش پرداختی</value>
+  </data>
+  <data name="CompanionViewModel_PayReceiptFileImageUrl" xml:space="preserve">
+    <value>پیوست تصویر فیش پرداختی</value>
+  </data>
+  <data name="CompanionViewModel_PhoneNumber" xml:space="preserve">
+    <value>تلفن همراه</value>
+  </data>
+  <data name="CompanionViewModel_PhoneNumber_ReqMsg" xml:space="preserve">
+    <value>تلفن همراه ضروی است</value>
+  </data>
+  <data name="CompanionViewModel_SelectedPackage" xml:space="preserve">
+    <value>بسته انتخابی</value>
+  </data>
+  <data name="CompanionViewModel_University" xml:space="preserve">
+    <value>نام دانشگاه</value>
+  </data>
+  <data name="CompanionViewModel_UniversityCardFileImage" xml:space="preserve">
+    <value>پیوست کارت دانشجویی</value>
+  </data>
+  <data name="CompanionViewModel_UniversityCardFileImageUrl" xml:space="preserve">
+    <value>پیوست کارت دانشجویی</value>
+  </data>
+  <data name="CompanionViewModel_University_ReqMsg" xml:space="preserve">
+    <value>نام دانشگاه ضروی است</value>
+  </data>
+  <data name="ContactUsViewModel_ContactDateConverted" xml:space="preserve">
+    <value>تاریخ ارسال پیام</value>
+  </data>
+  <data name="ContactUsViewModel_Email" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="ContactUsViewModel_Email_NotValidMsg" xml:space="preserve">
+    <value>ایمیل معتبر نیست</value>
+  </data>
+  <data name="ContactUsViewModel_Email_ReqMsg" xml:space="preserve">
+    <value>ایمیل ضروری است</value>
+  </data>
+  <data name="ContactUsViewModel_Family" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
+  <data name="ContactUsViewModel_Family_ReqMsg" xml:space="preserve">
+    <value>نام خانوادگی ضروری است</value>
+  </data>
+  <data name="ContactUsViewModel_Name" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="ContactUsViewModel_Name_ReqMsg" xml:space="preserve">
+    <value>نام ضروری است</value>
+  </data>
+  <data name="ContactUsViewModel_Subject" xml:space="preserve">
+    <value>عنوان پیام</value>
+  </data>
+  <data name="ContactUsViewModel_Subject_ReqMsg" xml:space="preserve">
+    <value>عنوان پیام ضروری است</value>
+  </data>
+  <data name="ContactUsViewModel_TelNumber" xml:space="preserve">
+    <value>شماره تماس</value>
+  </data>
+  <data name="ContactUsViewModel_TelNumber_ReqMsg" xml:space="preserve">
+    <value>شماره تماس ضروری است</value>
+  </data>
+  <data name="ContactUsViewModel_Text" xml:space="preserve">
+    <value>متن پیام</value>
+  </data>
+  <data name="ContactUsViewModel_Text_ReqMsg" xml:space="preserve">
+    <value>متن پیام ضروری است</value>
+  </data>
+  <data name="EditMembershipVm_Address" xml:space="preserve">
+    <value>آدرس</value>
+  </data>
+  <data name="EditMembershipVm_BornDate" xml:space="preserve">
+    <value>تاریخ تولد</value>
+  </data>
+  <data name="EditMembershipVm_BornDate_ReqMsg" xml:space="preserve">
+    <value>تاریخ تولد ضروری است</value>
+  </data>
+  <data name="EditMembershipVm_Degree" xml:space="preserve">
+    <value>آخرین مدرک تحصیلی</value>
+  </data>
+  <data name="EditMembershipVm_Degree_ReqMsg" xml:space="preserve">
+    <value>آخرین مدرک تحصیلی ضروی است</value>
+  </data>
+  <data name="EditMembershipVm_Email" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="EditMembershipVm_Email_EmailValidation" xml:space="preserve">
+    <value>ایمیل صحیح نیست</value>
+  </data>
+  <data name="EditMembershipVm_Email_ReqMsg" xml:space="preserve">
+    <value>ایمیل ضروری است</value>
+  </data>
+  <data name="EditMembershipVm_FieldOfStudy" xml:space="preserve">
+    <value>رشته تحصیلی</value>
+  </data>
+  <data name="EditMembershipVm_FieldOfStudy_ReqMsg" xml:space="preserve">
+    <value>رشته تحصیلی ضروری است</value>
+  </data>
+  <data name="EditMembershipVm_FirstName" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="EditMembershipVm_FirstName_ReqMsg" xml:space="preserve">
+    <value>نام ضروری است</value>
+  </data>
+  <data name="EditMembershipVm_LastName" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
+  <data name="EditMembershipVm_LastName_ReqMsg" xml:space="preserve">
+    <value>نام خانوادگی ضروری است</value>
+  </data>
+  <data name="EditMembershipVm_MeliCardFileImage" xml:space="preserve">
+    <value>تصویر کارت ملی</value>
+  </data>
+  <data name="EditMembershipVm_MeliCardUrl" xml:space="preserve">
+    <value>تصویر کارت ملی</value>
+  </data>
+  <data name="EditMembershipVm_Melicode" xml:space="preserve">
+    <value>کد ملی </value>
+  </data>
+  <data name="EditMembershipVm_Melicode_ReqMsg" xml:space="preserve">
+    <value>کد ملی ضروری است</value>
+  </data>
+  <data name="EditMembershipVm_PersonalFileImage" xml:space="preserve">
+    <value>عکس پرسنلی</value>
+  </data>
+  <data name="EditMembershipVm_PersonalImageUrl" xml:space="preserve">
+    <value>عکس پرسنلی</value>
+  </data>
+  <data name="EditMembershipVm_PhoneNumber" xml:space="preserve">
+    <value>همراه</value>
+  </data>
+  <data name="EditMembershipVm_PhoneNumber_ReqMsg" xml:space="preserve">
+    <value>همراه ضروری است</value>
+  </data>
+  <data name="EditMembershipVm_selectedCityID" xml:space="preserve">
+    <value>شهر</value>
+  </data>
+  <data name="EditMembershipVm_selectedProvinceID" xml:space="preserve">
+    <value>استان</value>
+  </data>
+  <data name="EditMembershipVm_sex_ReqMsg" xml:space="preserve">
+    <value>جنسیت ضروری است</value>
+  </data>
+  <data name="EditMembershipVm_sex" xml:space="preserve">
+    <value>جنسیت</value>
+  </data>
+  <data name="EditMembershipVm_University" xml:space="preserve">
+    <value>نام دانشگاه</value>
+  </data>
+  <data name="EditMembershipVm_UniversityCardFileImage" xml:space="preserve">
+    <value>تصویر کارت دانشجویی</value>
+  </data>
+  <data name="EditMembershipVm_UniversityCardUrl" xml:space="preserve">
+    <value>تصویر کارت دانشجویی</value>
+  </data>
+  <data name="EditMembershipVm_University_ReqMsg" xml:space="preserve">
+    <value>نام دانشگاه ضروری است</value>
+  </data>
+  <data name="FAQViewModel_Answer" xml:space="preserve">
+    <value>متن پاسخ</value>
+  </data>
+  <data name="FAQViewModel_Answer_ReqMsg" xml:space="preserve">
+    <value>متن پاسخ ضروری است</value>
+  </data>
+  <data name="FAQViewModel_CreateDateConverted" xml:space="preserve">
+    <value>تاریخ ثبت</value>
+  </data>
+  <data name="FAQViewModel_Enable" xml:space="preserve">
+    <value>فعال</value>
+  </data>
+  <data name="FAQViewModel_LanguageName" xml:space="preserve">
+    <value>زبان</value>
+  </data>
+  <data name="FAQViewModel_Priority" xml:space="preserve">
+    <value>اولیت</value>
+  </data>
+  <data name="FAQViewModel_Priority_ReqMsg" xml:space="preserve">
+    <value>اولویت ضروری است</value>
+  </data>
+  <data name="FAQViewModel_Question" xml:space="preserve">
+    <value>متن سوال</value>
+  </data>
+  <data name="FAQViewModel_Question_ReqMsg" xml:space="preserve">
+    <value>متن سوال ضروری است</value>
+  </data>
+  <data name="GalleryAlbumViewModel_CreateDateConverted" xml:space="preserve">
+    <value>تاریخ ثبت</value>
+  </data>
+  <data name="GalleryAlbumViewModel_Description" xml:space="preserve">
+    <value>تضیحات</value>
+  </data>
+  <data name="GalleryAlbumViewModel_Name" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="GalleryAlbumViewModel_Name_ReqMsg" xml:space="preserve">
+    <value>نام ضروری است</value>
+  </data>
+  <data name="GalleryImageViewModel_CreateDateConverted" xml:space="preserve">
+    <value>تاریخ ثبت</value>
+  </data>
+  <data name="GalleryImageViewModel_Enable" xml:space="preserve">
+    <value>فعال</value>
+  </data>
+  <data name="GalleryImageViewModel_Explain" xml:space="preserve">
+    <value>توضیحات</value>
+  </data>
+  <data name="GalleryImageViewModel_GalleryAlbumName" xml:space="preserve">
+    <value>نام آلبوم</value>
+  </data>
+  <data name="GalleryImageViewModel_Height" xml:space="preserve">
+    <value>ارتفاع</value>
+  </data>
+  <data name="GalleryImageViewModel_ImageLink" xml:space="preserve">
+    <value>لینک عکس</value>
+  </data>
+  <data name="GalleryImageViewModel_LongImageFile" xml:space="preserve">
+    <value>فایل عکس</value>
+  </data>
+  <data name="GalleryImageViewModel_LongImageFile_ReqMsg" xml:space="preserve">
+    <value>فایل عکس را وارد کنید</value>
+  </data>
+  <data name="GalleryImageViewModel_LongImageUrl" xml:space="preserve">
+    <value>عکس بزرگ</value>
+  </data>
+  <data name="GalleryImageViewModel_Name" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="GalleryImageViewModel_Name_ReqMsg" xml:space="preserve">
+    <value>نام ضروری است</value>
+  </data>
+  <data name="GalleryImageViewModel_Priority" xml:space="preserve">
+    <value>اولویت</value>
+  </data>
+  <data name="GalleryImageViewModel_Priority_ReqMsg" xml:space="preserve">
+    <value>اولویت ضروری است</value>
+  </data>
+  <data name="GalleryImageViewModel_ShortImageUrl" xml:space="preserve">
+    <value>عکس کوچک</value>
+  </data>
+  <data name="GalleryImageViewModel_SmallImage" xml:space="preserve">
+    <value>فایل کوچک عکس</value>
+  </data>
+  <data name="GalleryImageViewModel_SmallImage_ReqMsg" xml:space="preserve">
+    <value>فایل کوچک عکس ضروری است</value>
+  </data>
+  <data name="GalleryImageViewModel_Width" xml:space="preserve">
+    <value>عرض</value>
+  </data>
+  <data name="InvoiceViewModel_Amount" xml:space="preserve">
+    <value>مبلغ</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankBankName" xml:space="preserve">
+    <value>نام بانک</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankBankName_ReqMsg" xml:space="preserve">
+    <value>نام بانک ضروری است</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankPayDate" xml:space="preserve">
+    <value>تاریخ واریز</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankPayDate_ReqMsg" xml:space="preserve">
+    <value>تاریخ واریز ضروری است</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankPayFile" xml:space="preserve">
+    <value>تصویر فیش </value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankPayFileUrl" xml:space="preserve">
+    <value>تصویر فیش</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankPayFileUrl_ReqMsg" xml:space="preserve">
+    <value>تصویر فیش ضروری است</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankPayFile_ReqMsg" xml:space="preserve">
+    <value>تصویر فیش ضروری است</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankPayReceipt" xml:space="preserve">
+    <value>شماره فیش</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankPayReceipt_ReqMsg" xml:space="preserve">
+    <value>شماره فیش ضروری است</value>
+  </data>
+  <data name="InvoiceViewModel_CreateDateConverted" xml:space="preserve">
+    <value>تاریخ</value>
+  </data>
+  <data name="InvoiceViewModel_DigitalCode" xml:space="preserve">
+    <value>رسید دیجیتال</value>
+  </data>
+  <data name="InvoiceViewModel_InvoiceType" xml:space="preserve">
+    <value>نوع فاکتور</value>
+  </data>
+  <data name="InvoiceViewModel_ReservationCode" xml:space="preserve">
+    <value>پیگیری</value>
+  </data>
+  <data name="LoginMembershipViewModel_Password" xml:space="preserve">
+    <value>رمزعبور</value>
+  </data>
+  <data name="LoginMembershipViewModel_Password_ReqMsg" xml:space="preserve">
+    <value>رمز عبور ضروری است</value>
+  </data>
+  <data name="LoginMembershipViewModel_RememberMe" xml:space="preserve">
+    <value>مرا به خاطر بسپار</value>
+  </data>
+  <data name="LoginMembershipViewModel_Username" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="LoginMembershipViewModel_Username_ReqMsg" xml:space="preserve">
+    <value>ایمیل ضروی است</value>
+  </data>
+  <data name="NewsFeedViewModel_NewsFeedEmail" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="NewsFeedViewModel_NewsFeedEmail_EmailValidation" xml:space="preserve">
+    <value>ایمیل صحیح نیست</value>
+  </data>
+  <data name="NewsFeedViewModel_NewsFeedEmail_ReqMsg" xml:space="preserve">
+    <value>ایمیل ضروری است</value>
+  </data>
+  <data name="OrderItemViewModel_Count" xml:space="preserve">
+    <value>تعداد</value>
+  </data>
+  <data name="OrderItemViewModel_CreateDateConverted" xml:space="preserve">
+    <value>تاریخ ثبت</value>
+  </data>
+  <data name="OrderItemViewModel_Name" xml:space="preserve">
+    <value>نام بسته</value>
+  </data>
+  <data name="OrderItemViewModel_Price" xml:space="preserve">
+    <value>مبلغ</value>
+  </data>
+  <data name="OrderViewModel_Amount" xml:space="preserve">
+    <value>مبلغ</value>
+  </data>
+  <data name="OrderViewModel_CreateDateConverted" xml:space="preserve">
+    <value>تاریخ ثبت</value>
+  </data>
+  <data name="OrderViewModel_Invoice" xml:space="preserve">
+    <value>فاکتور</value>
+  </data>
+  <data name="OrderViewModel_OrderItems" xml:space="preserve">
+    <value>اقلام</value>
+  </data>
+  <data name="OrderViewModel_Status" xml:space="preserve">
+    <value>وضعیت</value>
+  </data>
+  <data name="PasswordChangeMembershipViewModel_ConfirmPassword" xml:space="preserve">
+    <value>تکرار رمز عبور</value>
+  </data>
+  <data name="PasswordChangeMembershipViewModel_ConfirmPassword_Compare" xml:space="preserve">
+    <value>رمز عبور با تکرار آن مطابقت ندارد</value>
+  </data>
+  <data name="PasswordChangeMembershipViewModel_ConfirmPassword_ReqMsg" xml:space="preserve">
+    <value>تکرار رمز عبور وری است</value>
+  </data>
+  <data name="PasswordChangeMembershipViewModel_OldPassword" xml:space="preserve">
+    <value>رمز عبور قدیم</value>
+  </data>
+  <data name="PasswordChangeMembershipViewModel_OldPassword_ReqMsg" xml:space="preserve">
+    <value>رمز عبور قدیم وری است</value>
+  </data>
+  <data name="PasswordChangeMembershipViewModel_Password" xml:space="preserve">
+    <value>رمز عبور</value>
+  </data>
+  <data name="PasswordChangeMembershipViewModel_Password_ReqMsg" xml:space="preserve">
+    <value>رمز عبور وری است</value>
+  </data>
+  <data name="PasswordRecoveryMembershipViewModel_Email" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="PasswordRecoveryMembershipViewModel_Email_EmailValidation" xml:space="preserve">
+    <value>ایمیل صحیح نیست</value>
+  </data>
+  <data name="PasswordRecoveryMembershipViewModel_Email_ReqMsg" xml:space="preserve">
+    <value>ایمیل ضروری است</value>
+  </data>
+  <data name="PayVipViewModel_UniversityCardFileImage" xml:space="preserve">
+    <value>پیوست کارت دانشجویی</value>
+  </data>
+  <data name="RegisterMembershipVm_BornDate" xml:space="preserve">
+    <value>تاریخ تولد*</value>
+  </data>
+  <data name="RegisterMembershipVm_BornDate_ReqMsg" xml:space="preserve">
+    <value>تاریخ تولد ضروی است</value>
+  </data>
+  <data name="RegisterMembershipVm_Email" xml:space="preserve">
+    <value>ایمیل*</value>
+  </data>
+  <data name="RegisterMembershipVm_Email_EmailValidation" xml:space="preserve">
+    <value>ایمیل صحیح نیست</value>
+  </data>
+  <data name="RegisterMembershipVm_Email_ReqMsg" xml:space="preserve">
+    <value>ایمیل ضروی است</value>
+  </data>
+  <data name="RegisterMembershipVm_FirstName" xml:space="preserve">
+    <value>نام*</value>
+  </data>
+  <data name="RegisterMembershipVm_FirstName_ReqMsg" xml:space="preserve">
+    <value>نام ضروی است</value>
+  </data>
+  <data name="RegisterMembershipVm_LastName" xml:space="preserve">
+    <value>نام خانوادگی*</value>
+  </data>
+  <data name="RegisterMembershipVm_LastName_ReqMsg" xml:space="preserve">
+    <value>نام خانوادگی ضروی است</value>
+  </data>
+  <data name="RegisterMembershipVm_PhoneNumber" xml:space="preserve">
+    <value>تلفن همراه*</value>
+  </data>
+  <data name="RegisterMembershipVm_PhoneNumber_ReqMsg" xml:space="preserve">
+    <value>تلفن همراه ضروی است</value>
+  </data>
+  <data name="RegisterMembershipVm_sex" xml:space="preserve">
+    <value>*جنسیت</value>
+  </data>
+  <data name="RegisterMembershipVm_sex_ReqMsg" xml:space="preserve">
+    <value>جنسیت ضروی است</value>
+  </data>
+  <data name="RegisterMembershipVm_University" xml:space="preserve">
+    <value>دانشگاه*</value>
+  </data>
+  <data name="RegisterMembershipVm_University_ReqMsg" xml:space="preserve">
+    <value>دانشگاه ضروی است</value>
+  </data>
+  <data name="ResetPasswordViewModel_ConfirmPassword" xml:space="preserve">
+    <value>تکرار رمز عبور</value>
+  </data>
+  <data name="ResetPasswordViewModel_ConfirmPassword_Compare" xml:space="preserve">
+    <value>رمز عبور با تکرار آن مطابقت ندارد</value>
+  </data>
+  <data name="ResetPasswordViewModel_ConfirmPassword_ReqMsg" xml:space="preserve">
+    <value>تکرار رمز عبور ضروری است</value>
+  </data>
+  <data name="ResetPasswordViewModel_Email" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="ResetPasswordViewModel_Email_EmailValidation" xml:space="preserve">
+    <value>ایمیل صحیح نیست</value>
+  </data>
+  <data name="ResetPasswordViewModel_Email_ReqMsg" xml:space="preserve">
+    <value>ایمیل ضروری است</value>
+  </data>
+  <data name="ResetPasswordViewModel_Password" xml:space="preserve">
+    <value>رمزعبور</value>
+  </data>
+  <data name="ResetPasswordViewModel_Password_ReqMsg" xml:space="preserve">
+    <value>رمزعبور ضروری است</value>
+  </data>
+  <data name="SocietyExecutorViewModel_CreateDateConverted" xml:space="preserve">
+    <value>تاریخ ثبت</value>
+  </data>
+  <data name="SocietyExecutorViewModel_DegreeLevel" xml:space="preserve">
+    <value>تحصیلات</value>
+  </data>
+  <data name="SocietyExecutorViewModel_DegreeLevel_ReqMsg" xml:space="preserve">
+    <value>تحصیلات ضروری است</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Email" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Email_NotValidMsg" xml:space="preserve">
+    <value>ایمیل معتبر نیست</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Email_ReqMsg" xml:space="preserve">
+    <value>ایمیل ضروری است</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Family" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Family_ReqMsg" xml:space="preserve">
+    <value>نام خانوادگی ضروری است</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Name" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Name_ReqMsg" xml:space="preserve">
+    <value>نام ضروری است</value>
+  </data>
+  <data name="SocietyExecutorViewModel_PersonalImageUrl" xml:space="preserve">
+    <value>عکس پرسنلی</value>
+  </data>
+  <data name="SocietyExecutorViewModel_PersonalImageUrl_ReqMsg" xml:space="preserve">
+    <value>عکس پرسنلی ضروری است</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Position" xml:space="preserve">
+    <value>سمت</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Position_ReqMsg" xml:space="preserve">
+    <value>سمت ضروری است</value>
+  </data>
+  <data name="SocietyExecutorViewModel_ResumeUrl" xml:space="preserve">
+    <value>فایل رزومه</value>
+  </data>
+  <data name="SocietyExecutorViewModel_ResumeUrl_ReqMsg" xml:space="preserve">
+    <value>فایل رزومه ضروری است</value>
+  </data>
+  <data name="SocietyMemberPeriodViewModel_CreateDateConverted" xml:space="preserve">
+    <value>تاریخ ثبت</value>
+  </data>
+  <data name="SocietyMemberPeriodViewModel_EndDate" xml:space="preserve">
+    <value>پایان دوره</value>
+  </data>
+  <data name="SocietyMemberPeriodViewModel_EndDate_ReqMsg" xml:space="preserve">
+    <value>پایان دوره ضروری است</value>
+  </data>
+  <data name="SocietyMemberPeriodViewModel_StartDate" xml:space="preserve">
+    <value>شروع دوره</value>
+  </data>
+  <data name="SocietyMemberPeriodViewModel_StartDate_ReqMsg" xml:space="preserve">
+    <value>شروع دوره ضروری است</value>
+  </data>
+  <data name="SocietyMemberViewModel_CreateDateConverted" xml:space="preserve">
+    <value>تاریخ ثبت</value>
+  </data>
+  <data name="SocietyMemberViewModel_DegreeLevel" xml:space="preserve">
+    <value>تحصیلات</value>
+  </data>
+  <data name="SocietyMemberViewModel_DegreeLevel_ReqMsg" xml:space="preserve">
+    <value>تحصیلات ضروری است</value>
+  </data>
+  <data name="SocietyMemberViewModel_Email" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="SocietyMemberViewModel_Email_NotValidMsg" xml:space="preserve">
+    <value>ایمیل معتبر نیست</value>
+  </data>
+  <data name="SocietyMemberViewModel_Email_ReqMsg" xml:space="preserve">
+    <value>ایمیل ضروری است</value>
+  </data>
+  <data name="SocietyMemberViewModel_Family" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
+  <data name="SocietyMemberViewModel_Family_ReqMsg" xml:space="preserve">
+    <value>نام خانوادگی ضروری است</value>
+  </data>
+  <data name="SocietyMemberViewModel_LanguageName" xml:space="preserve">
+    <value>زبان</value>
+  </data>
+  <data name="SocietyMemberViewModel_Name" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="SocietyMemberViewModel_Name_ReqMsg" xml:space="preserve">
+    <value>نام ضروری است</value>
+  </data>
+  <data name="SocietyMemberViewModel_PersonalImage" xml:space="preserve">
+    <value>عکس پرسنلی</value>
+  </data>
+  <data name="SocietyMemberViewModel_PersonalImageUrl" xml:space="preserve">
+    <value>عکس پرسنلی</value>
+  </data>
+  <data name="SocietyMemberViewModel_PersonalImage_ReqMsg" xml:space="preserve">
+    <value>عکس پرسنلی ضروری است</value>
+  </data>
+  <data name="SocietyMemberViewModel_Position" xml:space="preserve">
+    <value>سمت</value>
+  </data>
+  <data name="SocietyMemberViewModel_Position_ReqMsg" xml:space="preserve">
+    <value>سمت ضروری است</value>
+  </data>
+  <data name="SocietyMemberViewModel_Resume" xml:space="preserve">
+    <value>فایل رزومه</value>
+  </data>
+  <data name="SocietyMemberViewModel_ResumeUrl" xml:space="preserve">
+    <value>فایل رزومه</value>
+  </data>
+  <data name="SocietyMemberViewModel_Resume_ReqMsg" xml:space="preserve">
+    <value>فایل رزومه ضروری است</value>
+  </data>
+  <data name="ArticleFilterViewModel_ArticleCategories" xml:space="preserve">
+    <value>زمینه ها</value>
+  </data>
+  <data name="ArticleFilterViewModel_ArticleSelectedCategory" xml:space="preserve">
+    <value>زمینه ها</value>
+  </data>
+  <data name="ArticleFilterViewModel_ArticleSelectedStatus" xml:space="preserve">
+    <value>وضعیت مقاله</value>
+  </data>
+  <data name="ArticleFilterViewModel_ArticleStatusName" xml:space="preserve">
+    <value>وضعیت مقاله</value>
+  </data>
+  <data name="ArticleFilterViewModel_CreateDateFrom" xml:space="preserve">
+    <value>تاریخ ثبت از</value>
+  </data>
+  <data name="ArticleFilterViewModel_CreateDateTo" xml:space="preserve">
+    <value>تاریخ ثبت تا</value>
+  </data>
+  <data name="ArticleFilterViewModel_Enable" xml:space="preserve">
+    <value>فعال</value>
+  </data>
+  <data name="ArticleFilterViewModel_EnglishTitle" xml:space="preserve">
+    <value>عنوان انگلیسی</value>
+  </data>
+  <data name="ArticleFilterViewModel_Keywords" xml:space="preserve">
+    <value>کلمات کلیدی</value>
+  </data>
+  <data name="ArticleFilterViewModel_OwnerCellphone" xml:space="preserve">
+    <value>همراه</value>
+  </data>
+  <data name="ArticleFilterViewModel_OwnerEmail" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="ArticleFilterViewModel_OwnerName" xml:space="preserve">
+    <value>نام فرستنده</value>
+  </data>
+  <data name="ArticleFilterViewModel_Referees" xml:space="preserve">
+    <value>نام داور</value>
+  </data>
+  <data name="ArticleFilterViewModel_Summary" xml:space="preserve">
+    <value>چکیده</value>
+  </data>
+  <data name="ArticleFilterViewModel_Title" xml:space="preserve">
+    <value>عنوان</value>
+  </data>
+  <data name="ArticleFilterViewModel_Writers" xml:space="preserve">
+    <value>نویسندگان</value>
+  </data>
+  <data name="ArticleListItemViewModel_ArticleStatusName" xml:space="preserve">
+    <value>وضعیت مقاله</value>
+  </data>
+  <data name="ArticleListItemViewModel_CreateDateConverted" xml:space="preserve">
+    <value>تاریخ ثبت</value>
+  </data>
+  <data name="ArticleListItemViewModel_Fields" xml:space="preserve">
+    <value>زمینه ها</value>
+  </data>
+  <data name="ArticleListItemViewModel_RefereeState" xml:space="preserve">
+    <value>وضعیت</value>
+  </data>
+  <data name="ArticleListItemViewModel_Title" xml:space="preserve">
+    <value>عنوان</value>
+  </data>
+  <data name="ArticleListItemViewModel_Title_ReqMsg" xml:space="preserve">
+    <value>عنوان ضروری است</value>
+  </data>
+  <data name="ArticleViewModel_ArticleFields" xml:space="preserve">
+    <value>زمینه های مقاله</value>
+  </data>
+  <data name="ArticleViewModel_ArticleFile" xml:space="preserve">
+    <value>فایل مقاله</value>
+  </data>
+  <data name="ArticleViewModel_ArticleFileUrl" xml:space="preserve">
+    <value>فایل مقاله</value>
+  </data>
+  <data name="ArticleViewModel_ArticleFile_ReqMsg" xml:space="preserve">
+    <value>فایل مقاله ضروری است</value>
+  </data>
+  <data name="ArticleViewModel_ArticleLanguageSelectedID" xml:space="preserve">
+    <value>زبان مقاله</value>
+  </data>
+  <data name="ArticleViewModel_ArticleStatusName" xml:space="preserve">
+    <value>وضعیت مقاله</value>
+  </data>
+  <data name="ArticleViewModel_ConferenceName" xml:space="preserve">
+    <value>همایش</value>
+  </data>
+  <data name="ArticleViewModel_CreateDateConverted" xml:space="preserve">
+    <value>تاریخ ثبت</value>
+  </data>
+  <data name="ArticleViewModel_Enable" xml:space="preserve">
+    <value>فعال</value>
+  </data>
+  <data name="ArticleViewModel_EnglishTitle" xml:space="preserve">
+    <value>عنوان انگلیسی</value>
+  </data>
+  <data name="ArticleViewModel_EnglishTitle_ReqMsg" xml:space="preserve">
+    <value>عنوان انگلیسی ضروری است</value>
+  </data>
+  <data name="ArticleViewModel_FieldNames" xml:space="preserve">
+    <value>زمینه ها</value>
+  </data>
+  <data name="ArticleViewModel_Fields" xml:space="preserve">
+    <value>زمینه</value>
+  </data>
+  <data name="ArticleViewModel_FileUrl" xml:space="preserve">
+    <value>فایل مقاله</value>
+  </data>
+  <data name="ArticleViewModel_OwnerCellphone" xml:space="preserve">
+    <value>همراه</value>
+  </data>
+  <data name="ArticleViewModel_OwnerEmail" xml:space="preserve">
+    <value>ایمیل فرستنده</value>
+  </data>
+  <data name="ArticleViewModel_OwnerEmail_EmailValidation" xml:space="preserve">
+    <value>ایمیل فرستنده صحیح نیست</value>
+  </data>
+  <data name="ArticleViewModel_OwnerName" xml:space="preserve">
+    <value>نام فرستنده</value>
+  </data>
+  <data name="ArticleViewModel_Published" xml:space="preserve">
+    <value>انتشار</value>
+  </data>
+  <data name="ArticleViewModel_RefereeState" xml:space="preserve">
+    <value>وضعیت</value>
+  </data>
+  <data name="ArticleViewModel_Summary" xml:space="preserve">
+    <value>چکیده مقاله</value>
+  </data>
+  <data name="ArticleViewModel_Summary_ReqMsg" xml:space="preserve">
+    <value>چکیده مقاله ضروری است</value>
+  </data>
+  <data name="ArticleViewModel_Title" xml:space="preserve">
+    <value>عنوان مقاله</value>
+  </data>
+  <data name="ArticleViewModel_Title_ReqMsg" xml:space="preserve">
+    <value>عنوان مقاله ضروری است</value>
+  </data>
+  <data name="ArticleViewModel_Visit" xml:space="preserve">
+    <value>بازدید</value>
+  </data>
+  <data name="ArticleViewModel_WriterNames" xml:space="preserve">
+    <value>نویسندگان</value>
+  </data>
+  <data name="ArticleViewModel_Writers" xml:space="preserve">
+    <value>نویسندگان</value>
+  </data>
+  <data name="ArticleViewModel_Writers_ReqMsg" xml:space="preserve">
+    <value>نویسندگان ضروری است</value>
+  </data>
+  <data name="WriterViewModel_Cellphone" xml:space="preserve">
+    <value>موبایل</value>
+  </data>
+  <data name="WriterViewModel_Cellphone_ReqMsg" xml:space="preserve">
+    <value>موبایل ضروری است</value>
+  </data>
+  <data name="WriterViewModel_Email" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="WriterViewModel_Email_EmailValidation" xml:space="preserve">
+    <value>ایمیل صحیح نیست</value>
+  </data>
+  <data name="WriterViewModel_Email_ReqMsg" xml:space="preserve">
+    <value>ایمیل ضروری است</value>
+  </data>
+  <data name="WriterViewModel_FirstName" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="WriterViewModel_FirstName_ReqMsg" xml:space="preserve">
+    <value>نام ضروری است</value>
+  </data>
+  <data name="WriterViewModel_LastName" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
+  <data name="WriterViewModel_LastName_ReqMsg" xml:space="preserve">
+    <value>نام خانوادگی ضروری است</value>
+  </data>
+  <data name="RegisterMembershipVm_Degree" xml:space="preserve">
+    <value>مدرک تحصیلی</value>
+  </data>
+  <data name="RegisterMembershipVm_FieldOfStudy" xml:space="preserve">
+    <value>رشته تحصیلی*</value>
+  </data>
+  <data name="RegisterMembershipVm_FieldOfStudy_ReqMsg" xml:space="preserve">
+    <value>رشته تحصیلی ضروری است</value>
+  </data>
+  <data name="RegisterMembershipVm_Melicode" xml:space="preserve">
+    <value>کدملی*</value>
+  </data>
+  <data name="RegisterMembershipVm_Melicode_ReqMsg" xml:space="preserve">
+    <value>کدملی ضروری است</value>
+  </data>
+  <data name="RegisterMembershipVm_Password" xml:space="preserve">
+    <value>رمز عبور*</value>
+  </data>
+  <data name="RegisterMembershipVm_Password_ReqMsg" xml:space="preserve">
+    <value>رمز عبور ضروری است</value>
+  </data>
+  <data name="ArticleViewModel_FileUrl_ReqMsg" xml:space="preserve">
+    <value>فایل مقاله ضروری است</value>
+  </data>
+  <data name="PaymentViewModel_Amount" xml:space="preserve">
+    <value>مبلغ</value>
+  </data>
+  <data name="PaymentViewModel_CreateDateConverted" xml:space="preserve">
+    <value>تاریخ</value>
+  </data>
+  <data name="PaymentViewModel_Explain" xml:space="preserve">
+    <value>توضیحات</value>
+  </data>
+  <data name="PaymentViewModel_PaymentTypeName" xml:space="preserve">
+    <value>نوع پرداخت</value>
+  </data>
+  <data name="PaymentViewModel_OrderStatus" xml:space="preserve">
+    <value>وضعیت</value>
+  </data>
+  <data name="PaymentViewModel_UserNameFamily" xml:space="preserve">
+    <value>نام و نام خانوادگی</value>
+  </data>
+  <data name="PaymentViewModel_PayExplain" xml:space="preserve">
+    <value>توضیحات پرداخت</value>
+  </data>
+  <data name="PaymentViewModel_InvoiceTypeName" xml:space="preserve">
+    <value>نوع فاکتور</value>
+  </data>
+  <data name="ArticleViewModel_Keywords" xml:space="preserve">
+    <value>کلمات کلیدی</value>
+  </data>
+  <data name="ArticleViewModel_Keywords_ReqMsg" xml:space="preserve">
+    <value>کلمات کلیدی ضروری است</value>
+  </data>
+  <data name="EditMembershipVm_EnglishFirstName" xml:space="preserve">
+    <value>نام انگلیسی</value>
+  </data>
+  <data name="EditMembershipVm_EnglishFirstName_ReqMsg" xml:space="preserve">
+    <value>نام انگلیسی ضروری است</value>
+  </data>
+  <data name="EditMembershipVm_EnglishLastName" xml:space="preserve">
+    <value>نام خانوادگی انگلیسی</value>
+  </data>
+  <data name="EditMembershipVm_EnglishLastName_ReqMsg" xml:space="preserve">
+    <value>نام خانوادگی انگلیسی ضروری است</value>
+  </data>
+  <data name="RegisterMembershipVm_EnglishFirstName" xml:space="preserve">
+    <value>نام انگلیسی</value>
+  </data>
+  <data name="RegisterMembershipVm_EnglishFirstName_ReqMsg" xml:space="preserve">
+    <value>نام انگلیسی ضروری است</value>
+  </data>
+  <data name="RegisterMembershipVm_EnglishLastName" xml:space="preserve">
+    <value>نام خانوادگی انگلیسی</value>
+  </data>
+  <data name="RegisterMembershipVm_EnglishLastName_ReqMsg" xml:space="preserve">
+    <value>نام خانوادگی انگلیسی ضروری است</value>
+  </data>
+  <data name="RegisterMembershipVm_PhoneNumber_RegEx" xml:space="preserve">
+    <value>تلفن همراه صحیح نیست</value>
+  </data>
+  <data name="AspUserMembershipViewModel_EnglishFirstName_RegEx" xml:space="preserve">
+    <value>نام انگلیسی باید  [a-z][A-Z] باشد</value>
+  </data>
+  <data name="AspUserMembershipViewModel_EnglishLastName_RegEx" xml:space="preserve">
+    <value>نام خانوادگی انگلیسی باید  [a-z][A-Z] باشد</value>
+  </data>
+  <data name="CompanionViewModel_PhoneNumber_RegEx" xml:space="preserve">
+    <value>شماره همراه معتبر نیست</value>
+  </data>
+  <data name="EditMembershipVm_EnglishFirstName_RegEx" xml:space="preserve">
+    <value>نام انگلیسی باید  [a-z][A-Z] باشد</value>
+  </data>
+  <data name="EditMembershipVm_EnglishLastName_RegEx" xml:space="preserve">
+    <value>نام خانوادگی انگلیسی باید  [a-z][A-Z] باشد</value>
+  </data>
+  <data name="RegisterMembershipVm_EnglishFirstName_RegEx" xml:space="preserve">
+    <value>نام انگلیسی باید  [a-z][A-Z] باشد</value>
+  </data>
+  <data name="RegisterMembershipVm_EnglishLastName_RegEx" xml:space="preserve">
+    <value>نام خانوادگی انگلیسی باید  [a-z][A-Z] باشد</value>
+  </data>
+  <data name="ArticleClientQuickFilterViewModel_ConferenceName" xml:space="preserve">
+    <value>عنوان همایش</value>
+  </data>
+  <data name="ArticleListItemViewModel_ArticlePresentTypeName" xml:space="preserve">
+    <value>نحوه ارائه</value>
+  </data>
+  <data name="ArticleViewModel_ArticlePresentTypeName" xml:space="preserve">
+    <value>نحوه ارائه</value>
+  </data>
+  <data name="ArticleViewModel_RefereeArticleResults" xml:space="preserve">
+    <value>نتایج داوری</value>
+  </data>
+  <data name="ArticleViewModel_ConferencePlace" xml:space="preserve">
+    <value>محل همایش</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Enable" xml:space="preserve">
+    <value>فعال</value>
+  </data>
+  <data name="SocietyMemberViewModel_Enable" xml:space="preserve">
+    <value>فعال</value>
+  </data>
+  <data name="SocietyExecutorViewModel_LanguageName" xml:space="preserve">
+    <value>زبان</value>
+  </data>
+  <data name="ArticleListItemViewModel_ArticlePresentTypeNameExpain" xml:space="preserve">
+    <value>توضیحات</value>
+  </data>
+  <data name="ArticleViewModel_ArticleWordFile" xml:space="preserve">
+    <value>فایل word مقاله</value>
+  </data>
+  <data name="ArticleViewModel_ArticleWordFile_ReqMsg" xml:space="preserve">
+    <value>فایل word مقاله ضروری است</value>
+  </data>
+  <data name="ArticleViewModel_FileWordUrl" xml:space="preserve">
+    <value>فایل Word مقاله</value>
+  </data>
+  <data name="ArticleViewModel_FileWordUrl_ReqMsg" xml:space="preserve">
+    <value>فایل Word  مقاله ضروری است</value>
+  </data>
+  <data name="ArticleViewModel_PosterUrl" xml:space="preserve">
+    <value>پوستر ارائه مقاله</value>
+  </data>
+  <data name="ArticleViewModel_PresentTime" xml:space="preserve">
+    <value>زمان ارائه مقاله</value>
+  </data>
+  <data name="ArticleViewModel_PresentLocation" xml:space="preserve">
+    <value>مکان ارائه مقاله</value>
+  </data>
+  <data name="ArticleViewModel_RegisterationStatus" xml:space="preserve">
+    <value>عضویت انجمن</value>
+  </data>
+  <data name="ArticleViewModel_PosterFile" xml:space="preserve">
+    <value>فایل پوستر مقاله</value>
+  </data>
+  <data name="WriterViewModel_IsMainWriter" xml:space="preserve">
+    <value>نویسنده مسئول</value>
+  </data>
+</root>

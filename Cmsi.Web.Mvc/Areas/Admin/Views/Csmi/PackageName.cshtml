@@ -1,0 +1,89 @@
+﻿@model AVA.Web.Mvc.Models.PackageNameViewModel
+@using AVA.UI.Helpers.Controller;
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Base;
+@{
+    string ModuleName = "PackageName";
+}
+@using (Html.BeginForm("Submit" + ModuleName, "PublicAdmin", null, FormMethod.Post, new { id = "form-" + ModuleName, ng_controller = "MySubmitController" }))
+{
+    <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.ObjectState)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>{{ '@(ModuleName)' | translate }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a ui-sref="Home">{{ 'Home' | translate }}</a>
+                </li>
+                <li class="active">
+                    <strong>{{ '@(ModuleName)' | translate }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content text-center p-md">
+                        <div class="form-horizontal">
+                            @{
+
+                                for (int Index = 0; Index < Model.PackageNameTranslations.Count; Index++)
+                                {
+                                    <div class='form-group'>
+                                        <div class="col-sm-2">
+                                            <label class="control-label pull-right">@Model.PackageNameTranslations[Index].LanguageName :</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            @Html.TextBoxFor(mdoel => mdoel.PackageNameTranslations[Index].Name, new
+                                       {
+                                           @class = "form-control",
+                                           ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.PackageNameTranslations).Name + "[" + Index.ToString() + "]." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.PackageNameTranslations[Index], m => m.Name).Name,
+                                       })
+
+                                            @Html.ValidationMessageFor(mdoel => mdoel.PackageNameTranslations[Index].Name, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            <div class='form-group'>
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.Price, CommonHelper.GetDisplayName(Model, m => m.Price)+":", new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(mdoel => mdoel.Price, new
+                                       {
+                                           @class = "form-control",
+                                           ng_model = "model." +CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Price).Name,
+                                       })
+
+                                    @Html.ValidationMessageFor(mdoel => mdoel.Price, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-3 col-sm-offset-3">
+                                    <button class="btn btn-primary" id="SubmitBtn" ng-click="submitForm($event,'@Url.Action("Submit"+ModuleName, ModuleName)','form-@ModuleName')">@(Model.ObjectState == ObjectState.Update ? "ویرایش" : " ثبت")</button>
+                                    <a class="btn btn-white" ui-sref="@(ModuleName+"Management")">بازگشت</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+                                }
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+</script>

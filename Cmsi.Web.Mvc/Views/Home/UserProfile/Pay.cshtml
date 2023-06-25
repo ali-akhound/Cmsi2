@@ -1,0 +1,106 @@
+﻿@model AVA.Web.Mvc.Models.InvoiceViewModel
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Controller;
+@{
+    string ModuleName = "Pay";
+}
+<update-title title="{{'Pay' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'Pay' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'Pay' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'Pay' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'Pay' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+<!-- Payment Options -->
+<h4>
+    {{'Pay' | translate}}
+</h4>
+<div id="payment-options" class="bg-faded p-3 rounded" ng-controller="MySubmitController">
+    <div class="form-check">
+        <label class="form-check-label" data-toggle="radio-collapse" data-target="#OnlinePanel" data-parent="#payment-options">
+            <input class="form-check-input" type="radio"
+                   ng-model="model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedPayType).Name)"
+                   value="@(Model.PayTypes[0].Value)">
+            {{ 'OnlinePay'| translate }}<i class="fa fa-credit-card-alt"></i>
+        </label>
+        <div class="collapse show" id="OnlinePanel">
+            <form id="OnlinePayform" action="https://ikc.shaparak.ir/TPayment/Payment/Index" method="post"
+                  runat="server">
+                @Html.HiddenFor(model => model.merchantId, new
+                {
+                    ng_value = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.merchantId).Name
+                })
+                @Html.HiddenFor(model => model.token, new
+                {
+                    ng_value = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.token).Name
+                })
+            </form>
+            <div class="bg-white p-3 mt-2 rounded">
+                <small>{{'SumAmount' | translate}} : <span>{{model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.amount).Name)| number : 0}} ریال</span></small>
+                <button type="submit" class="btn btn-primary float-lg-left" ng-click="submitOnlinePayForm($event,'@Url.Action("SubmitPay", "Home")','form-@ModuleName')">پرداخت</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-check">
+        <label class="form-check-label" data-toggle="radio-collapse" data-target="#paypal" data-parent="#payment-options">
+            <input class="form-check-input" type="radio"
+                   ng-model="model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedPayType).Name)"
+                   value="@(Model.PayTypes[1].Value)">
+            {{ 'CashBankPay'| translate }}<i class="fa fa-paypal"></i>
+        </label>
+        <div class="collapse " id="paypal">
+            @using (Html.BeginForm("Submit" + ModuleName, "", null, FormMethod.Post, new { id = "form-" + ModuleName }))
+            {
+                <div class="bg-white p-3 mt-2 rounded pos-relative">
+                    <div class="row">
+                        <div class="col-lg-3 mb-2 md-md-0">
+                            @Html.TextBoxFor(model => model.Cash2BankPayReceipt, new
+                            {
+                                @class = "form-control",
+                                ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Cash2BankPayReceipt).Name,
+                                placeholder = CommonHelper.GetDisplayName(Model, m => m.Cash2BankPayReceipt)
+                            })
+                            @Html.ValidationMessageFor(model => model.Cash2BankPayReceipt, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3 mb-2 md-md-0">
+                            @Html.TextBoxFor(model => model.Cash2BankBankName, new
+                            {
+                                @class = "form-control",
+                                ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Cash2BankBankName).Name,
+                                placeholder = CommonHelper.GetDisplayName(Model, m => m.Cash2BankBankName)
+                            })
+                            @Html.ValidationMessageFor(model => model.Cash2BankBankName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3 mb-2 md-md-0">
+                            @Html.TextBoxFor(model => model.Cash2BankPayDate, new
+                            {
+                                @class = "form-control",
+                                ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Cash2BankPayDate).Name,
+                                placeholder = "1300/01/01"
+                            })
+                            @Html.ValidationMessageFor(model => model.Cash2BankPayDate, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div class="col-lg-12 mb-2 md-md-0">
+                        <hr class="mb-3" />
+                        <div class="row">
+                            @Html.LabelFor(model => model.Cash2BankPayFile, new { @class = "col-md-2" })
+                            <input type="file" class="form-control-file col-md-5"
+                                   name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Cash2BankPayFile).Name)" />
+                            <small id="fileHelp2" class="form-text text-muted">حداکثر حجم فایل باید 512 کیلوبایت و پسوند آن jpg یا png باشد.</small>
+                        </div>
+                        <small>{{'SumAmount' | translate}} : <span>{{model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.amount).Name)| number : 0}} ریال</span></small>
+                        <button type="submit" class="btn btn-primary float-lg-left" ng-click="submitForm($event,'@Url.Action("SubmitPay", "Home")','form-@ModuleName')">پرداخت</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+    $('input[name=@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Cash2BankPayDate).Name)]').mask('9999/99/99');
+</script>

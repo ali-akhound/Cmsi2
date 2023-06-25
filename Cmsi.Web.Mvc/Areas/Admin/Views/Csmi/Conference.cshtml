@@ -1,0 +1,476 @@
+﻿@model AVA.Web.Mvc.Models.ConferenceViewModel
+@using AVA.UI.Helpers.Controller;
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Base;
+@{
+    string ModuleName = "Conference";
+}
+@using (Html.BeginForm("Submit" + ModuleName, "PublicAdmin", null, FormMethod.Post, new { id = "form-" + ModuleName, ng_controller = "MySubmitController" }))
+{
+    <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.ObjectState)
+    @Html.HiddenFor(model => model.Explain, new { id = CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Explain).Name, ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Explain).Name });
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>{{ '@(ModuleName)' | translate }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a ui-sref="Home">{{ 'Home' | translate }}</a>
+                </li>
+                <li class="active">
+                    <strong>{{ '@(ModuleName)' | translate }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content text-center p-md">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.Title, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.Title, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Title).Name
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.EnglishTitle, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.EnglishTitle, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.EnglishTitle).Name
+                                    })
+                                    @Html.ValidationMessageFor(model => model.EnglishTitle, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.Place, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.Place, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Place).Name
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Place, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.EventDateConverted, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.EventDateConverted, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.EventDateConverted).Name,
+                                        data_mask = "9999/99/99"
+                                    })
+                                    @Html.ValidationMessageFor(model => model.EventDateConverted, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.PosterImage, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.PosterImage).Name)" />
+                                </div>
+                                @if (Model.ObjectState == ObjectState.Update)
+                                {
+                                    <div class="col-sm-3">
+                                        @Html.LabelFor(model => model.PosterImageUrl, new { @class = "control-label pull-right" })
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="@Model.PosterImageUrl" target="_blank"><img src="@Url.Content(Model.PosterImageUrl)" class="img-responsive" style="max-height:200px"></a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.Explain, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-12">
+                                    @using (Html.BeginForm())
+                                    {
+                                        @Html.Action("HtmlEditorPartial", "PublicAdmin")
+                                    }
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.AttachFile, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AttachFile).Name)" />
+                                </div>
+                                @if (Model.ObjectState == ObjectState.Update && !string.IsNullOrEmpty(Model.AttachFileUrl))
+                                {
+                                    <div class="col-sm-3">
+                                        @Html.LabelFor(model => model.AttachFileUrl, new { @class = "control-label pull-right" })
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="@(string.IsNullOrEmpty( Model.AttachFileUrl)?"":Url.Content(Model.AttachFileUrl))" target="_blank">فایل پیوست همایش</a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.AttachAmayeshFile, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AttachAmayeshFile).Name)" />
+                                </div>
+                                @if (Model.ObjectState == ObjectState.Update && !string.IsNullOrEmpty(Model.AttachAmayeshFileUrl))
+                                {
+                                    <div class="col-sm-3">
+                                        @Html.LabelFor(model => model.AttachAmayeshFileUrl, new { @class = "control-label pull-right" })
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="@(string.IsNullOrEmpty( Model.AttachAmayeshFileUrl)?"":Url.Content(Model.AttachAmayeshFileUrl))" target="_blank">فایل پیوست آمایش مقاله</a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.AttachScientificCommitteeFile, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AttachScientificCommitteeFile).Name)" />
+                                </div>
+                                @if (Model.ObjectState == ObjectState.Update && !string.IsNullOrEmpty(Model.AttachScientificCommitteeFileUrl))
+                                {
+                                    <div class="col-sm-3">
+                                        @Html.LabelFor(model => model.AttachScientificCommitteeFileUrl, new { @class = "control-label pull-right" })
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="@(string.IsNullOrEmpty( Model.AttachScientificCommitteeFileUrl)?"":Url.Content(Model.AttachScientificCommitteeFileUrl))" target="_blank">فایل پیوست آمایش مقاله</a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.AttachExecutiveCommitteeFile, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AttachExecutiveCommitteeFile).Name)" />
+                                </div>
+                                @if (Model.ObjectState == ObjectState.Update && !string.IsNullOrEmpty(Model.AttachExecutiveCommitteeFileUrl))
+                                {
+                                    <div class="col-sm-3">
+                                        @Html.LabelFor(model => model.AttachExecutiveCommitteeFileUrl, new { @class = "control-label pull-right" })
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="@(string.IsNullOrEmpty( Model.AttachExecutiveCommitteeFileUrl)?"":Url.Content(Model.AttachExecutiveCommitteeFileUrl))" target="_blank">فایل پیوست آمایش مقاله</a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.AttachPresentationHelpFileUrl, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AttachPresentationHelpFile).Name)" />
+                                </div>
+                                @if (Model.ObjectState == ObjectState.Update && !string.IsNullOrEmpty(Model.AttachPresentationHelpFileUrl))
+                                {
+                                    <div class="col-sm-3">
+                                        @Html.LabelFor(model => model.AttachPresentationHelpFileUrl, new { @class = "control-label pull-right" })
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="@(string.IsNullOrEmpty( Model.AttachPresentationHelpFileUrl)?"":Url.Content(Model.AttachPresentationHelpFileUrl))" target="_blank">فایل پیوست راهنمای ارائه سخنرانی</a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.AttachPresentationPowerpointFileUrl, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AttachPresentationPowerpointFile).Name)" />
+                                </div>
+                                @if (Model.ObjectState == ObjectState.Update && !string.IsNullOrEmpty(Model.AttachPresentationPowerpointFileUrl))
+                                {
+                                    <div class="col-sm-3">
+                                        @Html.LabelFor(model => model.AttachPresentationPowerpointFileUrl, new { @class = "control-label pull-right" })
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="@(string.IsNullOrEmpty( Model.AttachPresentationPowerpointFileUrl)?"":Url.Content(Model.AttachPresentationPowerpointFileUrl))" target="_blank">فایل پیوست فرمت پاورپوینت</a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.AttachPosterTemplateFileUrl, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AttachPosterTemplateFile).Name)" />
+                                </div>
+                                @if (Model.ObjectState == ObjectState.Update && !string.IsNullOrEmpty(Model.AttachPosterTemplateFileUrl))
+                                {
+                                    <div class="col-sm-3">
+                                        @Html.LabelFor(model => model.AttachPosterTemplateFileUrl, new { @class = "control-label pull-right" })
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="@(string.IsNullOrEmpty( Model.AttachPosterTemplateFileUrl)?"":Url.Content(Model.AttachPosterTemplateFileUrl))" target="_blank">فایل پیوست فرمت پوستر</a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.AttachChemistryPresentationProgramFileUrl, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AttachChemistryPresentationProgramFile).Name)" />
+                                </div>
+                                @if (Model.ObjectState == ObjectState.Update && !string.IsNullOrEmpty(Model.AttachChemistryPresentationProgramFileUrl))
+                                {
+                                    <div class="col-sm-3">
+                                        @Html.LabelFor(model => model.AttachChemistryPresentationProgramFileUrl, new { @class = "control-label pull-right" })
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="@(string.IsNullOrEmpty( Model.AttachChemistryPresentationProgramFileUrl)?"":Url.Content(Model.AttachChemistryPresentationProgramFileUrl))" target="_blank">فایل پیوست برنامه سخنرانی همایش گروه شیمی</a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.AttachGeologyPresentationProgramFileUrl, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AttachGeologyPresentationProgramFile).Name)" />
+                                </div>
+                                @if (Model.ObjectState == ObjectState.Update && !string.IsNullOrEmpty(Model.AttachGeologyPresentationProgramFileUrl))
+                                {
+                                    <div class="col-sm-3">
+                                        @Html.LabelFor(model => model.AttachGeologyPresentationProgramFileUrl, new { @class = "control-label pull-right" })
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="@(string.IsNullOrEmpty( Model.AttachGeologyPresentationProgramFileUrl)?"":Url.Content(Model.AttachGeologyPresentationProgramFileUrl))" target="_blank">فایل پیوست برنامه سخنرانی همایش گروه زمین شناسی</a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.AttachPhysicsPresentationProgramFileUrl, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AttachPhysicsPresentationProgramFile).Name)" />
+                                </div>
+                                @if (Model.ObjectState == ObjectState.Update && !string.IsNullOrEmpty(Model.AttachPhysicsPresentationProgramFileUrl))
+                                {
+                                    <div class="col-sm-3">
+                                        @Html.LabelFor(model => model.AttachPhysicsPresentationProgramFileUrl, new { @class = "control-label pull-right" })
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="@(string.IsNullOrEmpty( Model.AttachPhysicsPresentationProgramFileUrl)?"":Url.Content(Model.AttachPhysicsPresentationProgramFileUrl))" target="_blank">فایل پیوست برنامه سخنرانی همایش گروه فیزیک</a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.AttachOpeningPlanFileUrl, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control" name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AttachOpeningPlanFile).Name)" />
+                                </div>
+                                @if (Model.ObjectState == ObjectState.Update && !string.IsNullOrEmpty(Model.AttachOpeningPlanFileUrl))
+                                {
+                                    <div class="col-sm-3">
+                                        @Html.LabelFor(model => model.AttachOpeningPlanFileUrl, new { @class = "control-label pull-right" })
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="@(string.IsNullOrEmpty( Model.AttachOpeningPlanFileUrl)?"":Url.Content(Model.AttachOpeningPlanFileUrl))" target="_blank">فایل پیوست برنامه سخنرانی همایش گروه فیزیک</a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.AttachAttendingHelpFileUrl, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AttachAttendingHelpFile).Name)" />
+                                </div>
+                                @if (Model.ObjectState == ObjectState.Update && !string.IsNullOrEmpty(Model.AttachAttendingHelpFileUrl))
+                                {
+                                    <div class="col-sm-3">
+                                        @Html.LabelFor(model => model.AttachAttendingHelpFileUrl, new { @class = "control-label pull-right" })
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="@(string.IsNullOrEmpty( Model.AttachAttendingHelpFileUrl)?"":Url.Content(Model.AttachAttendingHelpFileUrl))" target="_blank">فایل پیوست برنامه سخنرانی همایش گروه فیزیک</a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.AttachTotalArticlesFileUrl, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AttachTotalArticlesFile).Name)" />
+                                </div>
+                                @if (Model.ObjectState == ObjectState.Update && !string.IsNullOrEmpty(Model.AttachTotalArticlesFileUrl))
+                                {
+                                    <div class="col-sm-3">
+                                        @Html.LabelFor(model => model.AttachTotalArticlesFileUrl, new { @class = "control-label pull-right" })
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="@(string.IsNullOrEmpty( Model.AttachTotalArticlesFileUrl)?"":Url.Content(Model.AttachTotalArticlesFileUrl))" target="_blank">فایل پیوست مقالات همایش</a>
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.MobileTel, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.MobileTel, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MobileTel).Name
+                                    })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.TelegramUrl, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.TelegramUrl, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.TelegramUrl).Name
+                                    })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.SendStartDateConverted, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.SendStartDateConverted, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SendStartDateConverted).Name,
+                                        data_mask = "9999/99/99"
+                                    })
+                                    @Html.ValidationMessageFor(model => model.SendStartDateConverted, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.LabelFor(model => model.SendEndDateConverted, new { @class = "control-label pull-right" })
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.SendEndDateConverted, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SendEndDateConverted).Name,
+                                        data_mask = "9999/99/99"
+                                    })
+                                    @Html.ValidationMessageFor(model => model.SendEndDateConverted, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+
+                            <hr />
+                            @{
+
+                                for (int Index = 0; Index < Model.AdminConferencePackage.Count; Index++)
+                                {
+                                    if (Index % 2 == 0)
+                                    {
+                                        @:<div class='form-group'>
+                                        }
+                                        <div class="col-sm-3">
+                                            <label class="control-label pull-right">@Model.AdminConferencePackage[Index].Name :</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            @Html.TextBoxFor(mdoel => mdoel.AdminConferencePackage[Index].Price, new
+                                            {
+                                                @class = "form-control",
+                                                ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AdminConferencePackage).Name + "[" + Index.ToString() + "]." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.AdminConferencePackage[Index], m => m.Price).Name,
+                                                num_fract = "0",
+                                                num_int = "10",
+                                                num_thousand = "true",
+                                                num_sep = " ",
+                                                num_pos = "true",
+                                                num_neg = "false",
+                                                num_round = "false",
+                                                num_thousand_sep = ",",
+                                                num_prepend = "",
+                                                num_append = "",
+                                                num_fixed = "false",
+                                                awnum = "awnum"
+                                            })
+
+                                            @Html.ValidationMessageFor(mdoel => mdoel.AdminConferencePackage[Index].Price, "", new { @class = "text-danger" })
+                                        </div>
+                                        if ((Index + 1) % 2 == 0)
+                                        {
+                                        @:</div>
+                                    }
+                                }
+                            }
+
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-3 col-sm-offset-3">
+                                    <button class="btn btn-primary" id="SubmitBtn" ng-click="submitForm($event,'@Url.Action("Submit"+ModuleName, ModuleName)','form-@ModuleName')">@(Model.ObjectState == ObjectState.Update ? "ویرایش" : " ثبت")</button>
+                                    <a class="btn btn-white" ui-sref="@(ModuleName+"Management")">بازگشت</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+}
+<script>
+    var CurrentModel =@Html.Raw(Json.Encode(Model));
+    function OnHtmlChangedChanged(s, e) {
+        CurrentModel.Explain = HtmlEditor.GetHtml();
+        Explain = HtmlEditor.GetHtml();
+    }
+    function OnInit(s, e) {
+        Explain.value = CurrentModel.Explain;
+        HtmlEditor.SetHtml(CurrentModel.Explain);
+    }
+</script>

@@ -1,0 +1,142 @@
+﻿@model AVA.Web.Mvc.Models.Admin.ElectionViewModel
+@using AVA.UI.Helpers.Controller;
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Base;
+@{
+    string ModuleName = "Election";
+}
+@using (Html.BeginForm("SubmitElection", "PublicAdmin", null, FormMethod.Post, new { id = "form-Election", ng_controller = "MySubmitController" }))
+{
+    <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+    @Html.HiddenFor(model => model.ID)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>{{ 'Election' | translate }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a ui-sref="Home">{{ 'Home' | translate }}</a>
+                </li>
+                <li class="active">
+                    <strong>{{ 'Election' | translate }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content text-center p-md">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        @Html.LabelFor(model => model.Name, new { @class = "control-label" }):
+                                    </div>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.Name, new
+                                   {
+                                       @class = "form-control",
+                                       ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Name).Name
+                                   })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        @Html.LabelFor(model => model.StartDateConverted, new { @class = "control-label" }):
+                                    </div>
+                                    <div class="col-sm-3">
+                                        @Html.TextBoxFor(model => model.StartDateConverted, new
+                                   {
+                                       @class = "form-control",
+                                       ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.StartDateConverted).Name,
+                                       data_mask = "9999/99/99"
+
+                                   })
+                                        @Html.ValidationMessageFor(model => model.EndDateConverted, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-sm-2">
+                                        @Html.LabelFor(model => model.EndDateConverted, new { @class = "control-label" }):
+                                    </div>
+                                    <div class="col-sm-3">
+                                        @Html.TextBoxFor(model => model.EndDateConverted, new
+                                   {
+                                       @class = "form-control",
+                                       ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.EndDateConverted).Name,
+                                       data_mask = "9999/99/99"
+
+                                   })
+                                        @Html.ValidationMessageFor(model => model.StartDateConverted, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        @Html.LabelFor(model => model.ElectionPosterUrl, new { @class = "control-label" }):
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="file" class="form-control"
+                                               name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ElectionPoster).Name)" />
+                                    </div>
+                                </div>
+                                @{
+                                    <div class="form-group">
+                                        @if (Model.ObjectState == ObjectState.Update)
+                                        {
+                                            <div class="col-sm-2">
+                                                @Html.LabelFor(model => model.ElectionPosterUrl, new { @class = "control-label" }):
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <a href="@Model.ElectionPosterUrl"><img src="@Model.ElectionPosterUrl" class="img-responsive" alt="@(CommonHelper.GetDisplayName(Model, m => m.ElectionPosterUrl))"></a>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        @Html.LabelFor(model => model.ElectionAttachUrl, new { @class = "control-label" }):
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="file" class="form-control"
+                                               name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ElectionAttach).Name)" />
+                                    </div>
+                                </div>
+                                @{
+                                    <div class="form-group">
+                                        @if (Model.ObjectState == ObjectState.Update)
+                                        {
+                                            <div class="col-sm-2">
+                                                @Html.LabelFor(model => model.ElectionAttachUrl, new { @class = "control-label" }):
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <a href="@Model.ElectionAttachUrl"><img src="@Model.ElectionAttachUrl" class="img-responsive" alt="@(CommonHelper.GetDisplayName(Model, m => m.ElectionAttachUrl))"></a>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-3 col-sm-offset-3">
+                                    <button class="btn btn-primary" id="SubmitBtn" ng-click="submitForm($event,'@Url.Action("SubmitElection", "Election")','form-@ModuleName')">@(Model.ObjectState == ObjectState.Update ? "ویرایش" : " ثبت")</button>
+                                    <a class="btn btn-white" ui-sref="ElectionManagement">بازگشت</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+}
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+</script>

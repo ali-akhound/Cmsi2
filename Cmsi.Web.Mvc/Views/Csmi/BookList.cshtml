@@ -1,0 +1,76 @@
+﻿@model AVA.Web.Mvc.Models.BookListViewModel
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Controller;
+<update-title title="{{'BookList' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'BookList' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'BookList' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'BookList' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'BookList' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<div class="container animated fadeIn animation-delay-7" ng-controller="ListController">
+    <div class="row">
+        <!-- Products grid -->
+        <div class="col-lg-12 order-lg-2">
+            <h3 class="title-divider">
+                <span>{{$state.current.title | translate}}</span>
+            </h3>
+            <!-- Products filters -->
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group row">
+                        <label for="contact-name" class="col-3 col-form-label pl-0">جست و جو</label>
+                        <div class="col-9 pr-0">
+                            @Html.TextBoxFor(model => model.Writer, new
+                            {
+                                @class = "form-control col-10",
+                                ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Writer).Name,
+                                placeholder = CommonHelper.GetDisplayName(Model, m => m.Writer)
+                            })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-inline justify-content-lg-end text-sm">
+                        <label class="control-label  col-4">مرتب سازی بر اساس: </label>
+                        <select class="form-control form-control-sm col-3" ng-model="model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.OrderType).Name)">
+                            <option value="ASC">Name (A - Z)</option>
+                            <option value="DESC">Name (Z - A)</option>
+                        </select>
+                        <button class="form-control btn btn-primary col-3 m-1" type="submit" ng-click="BookPageChanged(1)">{{'Filter' | translate}}</button>
+                    </div>
+
+                </div>
+
+            </div>
+            <hr class="my-4" />
+            <div class="row pb-5">
+                <div class="col-6 col-lg-3 d-flex" dir-paginate="item in DataModel | itemsPerPage: pageSize" total-items="totalRecords" current-page="pagination.current">
+                    <div class="card mb-3 flex-ew">
+                        <div class="card-effect card-effect-front-to-back">
+                            <img class="card-img-top img-fluid" ng-src="{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleBooks, m => m.ImageUrl).Name)}}" alt="{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleBooks, m => m.Name).Name)}}">
+                            <div class="card-back rounded bg-inverse bg-op-8 text-white flex-valign text-center p-3">
+                                <div>
+                                    <a href="#" class="text-white">
+                                        <i class="ion-ios-search-strong icon-1x"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mb-1 text-center">{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleBooks, m => m.Name).Name)}} </h5>
+                            <h6 class="card-text text-uppercase text-inverse text-xs">{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleBooks, m => m.Writer).Name)}}</h6>
+                            <h6 class="card-text text-uppercase text-inverse text-xs">{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleBooks, m => m.PrintPeriod).Name)}}/{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleBooks, m => m.Year).Name)}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pagination -->
+            <dir-pagination-controls on-page-change="BookPageChanged(newPageNumber)" template-url="@Url.Content("~/assets/template/dirPagination.tpl.html")"></dir-pagination-controls>
+        </div>
+    </div>
+</div>
+<script>
+    var PageChangeActionUrl ='@Url.Action("BookListFeed", "Csmi")';
+    var ListModel=@Html.Raw(Json.Encode(Model));
+    var ListName='@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Books).Name)';
+</script>

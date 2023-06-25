@@ -1,0 +1,313 @@
+﻿@model AVA.Web.Mvc.Models.CurrentFutureConferenceListViewModel
+@using AVA.UI.Helpers.Common;
+@using System.Configuration;
+<update-title title="@Model.CurrentConference.Title"></update-title>
+<update-meta property="og:title" content="@Model.CurrentConference.Title-@Model.CurrentConference.Place"></update-meta>
+<update-meta name="description" content="@Model.CurrentConference.Title-@Model.CurrentConference.Place-@Model.CurrentConference.EnglishTitle"></update-meta>
+<update-meta itemprop="description" content="@Model.CurrentConference.Title-@Model.CurrentConference.Place-@Model.CurrentConference.EnglishTitle"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},@(ConfigurationManager.AppSettings["description"].ToString()+","+Model.CurrentConference.Title)"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<div id="content" class="animated fadeIn animation-delay-7">
+    <div class="container">
+        <h3 class="title-divider">
+            <span>{{'HamayeshActive' | translate}}</span>
+        </h3>
+        <div class="bg-faded  container-fluid mb-4">
+            <div class="row">
+                <div class="col-lg-8 pt-4 pl-lg-4 divider-arrow divider-arrow-l divider-faded">
+                    <hr class="hr-lg mt-0 mb-2 w-10  hr-primary" ng-controller="translateCtrl" ng-class="{'mr-0': isActive('fa'),'ml-0': isActive('en')}" />
+                    <h4 class="text-uppercase mt-0 mb-3 font-weight-bold">
+                        اطلاعات همایش
+                    </h4>
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <img src="@Url.Content(Model.CurrentConference.PosterImageUrl)" class="img-thumbnail" alt="@Model.CurrentConference.Title" title="@Model.CurrentConference.Title" />
+                        </div>
+                        <div class="col-sm-10 px-0">
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">عنوان انگلیسی:</label>
+                                <label class="col-sm-8 col-form-label text-sm mr-5-neg pl-0">@Model.CurrentConference.EnglishTitle</label>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">عنوان فارسی:</label>
+                                <label class="col-sm-8 col-form-label mr-5-neg pl-0">@Model.CurrentConference.Title</label>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">محل برگزاری همایش:</label>
+                                <label class="col-sm-8 col-form-label mr-5-neg pl-0">@Model.CurrentConference.Place</label>
+                            </div>
+                        </div>
+                        <div class="col text-center">
+                            <a class="mt-1 btn btn-primary btn-rounded" ui-sref="VirtualBoard({ConferenceID:@Model.CurrentConference.ID,PosterArticle:1})">ورود به صفحه برد مجازی</a>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <hr class="mb-2 hr-grey " />
+                        <div class="form-group row text-center">
+                            <!-- Blog post 1 -->
+                            <div class="col-4">
+                                <p class="my-0 text-sm">آغاز ارسال مقاله</p>
+                                <h5 class="my-0">
+                                    @Model.CurrentConference.SendStartDateConverted
+                                </h5>
+                            </div>
+                            <hr class="hr-faded my-2" />
+                            <!-- Blog post 2 -->
+                            <div class="col-4">
+                                <p class="my-0 text-sm">پایان مهلت ارسال مقاله</p>
+                                <h5 class="my-0">
+                                    @Model.CurrentConference.SendEndDateConverted
+                                </h5>
+                            </div>
+                            <hr class="hr-faded my-2" />
+                            <!-- Blog post 3 -->
+                            <div class="col-4">
+                                <p class="my-0 text-sm">زمان برگزاری همایش</p>
+                                <h5 class="my-0">
+                                    @Model.CurrentConference.EventDateConverted
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    @if (!string.IsNullOrEmpty(Model.CurrentConference.Explain))
+                    {
+                        <div class="mt-3 text-right">
+                            <hr class="mb-2 hr-grey " />
+                            <div class="form-group ">
+                                <p class="mb-0">توضیحات همایش</p>
+                                <p>@Html.Raw(Model.CurrentConference.Explain)</p>
+                            </div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.CurrentConference.AttachFileUrl))
+                    {
+                        <div class="mt-3">
+                            <hr class="mb-2 hr-grey " />
+                            <div class="form-group ">
+                                <p class="mb-0">راهنمای تکمیلی همایش</p>
+                                <p><a href="@(string.IsNullOrEmpty(Model.CurrentConference.AttachFileUrl) ? "" : Url.Content(Model.CurrentConference.AttachFileUrl))" target="_blank">برای دانلود راهنمای تکمیلی همایش کلیک کنید</a></p>
+                            </div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.CurrentConference.AttachAttendingHelpFileUrl))
+                    {
+                        <div class="mt-3">
+                            <hr class="mb-2 hr-grey " />
+                            <div class="form-group ">
+                                <p class="mb-0">راهنمای شرکت در همایش</p>
+                                <p><a href="@(string.IsNullOrEmpty(Model.CurrentConference.AttachAttendingHelpFileUrl) ? "" : Url.Content(Model.CurrentConference.AttachAttendingHelpFileUrl))" target="_blank">برای دانلود برنامه افتتاحیه همایش کلیک کنید</a></p>
+                            </div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.CurrentConference.AttachOpeningPlanFileUrl))
+                    {
+                        <div class="mt-3">
+                            <hr class="mb-2 hr-grey " />
+                            <div class="form-group ">
+                                <p class="mb-0">برنامه افتتاحیه</p>
+                                <p><a href="@(string.IsNullOrEmpty(Model.CurrentConference.AttachOpeningPlanFileUrl) ? "" : Url.Content(Model.CurrentConference.AttachOpeningPlanFileUrl))" target="_blank">برای دانلود برنامه افتتاحیه همایش کلیک کنید</a></p>
+                            </div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.CurrentConference.AttachAmayeshFileUrl))
+                    {
+                        <div class="mt-3">
+                            <hr class="mb-2 hr-grey " />
+                            <div class="form-group ">
+                                <p class="mb-0">راهنمای آمایش مقاله</p>
+                                <p><a href="@(string.IsNullOrEmpty(Model.CurrentConference.AttachAmayeshFileUrl) ? "" : Url.Content(Model.CurrentConference.AttachAmayeshFileUrl))" target="_blank">برای دانلود آمایش مقاله همایش کلیک کنید</a></p>
+                            </div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.CurrentConference.AttachScientificCommitteeFileUrl))
+                    {
+                        <div class="mt-3">
+                            <hr class="mb-2 hr-grey " />
+                            <div class="form-group ">
+                                <p class="mb-0">کمیته علمی همایش</p>
+                                <p><a href="@(string.IsNullOrEmpty(Model.CurrentConference.AttachScientificCommitteeFileUrl) ? "" : Url.Content(Model.CurrentConference.AttachScientificCommitteeFileUrl))" target="_blank">برای دانلود کمیته علمی همایش کلیک کنید</a></p>
+                            </div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.CurrentConference.AttachExecutiveCommitteeFileUrl))
+                    {
+                        <div class="mt-3">
+                            <hr class="mb-2 hr-grey " />
+                            <div class="form-group ">
+                                <p class="mb-0">کمیته اجرایی همایش</p>
+                                <p><a href="@(string.IsNullOrEmpty(Model.CurrentConference.AttachExecutiveCommitteeFileUrl) ? "" : Url.Content(Model.CurrentConference.AttachExecutiveCommitteeFileUrl))" target="_blank">برای دانلود کمیته اجرایی همایش کلیک کنید</a></p>
+                            </div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.CurrentConference.AttachPresentationHelpFileUrl))
+                    {
+                        <div class="mt-3">
+                            <hr class="mb-2 hr-grey " />
+                            <div class="form-group ">
+                                <p class="mb-0">راهنمای ارائه سخنرانی </p>
+                                <p><a href="@(string.IsNullOrEmpty(Model.CurrentConference.AttachPresentationHelpFileUrl) ? "" : Url.Content(Model.CurrentConference.AttachPresentationHelpFileUrl))" target="_blank">برای دانلود راهنمای ارائه سخنرانی کلیک کنید</a></p>
+                            </div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.CurrentConference.AttachPresentationPowerpointFileUrl))
+                    {
+                        <div class="mt-3">
+                            <hr class="mb-2 hr-grey " />
+                            <div class="form-group ">
+                                <p class="mb-0">فرمت پاورپوینت</p>
+                                <p><a href="@(string.IsNullOrEmpty(Model.CurrentConference.AttachPresentationPowerpointFileUrl) ? "" : Url.Content(Model.CurrentConference.AttachPresentationPowerpointFileUrl))" target="_blank">برای دانلود فرمت پاورپوینت کلیک کنید</a></p>
+                            </div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.CurrentConference.AttachPosterTemplateFileUrl))
+                    {
+                        <div class="mt-3">
+                            <hr class="mb-2 hr-grey " />
+                            <div class="form-group ">
+                                <p class="mb-0">فرمت پوستر</p>
+                                <p><a href="@(string.IsNullOrEmpty(Model.CurrentConference.AttachPosterTemplateFileUrl) ? "" : Url.Content(Model.CurrentConference.AttachPosterTemplateFileUrl))" target="_blank">برای دانلود فرمت پوستر کلیک کنید</a></p>
+                            </div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.CurrentConference.MobileTel))
+                    {
+                        <div class="mt-3">
+                            <hr class="mb-2 hr-grey " />
+                            <div class="form-group ">
+                                <p class="mb-0">همراه</p>
+                                <p>@(Model.CurrentConference.MobileTel) </p>
+                            </div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.CurrentConference.TelegramUrl))
+                    {
+                        <div class="mt-3">
+                            <hr class="mb-2 hr-grey " />
+                            <div class="form-group ">
+                                <p class="mb-0">آدرس کانال تلگرام</p>
+                                <p><a href="@(string.IsNullOrEmpty(Model.CurrentConference.TelegramUrl) ? "" : Url.Content(Model.CurrentConference.TelegramUrl))" target="_blank">برای ورود به کانال کلیک کنید</a></p>
+                            </div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.CurrentConference.AttachPhysicsPresentationProgramFileUrl))
+                    {
+                        <div class="mt-3">
+                            <hr class="mb-2 hr-grey " />
+                            <div class="form-group ">
+                                <p class="mb-0">برنامه سخنرانی همایش گروه فیزیک</p>
+                                <p><a href="@(string.IsNullOrEmpty(Model.CurrentConference.AttachPhysicsPresentationProgramFileUrl) ? "" : Url.Content(Model.CurrentConference.AttachPhysicsPresentationProgramFileUrl))" target="_blank">برای دانلود برنامه سخنرانی همایش گروه فیزیک کلیک کنید</a></p>
+                            </div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.CurrentConference.AttachChemistryPresentationProgramFileUrl))
+                    {
+                        <div class="mt-3">
+                            <hr class="mb-2 hr-grey " />
+                            <div class="form-group ">
+                                <p class="mb-0">برنامه سخنرانی همایش گروه شیمی</p>
+                                <p><a href="@(string.IsNullOrEmpty(Model.CurrentConference.AttachChemistryPresentationProgramFileUrl) ? "" : Url.Content(Model.CurrentConference.AttachChemistryPresentationProgramFileUrl))" target="_blank">برای دانلود برنامه سخنرانی همایش گروه شیمی کلیک کنید</a></p>
+                            </div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.CurrentConference.AttachGeologyPresentationProgramFileUrl))
+                    {
+                        <div class="mt-3">
+                            <hr class="mb-2 hr-grey " />
+                            <div class="form-group ">
+                                <p class="mb-0">برنامه سخنرانی همایش گروه زمین شناسی</p>
+                                <p><a href="@(string.IsNullOrEmpty(Model.CurrentConference.AttachGeologyPresentationProgramFileUrl) ? "" : Url.Content(Model.CurrentConference.AttachGeologyPresentationProgramFileUrl))" target="_blank">برای دانلود برنامه سخنرانی همایش گروه زمین شناسی کلیک کنید</a></p>
+                            </div>
+                        </div>
+                    }
+                    <div class="mt-3">
+                        <hr class="mb-2 hr-grey " />
+                        <div class="form-group ">
+                            <p class="mb-0">کاربر گرامی!</p>
+                            <p>برای ارسال مقاله در همایش، باید ابتدا در سامانه ثبت نام کنید تا پس از تایید عضویت شما از امکانات وب سایت برخوردار گردید. شما می توانید از طریق لینک زیر در سامانه ثبت نام کنید. لازم به ذکر است، به منظور تسهیل عملیات ارسال و داوری مقاله در همایش، راهنمای ارسال مقالات در نوار راهبری بالای صفحات قرار گرفته است.</p>
+                            <div class=" mt-4 row" role="group" aria-label="Basic example">
+                                <a ui-sref="Signup" class="btn btn-outline-teal w-20 ">ثبت نام کاربران</a>
+                                <a ui-sref="Login" class="btn btn-outline-teal w-20">ورود کاربران</a>
+                                <a href="http://cmsi.ir/admin#/HomeAdmin?Mode=referee" target="_blank" class="btn btn-outline-teal w-20">ورود داوران</a>
+                                <a ui-sref="GuideArticleSend" class="btn btn-outline-teal w-20">راهنمای ارسال مقاله</a>
+                                <a ui-sref="NewsList({pageNumber: '1',year:''})" class="btn btn-outline-teal w-20">اخبار همایش</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4  full-height-layout"  alt="@Model.CurrentConference.Title" title="@Model.CurrentConference.Title" >
+                    <img src="@Url.Content(Model.CurrentConference.PosterImageUrl)" class="img-thumbnail" alt="@Model.CurrentConference.Title" title="@Model.CurrentConference.Title" />
+
+                </div>
+            </div>
+        </div>
+        @if (Model.FutureConferences.Count > 0)
+        {
+            <div class="bg-teal  container-fluid mb-4">
+                <div class="row">
+                    <div class="col-lg-12 py-4 divider-arrow divider-arrow-b divider-teal">
+                        <h4 class="text-grey my-0 text-center">
+                            معرفی همایش های آتی
+                        </h4>
+                    </div>
+                    <div class="col-lg-12 bg-light py-4">
+                        <table class="table">
+                            <tbody>
+                                @{
+                                    int index = 1;
+                                    foreach (var conf in Model.FutureConferences)
+                                    {
+                                    <th scope="row">@index</th>
+                                    <td class="w-40">@CommonHelper.GetDisplayName(conf, m => m.Title):@conf.Title</td>
+                                    <td>@CommonHelper.GetDisplayName(conf, m => m.Place):@conf.Place</td>
+                                    <td>@CommonHelper.GetDisplayName(conf, m => m.EventDateConverted):@conf.EventDateConverted</td>
+                                    index = index + 1;
+                                }
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
+            @*<div class="bg-teal  container-fluid mb-4">
+                    <div class="row">
+                        <div class="col-lg-12 bg-light py-4">
+                            <div class="mt-4 " data-toggle="owl-carousel" data-owl-carousel-settings='{"items": 4, "lazyLoad":true, "nav":true, "dots":true}'>
+
+                                <a href="#">
+                                    <img src="/assets/img/customers/customer-1.png" alt="Item 1 image" class="owl-lazy img-fluid" />
+                                    <h5 class="mt-4 text-center">
+                                        نام حامی 1
+                                    </h5>
+                                </a>
+                                <a href="#">
+                                    <img src="/assets/img/customers/customer-2.png" alt="Item 2 image" class="owl-lazy img-fluid" />
+                                    <h5 class="mt-4 text-center">
+                                        نام حامی 2
+                                    </h5>
+                                </a>
+                                <a href="#">
+                                    <img src="/assets/img/customers/customer-3.png" alt="Item 3 image" class="owl-lazy img-fluid" />
+                                    <h5 class="mt-4 text-center">
+                                        نام حامی 3
+                                    </h5>
+                                </a>
+                                <a href="#">
+                                    <img src="/assets/img/customers/customer-4.png" alt="Item 4 image" class="owl-lazy img-fluid" />
+                                    <h5 class="mt-4 text-center">
+                                        نام حامی 4
+                                    </h5>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 py-4 divider-arrow divider-arrow-t divider-teal">
+                            <h4 class="text-grey my-0 text-center">
+                                حامیان همایش
+                            </h4>
+                        </div>
+                    </div>
+                </div>*@
+
+    </div>
+</div>
+<!-- Gallery -->

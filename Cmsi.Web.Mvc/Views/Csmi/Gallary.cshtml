@@ -1,0 +1,90 @@
+﻿@model AVA.Web.Mvc.Models.Admin.GalleryImageListViewModel
+<update-title title="{{'Gallary' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'Gallary' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'Gallary' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'Gallary' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'Gallary' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<div id="content" class="pt-0">
+    <div class="container pb-1 ">
+        <h4 class="title-divider">
+            <span>{{'Gallary' | translate}}</span>
+        </h4>
+        <div class="row">
+            @{
+                foreach (var group in Model.GalleryAlbums)
+                {
+
+                    <div class="col-lg-4 d-lg-flex mb-3">
+                        <div class="flex-ew card-effect card-effect-3d-over">
+                            <div class="card-front rounded px-3 pb-3 pt-8 overlay overlay-gradient overlay-op-8 " data-bg-img="@( Url.Content(Model.GalleryImages.Where(img => img.GalleryAlbumID == group.ID).FirstOrDefault().ShortImageUrl))">
+                                <h4 class="text-white text-uppercase mb-0">
+                                    @group.Name
+                                </h4>
+                                <hr class="hr-lg mt-2 mb-0 w-20 mr-0 hr-primary" />
+                            </div>
+                            <div class="card-back rounded bg-inverse text-white flex-valign text-center p-3">
+                                <h4>
+                                    @group.Name
+                                </h4>
+                                <a class="mb-2 btn btn-outline-success" ui-sref="GallaryInfo({AlbumID:'@group.ID'})">نمایش بیشتر تصاویر ...</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            }
+        </div>
+    </div>
+</div>
+@*<div id="content" class="pt-0">
+        <div class="container pb-1 animated fadeIn animation-delay-7">
+            <h3 class="title-divider">
+                <span>{{'Gallary' | translate}}</span>
+            </h3>
+            <div id="portfolio">
+                <div class="container">
+                    <div id="portfolio-filters" class="cbp-l-filters-alignCenter mb-3">
+                        <div data-filter="*" class="cbp-filter-item-active cbp-filter-item text-uppercase">
+                            {{'ShowAll' | translate}}
+                            <div class="cbp-filter-counter"></div>
+                        </div>
+                        /
+                        @{
+                            foreach (var group in Model.GalleryAlbums)
+                            {
+                                <div data-filter=".@("Album" + group.ID)" class="cbp-filter-item text-uppercase">
+                                    @group.Name
+                                    <div class="cbp-filter-counter"></div>
+                                </div>@("/")
+                            }
+
+                        }
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="mt-4" data-toggle="cbp" data-settings='{ "layoutMode":"grid", "filters":"#portfolio-filters", "gapHorizontal": 30, "gapVertical": 30, "animationType":"fadeOutTop", "mediaQueries": [ {
+                            "width": "800",
+                            "cols": "3" }, {
+                            "width": "480",
+                            "cols": "2" }, {
+                            "width": 0,
+                            "cols": 1 } ] }'>
+                        @{
+                            foreach (var image in Model.GalleryImages)
+                            {
+                                <div class="col-lg-3 cbp-item @("Album" + image.GalleryAlbumID) pb-1" data-animate-delay="0.1">
+                                    <div class="card bg-shadow  ">
+                                        <a href="@Url.Action("GallaryInfo", "Csmi", new { ID = image.ID })" class="project overlay-hover cbp-caption cbp-singlePageInline">
+                                            <img src="@(Url.Content(image.ShortImageUrl))" alt="@(image.Name)" class="img-fluid" />
+                                            <span class="overlay-hover-content"><i class="fa fa-search fa-4x text-white"></i></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@

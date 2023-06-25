@@ -1,0 +1,59 @@
+﻿@using AVA.UI.Helpers.Controller;
+@using AVA.Web.Mvc.Areas.Admin.Models.Base;
+@{
+    string ModuleName = "Election";
+}
+<input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>{{ 'ElectionVoterManagement' | translate }}</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="Home">{{ 'Home' | translate }}</a>
+            </li>
+            <li>
+                <a ui-sref="ElectionManagement">@ViewBag.ElectionName</a>
+            </li>
+            
+            <li class="active">
+                <strong>{{ 'ElectionVoterManagement' | translate }}</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="MyGridController">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content text-center p-md">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <script>
+                                var selectedIDs;
+                                function OnBeginCallback(s, e) {
+                                    //Pass all selected keys to GridView callback action
+                                    e.customArgs["selectedIDs"] = selectedIDs; 
+                                    e.customArgs["ElectionID"] = @ViewBag.ElectionID; 
+                                }
+                                function OnSelectionChanged(s, e) {
+                                    s.GetSelectedFieldValues("ID", GetSelectedFieldValuesCallback);
+                                }
+                                function GetSelectedFieldValuesCallback(values) {
+                                    //Capture all selected keys
+                                    selectedIDs = values.join(',');
+                                }
+                            </script>
+                            @Html.Action("GetElectionVoterPartial",new { ElectionID=ViewBag.ElectionID })
+                            @Html.Partial("GridViewExportPartial", new GridViewExportViewModel() { ModuleName = ModuleName,ActionName= "ExportElectionVoterTo",Parameters=new { ElectionID = ViewBag.ElectionID } })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,16 @@
+﻿@model AVA.Web.Mvc.Models.Admin.DynamicPageViewModel
+@using System.Configuration;
+<update-title title="@Model.Title"></update-title>
+<update-meta property="og:title" content="@Model.Title"></update-meta>
+<update-meta name="description" content="@(ConfigurationManager.AppSettings["description"].ToString()+ "-" +Model.Description)"></update-meta>
+<update-meta itemprop="description" content="@(ConfigurationManager.AppSettings["description"].ToString()+ "-" +Model.Description)"></update-meta>
+<update-meta name="keywords" content="@(ConfigurationManager.AppSettings["keyword"].ToString()+ "," +Model.Keyword)"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<div id="content" class="pt-0">
+    <div class="container  animated fadeIn animation-delay-7">
+        <h3 class="title-divider">
+            <span>@Model.Title</span>
+        </h3>
+        @Html.Raw(Model.Context)
+    </div>
+</div>

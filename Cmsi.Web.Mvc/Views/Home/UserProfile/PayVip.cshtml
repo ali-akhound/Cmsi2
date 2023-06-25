@@ -1,0 +1,399 @@
+﻿@model AVA.Web.Mvc.Models.PayVipViewModel
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Controller;
+<update-title title="{{'PayVip' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'PayVip' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'PayVip' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'PayVip' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'PayVip' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+@{
+    string ModuleName = "PayVip";
+}
+@using (Html.BeginForm("Submit" + ModuleName, "", null, FormMethod.Post, new { id = "form-" + ModuleName, ng_controller = "MySubmitController" }))
+{
+    <div class="container animated fadeIn animation-delay-7">
+        <!-- SmartWizard html -->
+        <div id="smartwizard" class="smartwizard">
+            <ul>
+                <li>
+                    <a data-step="#step-1">
+                        مرحله 1<br />
+                        <small>تکمیل مشخصات فردی</small>
+                    </a>
+                </li>
+                <li>
+                    <a data-step="#step-2">
+                        مرحله 2<br />
+                        <small>پرداخت هزینه</small>
+                    </a>
+                </li>
+            </ul>
+
+            <div>
+                <div id="step-1" class="">
+                    <div class="mb-4 bg-faded p-3 rounded mb-4">
+                        <div class="row">
+                            <div class="container animated fadeIn animation-delay-7">
+                                <div class="pt-3 pb-4">
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <a href="@Model.MembershipVm.PersonalImageUrl" target="_blank">
+                                                <img src="@Model.MembershipVm.PersonalImageUrl" class="img-thumbnail" alt="@(Model.MembershipVm.FirstName+" "+Model.MembershipVm.LastName)">
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    @Html.LabelFor(model => model.MembershipVm.PersonalFileImage, new { @class = "col-md-7" })
+                                                    <input type="file" class="form-control-file col-md-5" onchange="angular.element(this).scope().changePersonalPic()"
+                                                           @(Model.MembershipVm.PersonalImageUrl == Url.Content(MvcApplication.DefaultImageUrl) ? "required " : "")
+                                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.PersonalFileImage).Name)" />
+                                                </div>
+                                                <small class="form-text text-muted">حداکثر حجم فایل باید 512 کیلوبایت و پسوند آن jpg یا png باشد.</small>
+                                                <span class="text-danger" ng-show="@("model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.PersonalImageUrl).Name)=='@(Url.Content(MvcApplication.DefaultImageUrl))' && IsChangePersonalPic">فایل عکس پرسنلی ضروری است</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(model => model.MembershipVm.FirstName, new { @class = "" })
+                                @Html.TextBoxFor(model => model.MembershipVm.FirstName, new
+                                {
+                                    @class = "form-control",
+                                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.FirstName).Name,
+                                    placeholder = CommonHelper.GetDisplayName(Model.MembershipVm, m => m.FirstName)
+                                })
+                                @Html.ValidationMessageFor(model => model.MembershipVm.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(model => model.MembershipVm.LastName, new { @class = "" })
+                                @Html.TextBoxFor(model => model.MembershipVm.LastName, new
+                                {
+                                    @class = "form-control",
+                                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.LastName).Name,
+                                    placeholder = CommonHelper.GetDisplayName(Model.MembershipVm, m => m.LastName)
+                                })
+                                @Html.ValidationMessageFor(model => model.MembershipVm.LastName, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(model => model.MembershipVm.EnglishFirstName, new { @class = "" })
+                                @Html.TextBoxFor(model => model.MembershipVm.EnglishFirstName, new
+                                {
+                                    @class = "form-control",
+                                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.EnglishFirstName).Name,
+                                    placeholder = CommonHelper.GetDisplayName(Model.MembershipVm, m => m.EnglishFirstName)
+                                })
+                                @Html.ValidationMessageFor(model => model.MembershipVm.EnglishFirstName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(model => model.MembershipVm.EnglishLastName, new { @class = "" })
+                                @Html.TextBoxFor(model => model.MembershipVm.EnglishLastName, new
+                                {
+                                    @class = "form-control",
+                                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.EnglishLastName).Name,
+                                    placeholder = CommonHelper.GetDisplayName(Model.MembershipVm, m => m.EnglishLastName)
+                                })
+                                @Html.ValidationMessageFor(model => model.MembershipVm.EnglishLastName, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(model => model.MembershipVm.sex, new { @class = "" })
+                                <select class="form-control" id="exampleSelect3" ng-model="@("model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.sex).Name)"
+                                        ng-options="o.v as o.n for o in [{ n: 'زن', v: false }, { n: 'مرد', v: true }]">
+                                    >
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(model => model.MembershipVm.BornDate, new { @class = "" })
+                                @Html.TextBoxFor(model => model.MembershipVm.BornDate, new
+                                {
+                                    @class = "form-control",
+                                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.BornDate).Name,
+                                    data_mask = "9999/99/99",
+                                    placeholder = "1300/01/01",
+                                })
+                                @Html.ValidationMessageFor(model => model.MembershipVm.BornDate, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(model => model.MembershipVm.Degree, new { @class = "" })
+                                <select class="form-control" id="exampleSelect5" ng-model="@("model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.Degree).Name)">
+                                    <option value="فوق دیپلم" selected="selected">فوق دیپلم</option>
+                                    <option value="کارشناسی">کارشناسی</option>
+                                    <option value="کارشناسی ارشد">کارشناسی ارشد</option>
+                                    <option value="دکتری">دکتری</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(model => model.MembershipVm.FieldOfStudy, new { @class = "" })
+                                @Html.TextBoxFor(model => model.MembershipVm.FieldOfStudy, new
+                                {
+                                    @class = "form-control",
+                                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.FieldOfStudy).Name,
+                                    placeholder = CommonHelper.GetDisplayName(Model.MembershipVm, m => m.FieldOfStudy)
+                                })
+                                @Html.ValidationMessageFor(model => model.MembershipVm.FieldOfStudy, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(model => model.MembershipVm.University, new { @class = "" })
+                                @Html.TextBoxFor(model => model.MembershipVm.University, new
+                                {
+                                    @class = "form-control",
+                                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.University).Name,
+                                    placeholder = CommonHelper.GetDisplayName(Model.MembershipVm, m => m.University),
+                                })
+                                @Html.ValidationMessageFor(model => model.MembershipVm.University, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(model => model.MembershipVm.PhoneNumber, new { @class = "" })
+                                @Html.TextBoxFor(model => model.MembershipVm.PhoneNumber, new
+                                {
+                                    @class = "form-control",
+                                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.PhoneNumber).Name,
+                                    placeholder = CommonHelper.GetDisplayName(Model.MembershipVm, m => m.PhoneNumber)
+                                })
+                                @Html.ValidationMessageFor(model => model.MembershipVm.PhoneNumber, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(model => model.MembershipVm.Melicode, new { @class = "" })
+                                @Html.TextBoxFor(model => model.MembershipVm.Melicode, new
+                                {
+                                    @class = "form-control",
+                                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.Melicode).Name,
+                                    placeholder = CommonHelper.GetDisplayName(Model.MembershipVm, m => m.Melicode),
+                                })
+                                @Html.ValidationMessageFor(model => model.MembershipVm.Melicode, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6 mb-3  ">
+                                @Html.LabelFor(model => model.MembershipVm.Email, new { @class = "" })
+                                @Html.TextBoxFor(model => model.MembershipVm.Email, new
+                                {
+                                    @class = "form-control",
+                                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.Email).Name,
+                                    placeholder = CommonHelper.GetDisplayName(Model.MembershipVm, m => m.Email),
+                                    @readonly = "true"
+                                })
+                                @Html.ValidationMessageFor(model => model.MembershipVm.Email, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                @Html.LabelFor(model => model.MembershipVm.selectedProvinceID, new { @class = "" })
+                                <select class="form-control" ng-model="@( "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.selectedProvinceID).Name)" ng-change="searchCity()"
+                                        ng-options="Province.Value as Province.Text for Province in @( "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.ProvinceFeeds).Name)"></select>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                @Html.LabelFor(model => model.MembershipVm.selectedCityID, new { @class = "" })
+                                <select class="form-control" ng-model="@( "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.selectedCityID).Name)"
+                                        ng-options="City.Value as City.Text for City in @( "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.CityFeeds).Name)"></select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(model => model.MembershipVm.Address, new { @class = "" })
+                                @Html.TextBoxFor(model => model.MembershipVm.Address, new
+                                {
+                                    @class = "form-control",
+                                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.Address).Name,
+                                    placeholder = CommonHelper.GetDisplayName(Model.MembershipVm, m => m.Address),
+                                })
+                            </div>
+                            <div class="row">
+                                <div class="container animated fadeIn animation-delay-7">
+                                    <div class="pt-3 pb-4">
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <a href="@Model.MembershipVm.MeliCardUrl" target="_blank">
+                                                    <img src="@Model.MembershipVm.MeliCardUrl" class="img-thumbnail" alt="تصویر کارت ملی">
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <div class="mb-3">
+                                                    <div class="row">
+                                                        @Html.LabelFor(model => model.MembershipVm.MeliCardFileImage, new { @class = "col-md-5" })
+                                                        <input type="file" class="form-control-file col-md-7" valid-file
+                                                               onchange="angular.element(this).scope().changeMeliCardPic()"
+                                                               @(Model.MembershipVm.MeliCardUrl == Url.Content(MvcApplication.DefaultImageUrl) ? "required " : "")
+                                                               name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.MeliCardFileImage).Name)" />
+                                                    </div>
+                                                    <small id="fileHelp2" class="form-text text-muted">حداکثر حجم فایل باید 512 کیلوبایت و پسوند آن jpg یا png باشد.</small>
+                                                    <span class="text-danger" ng-show="@("model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.MeliCardUrl).Name)=='@(Url.Content(MvcApplication.DefaultImageUrl))' && IsChangeMeliCardPic">فایل کارت ملی ضروری است</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div id="step-2" class="">
+                    <h4>پرداخت هزینه</h4>
+                    <div class="mb-4 bg-faded p-3 rounded mb-4" id="billing4">
+                        <div class="row">
+
+                            <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+                            <h4>{{'PayVip'|translate}}</h4>
+                            <div id="payment-options" class="bg-faded p-3 col-sm-12 rounded mb-4">
+                                <div class="form-check ">
+                                    <label class="form-check-label" data-toggle="radio-collapse" data-target="#UniversityPanel" data-parent="#payment-options">
+                                        <input class="form-check-input" type="radio" value="0" ng-model="model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedRegisterPackageIndex).Name)" checked>
+                                        {{model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.RegisterPackages).Name + "[0]." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.RegisterPackages[0], m => m.Name).Name)}}-
+                                        {{model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.RegisterPackages).Name + "[0]." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.RegisterPackages[0], m => m.Price).Name)| number : 0}}
+                                        ریال
+                                    </label>
+                                    <div class="collapse" ng-class="{show :model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedRegisterPackageIndex).Name)=='0'}" id="UniversityPanel">
+                                        <div class="bg-white p-3 mt-2 rounded">
+                                            <small>استفاده از این بسته مستلزم ارائه کارت دانشجویی معتبر می باشد. در غیر این صورت انجمن هیچ مسئولیتی در قبال برگشت هزینه قبول نخواهد کرد. </small>
+                                            <div class="container animated fadeIn animation-delay-7">
+                                                <hr class="mb-3" />
+                                                <div class="row pt-2">
+                                                    <div class="col-md-12 mb-3">
+                                                        <div class="row">
+                                                            <label for="exampleInputFile3" class="col-md-5">بارگزاری کارت دانشجویی</label>
+                                                            <input type="file" class="form-control-file col-md-5" name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.UniversityCardFileImage).Name)" aria-describedby="fileHelp">
+                                                        </div>
+                                                        <small id="fileHelp3" class="form-text text-muted">حداکثر حجم فایل باید 512 کیلوبایت و پسوند آن jpg یا png باشد.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label" data-toggle="radio-collapse" data-target="#NormalParent" data-parent="#payment-options">
+                                        <input class="form-check-input" type="radio" value="1" ng-model="model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedRegisterPackageIndex).Name)">
+                                        {{model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.RegisterPackages).Name + "[1]." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.RegisterPackages[1], m => m.Name).Name)}}-
+                                        {{model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.RegisterPackages).Name + "[1]." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.RegisterPackages[1], m => m.Price).Name)| number : 0}} ریال
+                                    </label>
+                                    <div class="collapse" id="NormalParent">
+                                        <div class="bg-white p-3 mt-2 rounded">
+                                            <small>این بسته مخصوص پژوهشگرانی است که عضو انجمن بلورشناسی و کانی شناسی ایران نیستند.(شرکت در همایش به صورت آزاد) </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Shopping cart items-->
+                            <h4 class="mt-4">فاکتور عضویت در انجمن</h4>
+                            <table class="table table-responsive mb-0 cart-table">
+                                <thead>
+                                    <tr>
+                                        <th class="w-30">موارد</th>
+                                        <th class="w-20">قیمت واحد</th>
+                                        <th class="w-20 text-md-center">مدت عضویت</th>
+                                        <th class="w-20 text-md-left">هزینه</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Cart item 1 -->
+                                    <tr ng-repeat="item in model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.OtherPackages).Name)">
+                                        <td> <span class="text-sm">{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.PayVipPackage, m => m.Name).Name)}}</span> </td>
+                                        <td><span class="text-sm">{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.PayVipPackage, m => m.Price).Name) | number : 0}}</span></td>
+                                        <td>
+                                            <div class="input-group input-group-quantity">
+                                                <span class="input-group-btn">
+                                                    <input type="button"
+                                                           ng-click="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.PayVipPackage, m => m.Count).Name)=item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.PayVipPackage, m => m.Count).Name)-1>0?item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.PayVipPackage, m => m.Count).Name)-1:0"
+                                                           class="btn btn-secondary quantity-down"
+                                                           value="-" />
+                                                </span>
+                                                <input type="text"
+                                                       ng-model="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.PayVipPackage, m => m.Count).Name)" class="quantity form-control" />
+                                                <span class="input-group-btn">
+                                                    <input type="button" value="+" ng-click="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.PayVipPackage, m => m.Count).Name)=item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.PayVipPackage, m => m.Count).Name)+1" class="btn btn-secondary quantity-up" />
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-md-left">{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.PayVipPackage, m => m.Count).Name)* item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.PayVipPackage, m => m.Price).Name) | number : 0}} ریال</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="text-sm">{{model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.RegisterPackages).Name + "[model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedRegisterPackageIndex).Name + "]." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.RegisterPackages[0], m => m.Name).Name)}}</span> </td>
+                                        <td><span class="text-sm">{{model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.RegisterPackages).Name + "[model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedRegisterPackageIndex).Name + "]." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.RegisterPackages[0], m => m.Price).Name)| number : 0}}</span></td>
+                                        <td>
+                                            <div class="input-group input-group-quantity">
+                                                <span class="input-group-btn">
+                                                    <input type="button"
+                                                           ng-click="model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedRegisterPackageCount).Name)=model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedRegisterPackageCount).Name)-1>0?model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedRegisterPackageCount).Name)-1:0"
+                                                           class="btn btn-secondary quantity-down"
+                                                           value="-" />
+                                                </span>
+                                                <input type="text"
+                                                       ng-model="model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedRegisterPackageCount).Name)" class="quantity form-control" />
+                                                <span class="input-group-btn">
+                                                    <input type="button" value="+"
+                                                           ng-click="model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedRegisterPackageCount).Name)=model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedRegisterPackageCount).Name)+1" class="btn btn-secondary quantity-up" />
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-md-left">{{model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedRegisterPackageCount).Name)* model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.RegisterPackages).Name + "[model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedRegisterPackageIndex).Name + "]." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.RegisterPackages[1], m => m.Price).Name) | number : 0}} ریال</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <hr class="my-4 hr-lg" />
+                            <div class="cart-content-footer">
+                                <div class="row">
+                                    <div class="col-md-12 text-md-right mt-3 mt-md-0">
+                                        <div class="cart-content-totals">
+                                            <hr class="my-3 w-50 ml-0 ml-md-auto mr-md-0" />
+                                            <h3>
+                                                جمع کل هزینه: <span class="text-primary">{{ getCompanyTotal()| number : 0}} ریال</span>
+                                            </h3>
+                                            <hr class="my-3 w-50 ml-0 ml-md-auto mr-md-0" />
+                                        </div>
+                                        <!-- Proceed to checkout -->
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <button type="button" class="mb-1 btn-lg btn btn-block btn-green-bright" ng-disabled=@("!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name)
+                                ng-click="submitPayVipForm($event,'@Url.Action("Submit" + ModuleName, "Home")','form-@ModuleName')">
+                            پرداخت هزینه
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+    $('input[name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name).@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.BornDate).Name)"]').mask('9999/99/99');
+    $('input[name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MembershipVm).Name).@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.MembershipVm, m => m.Melicode).Name)"]').mask('9999999999');
+    var CurrentStep = 'step-1';
+    var wizard;
+    $(document).ready(function () {
+        // Smart Wizard
+        wizard= $('#smartwizard').smartWizard({
+            selected: 0,
+            theme: 'arrows',
+            transitionEffect: 'fade',
+            lang: {  // Language variables
+                next: ' مرحله بعدی',
+                previous: 'مرحله قبلی'
+            },
+            toolbarSettings: {
+                toolbarPosition: 'bottom',
+                // toolbarExtraButtons: [btnFinish, btnCancel],
+                toolbarButtonPosition: 'left',
+            }
+        });
+        $("#smartwizard").on("leaveStep", function(e, anchorObject, stepNumber, stepDirection) {
+            var elmForm = $("#@("form-" + ModuleName)");
+            // stepDirection === 'forward' :- this condition allows to do the form validation
+            // only on forward navigation, that makes easy navigation on backwards still do the validation when going next
+            if(stepDirection === 'forward' && elmForm){
+                $('#smartwizard').children("div").finish().animate({ height: $(CurrentStep).outerHeight() + 150 }, '400', function () { });
+                return validateForm(elmForm);
+            }
+            return true;
+        });
+
+    });
+</script>

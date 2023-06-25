@@ -1,0 +1,8 @@
+﻿@model AVA.Web.Mvc.Models.BaseViewModel.UnauthorizedViewModel
+<div class="middle-box text-center animated fadeInDown">
+    <h1></h1>
+    <h3 class="font-bold">عدم دسترسی</h3>
+    <div class="error-desc">
+        @Model.Message <br /><a ui-sref="@Model.ReturnUrl" class="btn btn-primary m-t">بازگشت</a>
+    </div>
+</div>

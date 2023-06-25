@@ -1,0 +1,164 @@
+﻿@model AVA.Web.Mvc.Models.Admin.GalleryImageViewModel
+@using AVA.UI.Helpers.Controller;
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Base;
+@{
+    string ModuleName = "GalleryImage";
+}
+@using (Html.BeginForm("Submit" + ModuleName, "PublicAdmin", null, FormMethod.Post, new { id = "form-" + ModuleName, ng_controller = "MySubmitController" }))
+{
+    <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.ObjectState)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>{{ '@(ModuleName)' | translate }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a ui-sref="Home">{{ 'Home' | translate }}</a>
+                </li>
+                <li class="active">
+                    <strong>{{ '@(ModuleName)' | translate }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content text-center p-md">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.Name, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.Name, new
+                               {
+                                   @class = "form-control",
+                                   ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Name).Name
+                               })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.ImageLink, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.ImageLink, new
+                               {
+                                   @class = "form-control",
+                                   ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ImageLink).Name
+                               })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.Priority, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.Priority, new
+                               {
+                                   @class = "form-control",
+                                   ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Priority).Name
+                               })
+
+                                    @Html.ValidationMessageFor(model => model.Priority, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.Width, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.Width, new
+                               {
+                                   @class = "form-control",
+                                   ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Width).Name
+                               })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.Height, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.Height, new
+                               {
+                                   @class = "form-control",
+                                   ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Height).Name
+                               })
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.ShortImageUrl, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SmallImage).Name)" />
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.LongImageUrl, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.LongImage).Name)" />
+                                </div>
+                            </div>
+                            @{
+                                <div class="form-group">
+                                    @if (Model.ObjectState == ObjectState.Update)
+                                    {
+                                        <div class="col-sm-2">
+                                            @Html.LabelFor(model => model.ShortImageUrl, new { @class = "control-label" }):
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <a target="_blank" href="@Model.ShortImageUrl"><img src="@Model.ShortImageUrl" class="img-responsive" alt="@(CommonHelper.GetDisplayName(Model, m => m.ShortImageUrl))"></a>
+                                        </div>
+                                    }
+                                    @if (Model.ObjectState == ObjectState.Update)
+                                    {
+                                        <div class="col-sm-2">
+                                            @Html.LabelFor(model => model.LongImageUrl, new { @class = "control-label" }):
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <a target="_blank" href="@Model.LongImageUrl"><img src="@Model.LongImageUrl" class="img-responsive" alt="@(CommonHelper.GetDisplayName(Model, m => m.LongImageUrl))"></a>
+                                        </div>
+                                    }
+                                </div>
+                            }
+
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.Explain, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-8">
+                                    @Html.TextAreaFor(model => model.Explain, new
+                               {
+                                   @class = "form-control comment2",
+                                   ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Explain).Name,
+
+                               })
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-3 col-sm-offset-3">
+                                    <button class="btn btn-primary" id="SubmitBtn" ng-click="submitForm($event,'@Url.Action("Submit"+ModuleName, ModuleName)','form-@ModuleName')">@(Model.ObjectState == ObjectState.Update ? "ویرایش" : " ثبت")</button>
+                                    <a class="btn btn-white" ui-sref="@(ModuleName+"Management")({AlbumID:@(Model.GalleryAlbumID)})">بازگشت</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                                }
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+</script>

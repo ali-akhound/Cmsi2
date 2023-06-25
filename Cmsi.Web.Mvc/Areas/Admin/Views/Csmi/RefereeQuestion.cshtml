@@ -1,0 +1,172 @@
+﻿@model AVA.Web.Mvc.Models.RefereeQuestionViewModel
+@using AVA.UI.Helpers.Controller;
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Base;
+@{
+    string ModuleName = "RefereeQuestion";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>{{ '@(ModuleName)' | translate }}</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="Home">{{ 'Home' | translate }}</a>
+            </li>
+            <li class="active">
+                <strong>{{ '@(ModuleName)' | translate }}</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content text-center p-md">
+                    <div class="form-horizontal">
+                        @using (Html.BeginForm("Submit" + ModuleName, "RefereeQuestion", null, FormMethod.Post, new { id = "form-" + ModuleName, ng_controller = "MySubmitController" }))
+                        {
+                            <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+                            @Html.HiddenFor(model => model.ID)
+                            @Html.HiddenFor(model => model.ObjectState)
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.Question, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.Question, new
+                               {
+                                   @class = "form-control",
+                                   ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Question).Name
+                               })
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.ValidationMessageFor(model => model.Question, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.Priority, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-1">
+                                    @Html.TextBoxFor(model => model.Priority, new
+                               {
+                                   @class = "form-control",
+                                   ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Priority).Name,
+                                   type = "number"
+
+                               })
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.ValidationMessageFor(model => model.Priority, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        }
+
+                        <div class="hr-line-dashed"></div>
+                        <div ng-form name="AnswerForm" ng-controller="MySubmitController">
+                            <div class="form-group" ng-class="{ 'is-empty' :model.RefereeAnswer.Answer.$invalid }">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.RefereeAnswer.Answer, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-6">
+                                    <input name="Answer" class="form-control" ng-model="model.RefereeAnswer.Answer" placeholder="متن جواب" required>
+                                </div>
+                                <span class="col-sm-2 text-danger" ng-show="AnswerForm.Answer.$invalid  && submitted">
+                                    <span>متن جواب ضروری است</span>
+                                </span>
+                            </div>
+                            <div class="form-group" ng-class="{ 'is-empty' :model.RefereeAnswer.Answer.$invalid }">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.RefereeAnswer.Priority, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-1">
+                                    <input name="Priority" type="number" class="form-control" ng-model="model.RefereeAnswer.Priority" required>
+                                </div>
+                                <span class="col-sm-2 text-danger" ng-show="AnswerForm.Priority.$invalid  && submitted">
+                                    <span>اولیت جواب ضروری است</span>
+                                </span>
+                            </div>
+                            <div class="form-group" ng-class="{ 'is-empty' :model.RefereeAnswer.Answer.$invalid }">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.RefereeAnswer.Enable, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-1">
+                                    <input icheck type="checkbox" name="RefereeAnswerEnable" ng-model="model.RefereeAnswer.Enable">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2" ng-show="!model.ActiveEditMode">
+                                    <button class="btn btn-info btn-circle" type="button" ng-click="@(Model.ObjectState==ObjectState.Insert?"submitRefereeAnswer($event,AnswerForm.$valid)": "submitRefereeServerAnswer($event,AnswerForm.$valid,'" + Url.Action("SubmitRefereeAnswer", ModuleName) + "','form-" + ModuleName+"')")">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                    افزودن جواب
+                                </div>
+                                <div class="col-sm-2" ng-show="model.ActiveEditMode">
+                                    <button class="btn btn-warning btn-circle" type="button" ng-click="@(Model.ObjectState==ObjectState.Insert?"EditAnswer($event)": "EditServerAnswer($event,'" + Url.Action("SubmitRefereeAnswer", ModuleName) + "','form-" + ModuleName+"')")">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                    ویرایش جواب
+                                </div>
+                                <div class="col-sm-2" ng-show="model.ActiveEditMode">
+                                    <button class="btn btn-danger btn-circle" type="button" ng-click="model.RefereeAnswer.Priority=0;model.RefereeAnswer.Answer='';model.ActiveEditMode=false">
+                                        <i class="fa fa-close"></i>
+                                    </button>
+                                    ویرایش جواب
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <table class="table table-condensed text-right" ng-show="model.RefereeAnswers.length>0">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>متن جواب</th>
+                                            <th>اولویت</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody ng-repeat="answ in model.RefereeAnswers">
+                                        <tr>
+                                            <td>{{answ.ID}}</td>
+                                            <td>{{answ.Answer}}</td>
+                                            <td>{{answ.Priority}}</td>
+                                            <td>
+                                                <input icheck type="checkbox" ng-checked="answ.Enable" ng-model="model.RefereeAnswers[$index].Enable">
+                                            </td>
+                                            <td>
+                                                <a ng-click="@(Model.ObjectState == ObjectState.Insert ? "ActiveAnswerEditMode($index)" : "ActiveAnswerServerEditMode(answ.ID)")" class="btn btn-xs btn-info no-margins" title="ویرایش"><i class="fa fa-pencil fa-2x"></i></a>
+                                            </td>
+                                            <td>
+                                                <a ng-show="!model.ActiveEditMode" ng-click="@(Model.ObjectState==ObjectState.Insert?"DeleteAnswer($index)": "DeleteServerAnswer(answ.ID,'" + Url.Action("DeleteRefereeAnswer", ModuleName) + "')")"
+                                                   class="btn btn-xs btn-danger no-margins" title="حذف"><i class="fa fa-trash-o fa-2x"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                        </div>
+                        <div class="form-group" ng-controller="MySubmitController">
+                            <div class="col-sm-3 col-sm-offset-3">
+                                <button class="btn btn-primary" id="SubmitBtn" ng-click="submitForm($event,'@Url.Action("Submit"+ModuleName, ModuleName)','form-@ModuleName')">@(Model.ObjectState == ObjectState.Update ? "ویرایش" : " ثبت")</button>
+                                <a class="btn btn-white" ui-sref="@(ModuleName+"Management")">بازگشت</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+</script>

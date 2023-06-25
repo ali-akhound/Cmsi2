@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="UI/Home" title="انجمن بلورشناسی و کانی شناسی ایران" >
+    <siteMapNode url="" title="مجله انجمن"  description="مجله انجمن" >
+      <!--<siteMapNode url="http://ijcm.ir/browse.php?&#38;slct_pg_id=45&#38;sid=1&#38;slc_lang=fa" title="آرشیو مجله"  description="آرشیو مجله" />-->
+      <siteMapNode url="UI/MajalehAbout" title="درباره نشریه"  description="درباره نشریه" />
+      <siteMapNode url="UI/MajalehBases" title="آیین نامه"  description="آیین نامه" />
+      <siteMapNode url="UI/MajalehMember" title="هیات تحریریه"  description="هیات تحریریه" />
+      <!--<siteMapNode url="http://ijcm.ir/form_send_article.php?&#38;slct_pg_id=50&#38;sid=1&#38;slc_lang=fa" title="ارسال مقاله"  description="ارسال مقاله" />
+      <siteMapNode url="http://ijcm.ir/form_register.php?&#38;slct_pg_id=55&#38;sid=1&#38;slc_lang=fa" title="فرم اشتراک مجله"  description="فرم اشتراک مجله" />-->
+    </siteMapNode>
+    <siteMapNode url="" title="همایش ها"  description="همایش ها" >
+      <siteMapNode url="UI/ConferenceList" title="آرشیو همایش ها"  description="آرشیو همایش ها" />
+      <siteMapNode url="UI/HamayeshActive" title="همایش های جاری و آتی"  description="همایش های جاری و آتی" />
+      <siteMapNode url="UI/ArticleList?ConferenceID=0&#38;Lang=fa" title="بانک مقالات"  description="بانک مقالات" />
+    </siteMapNode>
+    <siteMapNode url="" title="راهنما"  description="راهنما" >
+      <siteMapNode url="UI/GuideArticleArbiter" title="راهنمای ارسال مقاله برای همایش"  description="راهنمای ارسال مقاله برای همایش" />
+      <siteMapNode url="UI/ArticleWrite" title="اصول نگارش مقاله"  description="اصول نگارش مقاله" />
+      <siteMapNode url="UI/FAQ?pageNumber=1" title="سوالات متداول"  description="سوالات متداول" />
+      <siteMapNode url="UI/GuideSitemap" title="راهنمای صفحات سایت"  description="راهنمای صفحات سایت" />
+    </siteMapNode>
+    <siteMapNode url="" title="ورود و عضویت"  description="ورود و عضویت" >
+      <siteMapNode url="UI/Login" title="ورود کاربران"  description="ورود کاربران" />
+      <siteMapNode url="http://cmsi.ir/adminUI/HomeAdmin?Mode=referee" title="ورود داوران"  description="ورود داوران" />
+      <siteMapNode url="UI/Signup" title="ثبت نام در سایت"  description="ثبت نام در سایت" />
+    </siteMapNode>
+    <siteMapNode url="" title="اخبار و رویدادها"  description="اخبار و رویدادها" >
+      <siteMapNode url="UI/NewsList?pageNumber=1&#38;Lang=fa" title="اخبار و رویدادها"  description="اخبار و رویدادها" />
+    </siteMapNode>
+
+    <siteMapNode url="UI/Gallary" title="گالری تصاویر"  description="گالری تصاویر" />
+    <siteMapNode url="" title="آشنایی با بلور شناسی"  description="آشنایی با بلور شناسی" >
+      <siteMapNode url="UI/HistoryCrystal" title="تاریخچه بلورشناسی و کانی شناسی"  description="تاریخچه بلورشناسی و کانی شناسی" />
+      <siteMapNode url="UI/BookList?pageNumber=1&#38;OrderType=ASC" title="فهرست کتاب ها"  description="فهرست کتاب ها" />
+    </siteMapNode>
+    <siteMapNode url="" title="آشنایی با انجمن"  description="آشنایی با انجمن" >
+      <siteMapNode url="UI/SocietyCertificate" title="شناسنامه انجمن"  description="شناسنامه انجمن" />
+      <siteMapNode url="UI/SocietyHistory" title="تاریخچه انجمن"  description="تاریخچه انجمن" />
+      <siteMapNode url="UI/SocietyMembers" title="معرفی اعضاء هیئت مدیره "  description="معرفی اعضاء هیئت مدیره " />
+      <siteMapNode url="UI/SocietyDirector" title="معرفی مدیر اجرایی دبیرخانه و مجله "  description="معرفی مدیر اجرایی دبیرخانه و مجله " />
+      <siteMapNode url="UI/SocietyBases" title="اساس نامه"  description="اساس نامه" />
+      <siteMapNode url="UI/SocietyChart" title="چارت سازمانی "  description="چارت سازمانی" />
+      <siteMapNode url="UI/AnnualProgram" title="برنامه سالیانه "  description="برنامه سالیانه" />
+    </siteMapNode>
+    <siteMapNode url="" title="تماس با ما"  description="تماس با ما" >
+      <siteMapNode url="UI/ContactUs" title="تماس با ما"  description="تماس با ما" />
+      <siteMapNode url="UI/Poll" title="نظرسنجی"  description="نظرسنجی" />
+    </siteMapNode>
+
+  </siteMapNode>
+</siteMap>

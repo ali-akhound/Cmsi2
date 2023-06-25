@@ -1,0 +1,61 @@
+﻿@model AVA.Web.Mvc.Models.FooterViewModel
+@using AVA.UI.Helpers.Controller;
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Base;
+@{
+    string ModuleName = "ContactUs";
+}
+<input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+<footer id="footer" class="p-0">
+    <div class="container pb-4 pt-5 text-xs">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row" id="footerDynamic">
+                    @Html.Action("DynamicPageBlockUI", "Home", new { id = 28 })
+                </div>
+            </div>
+            <div class="col-md-4" ng-controller="MasterPageSubmitController">
+                <h4 class="text-uppercase text-white">{{ 'FooterNewsletter' | translate }}</h4>
+                <p>{{ 'FooterNewsletterExplain' | translate }}</p>
+                <!--todo: replace with mailchimp code-->
+                @using (Html.BeginForm("Submit" + ModuleName, "Home", null, FormMethod.Post, new { id = "form-" + ModuleName }))
+                {
+                    @Html.HiddenFor(model => model.newsFeedViewModel.ObjectState)
+                    <div class="input-group">
+                        @Html.TextBoxFor(model => model.newsFeedViewModel.NewsFeedEmail, new
+                           {
+                               @class = "form-control",
+                               ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.newsFeedViewModel, m => m.NewsFeedEmail).Name,
+                               placeholder = CommonHelper.GetDisplayName(Model.newsFeedViewModel, m => m.NewsFeedEmail)
+                           })
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button" ng-click="submitForm($event,'@Url.Action("SubmitNewsFeed", "Home")','form-@ModuleName');">{{ 'FooterNewsletterButton' | translate }}</button>
+                        </span>
+                    </div>
+                    <br />
+                    @Html.ValidationMessageFor(model => model.newsFeedViewModel.NewsFeedEmail, "", new { @class = "text-danger" })
+                }
+            <script language="javascript" src="https://conf.isc.ac/trustseal/checkIsc.php?code=۹۹۲۰۱-۲۸۵۹۲"></script>
+            </div>
+        </div>
+
+    </div>
+    <hr class="my-0 hr-blank op-2" />
+    <div class="bg-inverse-dark text-sm py-3">
+        <div class="container animated fadeIn animation-delay-7">
+            <div class="row">
+                <div class="col-md-8">
+                    <p class="mb-0">{{ 'FooterAllRight1' | translate }}<a ui-sref="Home" class="footer-link">{{ 'FooterAllRight2' | translate }}</a>{{ 'FooterAllRight3' | translate }}</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="mb-0 text-left">Powered by:  Ali Akhound & Saeideh Memarzadeh</p>
+                </div>
+            </div>
+            <a href="#top" class="btn btn-icon btn-inverse pos-fixed pos-b pos-r mr-3 mb-3 scroll-state-hidden" title="Back to top" data-scroll="scroll-state"><i class="fa fa-chevron-up"></i></a>
+        </div>
+    </div>
+</footer>
+<script>
+    var MasterPageCurrentModel=@Html.Raw(Json.Encode(Model.newsFeedViewModel));
+    var footerDynamicUrl='@Url.Action("DynamicPageBlockUI", "Home", new { id = 28 })';
+</script>

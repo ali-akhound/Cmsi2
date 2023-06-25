@@ -1,0 +1,58 @@
+﻿@model AVA.Web.Mvc.Models.ProfileViewModel
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Controller;
+<update-title title="{{'HomeProfile' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'HomeProfile' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'HomeProfile' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'HomeProfile' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'HomeProfile' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<div class="container ">
+    <div id="content" class="pb-6 bg-white pos-relative pos-zindex-10 animated fadeIn animation-delay-7">
+        <!-- Promo -->
+        <div class="container pb-6">
+            <div class="row text-right">
+                <div class="col-lg-4 d-lg-flex mb-3 ">
+                    <a href="#" class="nav-link px-3 pb-3 pt-6 overlay overlay-gradient-flip overlay-op-8 rounded flex-ew flex-valign-b  card bg-info">
+                        <h2 class="text-white text-uppercase font-weight-bold mb-0 display-4">
+                            <span data-toggle="count-to" data-to="@Model.TotalArticles" data-from="0"></span>
+                        </h2>
+                        <p class="text-white text-uppercase mb-0">تعداد کل مقالات ارسال شده</p>
+                        <hr class="hr-lg mt-2 mb-0 w-20 mr-0 hr-primary" />
+                    </a>
+                </div>
+                <div class="col-lg-4 d-lg-flex mb-3">
+                    <a href="#" class="nav-link px-3 pb-3 pt-6 overlay overlay-gradient-flip overlay-op-8 rounded flex-ew flex-valign-b card bg-warning ">
+                        <h2 class="text-white text-uppercase font-weight-bold mb-0 display-4">
+                            <span data-toggle="count-to" data-to="@Model.AcceptedArticles" data-from="0"></span>
+                        </h2>
+                        <p class="text-white text-uppercase mb-0">تعداد مقالات پذیرفته شده</p>
+                        <hr class="hr-lg mt-2 mb-0 w-20 mr-0 hr-primary" />
+                    </a>
+                </div>
+                <div class="col-lg-4 d-lg-flex mb-3">
+                    <a href="#" class="nav-link pb-3 pt-6 overlay overlay-gradient-flip overlay-op-8 rounded flex-ew flex-valign-b card bg-danger ">
+                        <h2 class="text-white text-uppercase font-weight-bold mb-0 display-4">
+                            <span data-toggle="count-to" data-to="@Model.RejectedArticles" data-from="0"></span>
+                        </h2>
+                        <p class="text-white text-uppercase mb-0">تعداد مقالات پذیرفته نشده</p>
+                        <hr class="hr-lg mt-2 mb-0 w-20 mr-0 hr-primary" />
+                    </a>
+                </div>
+                @*<div class="col-lg-6 d-lg-flex mb-3">
+                        <a href="#" class="nav-link px-3 pb-3 pt-6 overlay overlay-gradient-flip overlay-op-8 rounded flex-ew flex-valign-b card bg-success">
+                            <h2 class="text-white text-uppercase font-weight-bold mb-0 display-4">
+                                <span data-toggle="count-to" data-to="138" data-from="0">6</span>
+                            </h2>
+                            <p class="text-white text-uppercase mb-0">پیام های دریافت شده ی بررسی نشده</p>
+                            <hr class="hr-lg mt-2 mb-0 w-20 mr-0 hr-primary" />
+                        </a>
+                    </div>*@
+            </div>
+        </div>
+        <div class="alert alert-info" role="alert">
+            @Html.Action("DynamicPageBlockUI", "Home", new { id = 1042 })
+        </div>
+
+    </div>
+</div>

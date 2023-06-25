@@ -1,0 +1,38 @@
+﻿@model AVA.Web.Mvc.Areas.Admin.Models.Base.GridViewExportViewModel
+@using AVA.UI.Helpers.Controller;
+<div class="form-group">
+    <div class="col-lg-12 btn-rows">
+        @using (Html.BeginForm(Model.ActionName, Model.ModuleName, null, FormMethod.Post))
+        {
+            if (Model.Parameters != null)
+            {
+                Type myType = Model.Parameters.GetType();
+                IList<System.Reflection.PropertyInfo> props = new List<System.Reflection.PropertyInfo>(myType.GetProperties());
+
+                foreach (System.Reflection.PropertyInfo prop in props)
+                {
+                    @Html.Hidden(prop.Name, prop.GetValue(Model.Parameters, null))
+                    // Do something with propValue
+                }
+            }
+            @Html.Hidden("ActionType", ((int)ControllerHelper.ExportGridviewActionType.Excel).ToString())
+            <button class="btn btn-info  dim pull-left" type="submit"><i class="fa fa-file-excel-o"></i> </button>
+        }
+        @using (Html.BeginForm(Model.ActionName, Model.ModuleName, null, FormMethod.Post))
+        {
+            if (Model.Parameters != null)
+            {
+                Type myType = Model.Parameters.GetType();
+                IList<System.Reflection.PropertyInfo> props = new List<System.Reflection.PropertyInfo>(myType.GetProperties());
+
+                foreach (System.Reflection.PropertyInfo prop in props)
+                {
+                    @Html.Hidden(prop.Name, prop.GetValue(Model.Parameters, null))
+                    // Do something with propValue
+                }
+            }
+            @Html.Hidden("ActionType", ((int)ControllerHelper.ExportGridviewActionType.Word).ToString())
+            <button class="btn btn-success  dim pull-left" type="submit"><i class="fa fa-file-word-o"></i> </button>
+        }
+    </div>
+</div>

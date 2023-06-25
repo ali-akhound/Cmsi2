@@ -1,0 +1,70 @@
+﻿@model AVA.Web.Mvc.Models.OrderListViewModel
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Controller;
+<update-title title="{{'OrderList' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'OrderList' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'OrderList' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'OrderList' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'OrderList' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<div id="content" ng-controller="ListController">
+    <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+    <h4>{{'OrderList'| translate}}</h4>
+    <div class="row">
+        <table class="table table-bordered text-sm">
+            <thead class="thead-default">
+                <tr>
+                    <th>#</th>
+                    <th class="w-5">@(CommonHelper.GetDisplayName(Model.SingleOrder, m => m.CreateDateConverted)) </th>
+                    <th>@(CommonHelper.GetDisplayName(Model.SingleOrder, m => m.OrderItems)) </th>
+                    <th>@(CommonHelper.GetDisplayName(Model.SingleOrder, m => m.Status)) </th>
+                    <th>@(CommonHelper.GetDisplayName(Model.SingleOrder.Invoice, m => m.InvoiceType))</th>
+                    <th>@(CommonHelper.GetDisplayName(Model.SingleOrder, m => m.Amount)) </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr dir-paginate="item in DataModel | itemsPerPage: pageSize" total-items="totalRecords" current-page="pagination.current">
+                    <th scope="row">{{$index+1}}</th>
+                    <td>{{item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleOrder, m => m.CreateDateConverted).Name}}</td>
+                    <td>
+                        <div ng-repeat="orderItem in item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleOrder, m => m.OrderItems).Name )">
+                            <span>
+                                {{orderItem.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleOrderItem, m => m.Name).Name)}}-
+                                @Html.LabelFor(model => model.SingleOrderItem.Count)
+                                {{orderItem.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleOrderItem, m => m.Count).Name)}}
+                            </span>
+                        </div>
+
+                    </td>
+                    <td>{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleOrder, m => m.Status).Name )}}</td>
+                    <td ng-bind-html="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleOrder, m => m.Invoice).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleOrder.Invoice, m => m.InvoiceType).Name )+'<br />'+item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleOrder, m => m.Invoice).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleOrder.Invoice, m => m.Explain).Name )"></td>
+                    <td>
+                        {{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleOrder, m => m.Amount).Name) | number : 0}} ریال
+                    </td>
+                    <td>
+                        @*<button type="submit" class="btn btn-primary btn-sm btn-block"><i class="fa fa-edit pl-2"></i>ویرایش</button>*@
+                        <a class="btn btn-info btn-sm btn-block" ng-disabled="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleOrder, m => m.Enable).Name)"
+                           ng-show="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleOrder, m => m.TableName).Name)=='Order'"
+                           ui-sref="UserProfile.PayConference({OrderID:item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleOrder, m => m.ID).Name )})">
+                            <i class="fa fa-pencil pl-2"></i>{{'Edit' | translate}}
+                        </a>
+                        <a class="btn btn-info btn-sm btn-block" ng-disabled="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleOrder, m => m.Enable).Name)"
+                           ng-show="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleOrder, m => m.TableName).Name)=='SocietyVipOrder'"
+                           ui-sref="UserProfile.PayVip({OrderID:item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleOrder, m => m.ID).Name )})">
+                            <i class="fa fa-pencil pl-2"></i>{{'Edit' | translate}}
+                        </a>
+                        <button type="submit" class="btn btn-danger btn-sm btn-block" ng-disabled="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleOrder, m => m.Enable).Name)" ng-click="DeleteAction('@Url.Action("DeleteOrder", "Home")',item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleOrder, m => m.ID).Name))"><i class="fa fa-times pl-2"></i>{{'Delete' | translate}}</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" template-url="@Url.Content("~/assets/template/dirPagination.tpl.html")"></dir-pagination-controls>
+
+</div>
+<script>
+    var PageChangeActionUrl ='@Url.Action("OrderListFeed", "Home")';
+    var ListModel=@Html.Raw(Json.Encode(Model));
+    var ListName='Orders';
+</script>

@@ -1,0 +1,220 @@
+﻿@model AVA.Web.Mvc.Models.ArticleViewModel
+@using AVA.UI.Helpers.Controller;
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Base;
+@{
+    string ModuleName = "Article";
+}
+@using (Html.BeginForm("Submit" + ModuleName, "PublicAdmin", null, FormMethod.Post, new { id = "form-" + ModuleName, ng_controller = "MySubmitController" }))
+{
+    <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.ObjectState)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>@Model.Title</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a ui-sref="Home">{{ 'Home' | translate }}</a>
+                </li>
+                <li class="active">
+                    <strong>@Model.Title </strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content text-center p-md">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.Title, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.Title, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Title).Name
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.EnglishTitle, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.EnglishTitle, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.EnglishTitle).Name
+                                    })
+                                    @Html.ValidationMessageFor(model => model.EnglishTitle, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.ArticleLanguageSelectedID, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    <select class="form-control" ng-model="model.@("model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ArticleLanguageSelectedID).Name)"
+                                            ng-options="language.Value as language.Text for language in @("model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Languages).Name)"></select>
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.ArticleFields, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="form-check-label" ng-repeat="item in model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Fields).Name)">
+                                        <input type="checkbox" class="form-check-input"
+                                               ng-model="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.Field, m => m.IsChecked).Name)">
+                                        {{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.Field, m => m.Text).Name)}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.Keywords, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-8">
+                                    @Html.TextAreaFor(model => model.Keywords, new
+                                    {
+                                        @class = "form-control comment",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Keywords).Name
+                                    })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.Summary, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-8">
+                                    @Html.TextAreaFor(model => model.Summary, new
+                                    {
+                                        @class = "form-control comment",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Summary).Name
+                                    })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.ArticleFileUrl, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    <a target="_blank" href="@Url.Content(Model.ArticleFileUrl)">دانلود فایل</a>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.Writers, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-10">
+                                    <table class="table table-bordered text-sm">
+                                        <thead class="thead-default">
+                                            <tr>
+                                                <th class="w-5">ردیف</th>
+                                                <th class="w-20">نام </th>
+                                                <th class="w-20">نام خانوادگی</th>
+                                                <th class="w-10">ایمیل</th>
+                                                <th class="w-10">همراه</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Writers).Name)">
+                                                <td scope="row">{{$index+1}}</td>
+                                                <td>{{item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.FirstName).Name}}</td>
+                                                <td>{{item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.LastName).Name}}</td>
+                                                <td>{{item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.Email).Name}}</td>
+                                                <td>{{item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.Writer, m => m.Cellphone).Name}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.RefereeArticleResults, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-default" ng-repeat="refResult in model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.RefereeArticleResults).Name)">
+                                            <div class="panel-heading">
+                                                <h5 class="panel-title text-right">
+                                                    <a data-toggle="collapse" data-parent="#accordion" data-target="#collepse-{{$index}}" aria-expanded="false" class="collapsed">{{refResult.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleRefereeArticleResultViewModel, m => m.RefereeName).Name)+' '+refResult.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleRefereeArticleResultViewModel, m => m.RefereeFamily).Name) }}</a>
+                                                </h5>
+                                            </div>
+                                            <div ng-attr-id="{{ 'collepse-' + $index }}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                                <div class="panel-body">
+                                                    <div ng-repeat="quesAns in refResult.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleRefereeArticleResultViewModel, m => m.RefereeQuestionAnswers).Name)">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-12 text-right">
+                                                                {{$index+1}}.<label>{{quesAns.RefereeQuestionText}}</label>
+                                                            </div>
+                                                            <div class="col-sm-3" ng-repeat="ans in quesAns.Answers">
+                                                                <label>
+                                                                    <input icheck data-ng-value="{{ans.AnswerID}}" type="radio" name="{{'Question'+refResult.RefereeID+quesAns.RefereeQuestionID}}" ng-disabled="1"
+                                                                           ng-model="quesAns.SelectedAnswerID"> {{ans.Answer}}
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="hr-line-dashed"></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-2">
+                                                            <label class="control-label" for="Title">وضعیت داوری:</label>
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <label class="control-label" for="Title">{{refResult.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleRefereeArticleResultViewModel, m => m.RefereeStatuse).Name)}}</label>
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <label class="control-label" for="Title">نحوه ارائه:</label>
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <label class="control-label" for="Title">{{refResult.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleRefereeArticleResultViewModel, m => m.ArticlePresentType).Name)}}</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="hr-line-dashed"></div>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-2">
+                                                            <label class="control-label" for="Title">توضیحات:</label>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <textarea class="form-control comment" cols="20" data-val="true" rows="2" ng-model="refResult.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleRefereeArticleResultViewModel, m => m.Explain).Name)"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="hr-line-dashed"></div>
+                                                    <div class="form-group" ng-show="refResult.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleRefereeArticleResultViewModel, m => m.AttachUrl).Name)!=''">
+                                                        <div class="col-sm-2">
+                                                            <label class="control-label" for="Title">فایل پیوست:</label>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <a ng-href="{{refResult.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleRefereeArticleResultViewModel, m => m.AttachUrl).Name)}}" target="_blank">دانلود فایل پیوست داوری</a>                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3 col-sm-offset-3">
+                                    <a class="btn btn-white" ui-sref="@(ModuleName+"Management")({ConferenceID:@Model.ConferenceID})">بازگشت</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+    document.title = '@Html.Raw(Model.Title)';
+</script>

@@ -1,0 +1,79 @@
+﻿@model AVA.Web.Mvc.Models.ConferenceListViewModel
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Controller;
+<update-title title="{{'ConferenceList' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'ConferenceList' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'ConferenceList' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'ConferenceList' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'ConferenceList' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<div class="py-6 bg-white pos-relative">
+    <i class="fa fa-diamond icon-25x icon-rotate-25  pos-absolute op-1 pos-t pos-r" aria-hidden="true"></i>
+
+    <div class="container animated fadeIn animation-delay-7">
+        <hr class="hr-lg mt-0 mb-2 w-10 mx-auto hr-primary" />
+        <h3 class="text-center text-uppercase mt-0 mb-5">
+            {{'ConferenceList' | translate}}
+        </h3>
+        <div class="timeline timeline-right mx-lg-10">
+            <!--Timeline item-->
+            @{
+                foreach (var conferenceYear in Model.DataModel.GroupBy(conf => new { conf.Year }))
+                {
+                    <div class="timeline-breaker">@conferenceYear.Key.Year</div>
+                    foreach (var conference in Model.DataModel.Where(conf => conf.Year == conferenceYear.Key.Year))
+                    {
+                        <div class="timeline-item mt-3 row text-center p-2" data-toggle="magnific-popup" data-magnific-popup-settings='{"delegate": "a.gallery-trigger", "gallery":{"enabled":true}}'>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="card-effect card-effect-front-to-back">
+                                    <img src="@Url.Content(conference.PosterImageUrl)" data-toggle="unveil" alt="@conference.Title" class="img-fluid" />
+                                    <div class="card-back rounded bg-inverse bg-op-8 flex-valign text-center p-3">
+                                        <a href="@Url.Content(conference.PosterImageUrl)" class="text-white gallery-trigger"> <i class="fa fa-search"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-9">
+                                <div class="col-12 font-weight-bold pb-2">@conference.Title</div>
+                                <div class="col-12 pb-2">{{'ConferenceEventDate' | translate}}: @conference.EventDateConverted</div>
+                                <div class="col-12 text-md-left p-0"><a class="ml-4 mt-2-neg btn btn-green-bright btn-shadow" ui-sref="ArticleList({ConferenceID:@conference.ID})" role="button" aria-pressed="true">لیست مقالات</a></div>
+                                @if (!string.IsNullOrEmpty(conference.AttachTotalArticlesFileUrl))
+                                {
+                                    <div class="col-12 text-md-left p-0"><a class="ml-4 mt-3 btn btn-green-bright btn-shadow" target="_blank" href="@Url.Content(conference.AttachTotalArticlesFileUrl)" role="button" aria-pressed="true">دانلود مقالات</a></div>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            }
+
+            @*<div class="timeline-breaker timeline-breaker-middle">سال 95</div>
+                <div class="timeline-item mt-3 row text-center p-2">
+                    <div class="col-12 font-weight-bold pb-2">عنوان همایش</div>
+                    <div class="col-6 text-md-right p-0"><a class="ml-4 mt-2-neg btn btn-green-bright btn-shadow" ui-sref="ArticleList" role="button" aria-pressed="true">لیست مقالات</a></div>
+                    <div class="col-6  text-md-left p-0">تاریخ برگزاری همایش: 00/00/00</div>
+                </div>
+                <div class="timeline-item mt-3 row text-center p-2">
+                    <div class="col-12 font-weight-bold pb-2">عنوان همایش</div>
+                    <div class="col-6 text-md-right p-0"><a class="ml-4 mt-2-neg btn btn-green-bright btn-shadow" ui-sref="ArticleList" role="button" aria-pressed="true">لیست مقالات</a></div>
+                    <div class="col-6  text-md-left p-0">تاریخ برگزاری همایش: 00/00/00</div>
+                </div>
+                <div class="timeline-item mt-3 row text-center p-2">
+                    <div class="col-12 font-weight-bold pb-2">عنوان همایش</div>
+                    <div class="col-6 text-md-right p-0"><a class="ml-4 mt-2-neg btn btn-green-bright btn-shadow" ui-sref="ArticleList" role="button" aria-pressed="true">لیست مقالات</a></div>
+                    <div class="col-6  text-md-left p-0">تاریخ برگزاری همایش: 00/00/00</div>
+                </div>
+                <div class="timeline-breaker timeline-breaker-middle">سال 94</div>
+                <div class="timeline-item mt-3 row text-center p-2">
+                    <div class="col-12 font-weight-bold pb-2">عنوان همایش</div>
+                    <div class="col-6 text-md-right p-0"><a class="ml-4 mt-2-neg btn btn-green-bright btn-shadow" ui-sref="ArticleList" role="button" aria-pressed="true">لیست مقالات</a></div>
+                    <div class="col-6  text-md-left p-0">تاریخ برگزاری همایش: 00/00/00</div>
+                </div>
+                <div class="timeline-item mt-3 row text-center p-2">
+                    <div class="col-12 font-weight-bold pb-2">عنوان همایش</div>
+                    <div class="col-6 text-md-right p-0"><a class="ml-4 mt-2-neg btn btn-green-bright btn-shadow" ui-sref="ArticleList" role="button" aria-pressed="true">لیست مقالات</a></div>
+                    <div class="col-6  text-md-left p-0">تاریخ برگزاری همایش: 00/00/00</div>
+                </div>
+                <div class="timeline-breaker timeline-breaker-bottom">همایش های پیش تر ...</div>*@
+        </div>
+    </div>
+</div>

@@ -1,0 +1,141 @@
+﻿@model AVA.Web.Mvc.Models.Admin.VoteViewModel
+@using AVA.UI.Helpers.Controller;
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Base;
+@{
+    string ModuleName = "Vote";
+}
+@using (Html.BeginForm("Submit" + ModuleName, "PublicAdmin", null, FormMethod.Post, new { id = "form-" + ModuleName, ng_controller = "MySubmitController" }))
+{
+    <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.ObjectState)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>{{ 'Vote' | translate }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a ui-sref="Home">{{ 'Home' | translate }}</a>
+                </li>
+                <li class="active">
+                    <strong>{{ 'Vote' | translate }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h3 class="pull-right">@Model.CandidateTypes.Where(item => item.Value == "3").FirstOrDefault().Text</h3>
+                        <div class="ibox-tools pull-left">
+                            تعداد آرای شما: {{model.candidCnt}}
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-lg-4" ng-repeat="item in model.UserVotes | filter: { Candidate: { SelectedCandidateTypeID: '3' } } ">
+                                <div class="contact-box">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="text-center">
+                                                <img alt="image" class="rounded-circle m-t-xs img-fluid" style="max-width:128px;height:128px" src="{{item.Candidate.PersonPicUrl}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-8 text-center">
+                                            <h3><strong>{{item.Candidate.FirstName+' ' +item.Candidate.LastName}}</strong></h3>
+                                            <address>
+                                                {{item.Candidate.Explain}}
+                                            </address>
+                                        </div>
+                                        <label class="pull-left" style="padding-left:20px">
+                                            <span class="toggleLable">انتخاب نامزد</span>
+                                            <input type="checkbox" class="js-switch" ui-switch="{color:'#1AB394'}" ng-model="item.IsChecked" ng-change="VoteCheckChange(item)" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h3 class="pull-right">@Model.CandidateTypes.Where(item => item.Value == "4").FirstOrDefault().Text</h3>
+                        <div class="ibox-tools pull-left">
+                            تعداد آرای شما: {{model.inspectorCnt}}
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-lg-4" ng-repeat="item in model.UserVotes | filter: { Candidate: { SelectedCandidateTypeID: '4' } } ">
+                                <div class="contact-box">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="text-center">
+                                                <img alt="image" class="rounded-circle m-t-xs img-fluid" style="max-width:128px;height:128px" src="{{item.Candidate.PersonPicUrl}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-8 text-center">
+                                            <h3><strong>{{item.Candidate.FirstName+' ' +item.Candidate.LastName}}</strong></h3>
+                                            <address>
+                                                {{item.Candidate.Explain}}
+                                            </address>
+                                        </div>
+                                        <label class="pull-left" style="padding-left:20px">
+                                            <span class="toggleLable">انتخاب نامزد</span>
+                                            <input type="checkbox" class="js-switch" ui-switch="{color:'#1AB394'}" ng-model="item.IsChecked" ng-change="VoteCheckChange(item)" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content text-center p-md">
+                        <div class="form-horizontal">
+                            @*<div class="form-group">
+                                    <div class="col-sm-3">
+                                        @Html.LabelFor(model => model.ActivationCode, new { @class = "control-label" }):
+                                    </div>
+                                    <div class="col-sm-4">
+                                        @Html.TextBoxFor(model => model.ActivationCode, new
+                                   {
+                                       @class = "form-control",
+                                       ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ActivationCode).Name,
+
+                                   })
+                                        @Html.ValidationMessageFor(model => model.ActivationCode, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <button class="btn btn-warning" id="SendActivationBtn" ng-click="SendActivationCode($event,'@Url.Action("SendActivationCode", "Vote")')">ارسال کد فعال سازی</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-primary btn-rounded btn-block" id="SubmitBtn" ng-click="submitForm($event,'@Url.Action("SubmitVote", "Vote")','form-@ModuleName')">ثبت رای</button>
+                                    </div>
+
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+</script>

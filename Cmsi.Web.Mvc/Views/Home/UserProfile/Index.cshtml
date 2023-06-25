@@ -1,0 +1,87 @@
+﻿@model AVA.Web.Mvc.Models.ProfileViewModel
+<div id="content" ng-controller="MyLayoutController">
+    <div class="container animated fadeIn animation-delay-7">
+        <div class="row">
+            <div class="col-lg-3">
+                <blockquote class="blockquote-bubble m-0">
+                    <small class="p-0">
+                        <img src="@Url.Content(Model.ImageUrl)" alt="Jimi Bloggs" class="ml-1 img-thumbnail img-fluid" />
+                        (@(Model.Name + " " + Model.Family)) {{ 'Wellcome' | translate }}
+                    </small>
+                </blockquote>
+                <blockquote class="mb-0">
+                    <small>
+                        اعتبار عضویت شما در انجمن تا: @Model.VipEndDate
+                    </small>
+                </blockquote>
+
+                <ul class="nav nav-section-menu nav-section-menu-right mb-4 py-3">
+                    <li>
+                        <a ui-sref="UserProfile.Home" data-toggle="" class="nav-link"><span class="fa fa-tachometer mx-2 "></span>{{ 'UserMenuDashboard' | translate }}</a>
+                    </li>
+                    <li>
+                        <a data-target="#ProfilePanel" data-toggle="collapse" class="nav-link"><span class="fa fa-cogs mx-2 "></span>{{ 'UserMenuUserProfile' | translate }}<i ng-controller="translateCtrl" ng-class="{'fa fa-angle-left': isActive('fa'),'fa fa-angle-right': isActive('en')}"></i></a>
+                        <ul class="nav nav-section-menu collapse" id="ProfilePanel">
+                            <li><a ui-sref="UserProfile.Profile" class="nav-link">{{ 'UserMenuEditUserProfile' | translate }}</a></li>
+                            <li><a ui-sref="UserProfile.ProfileChangePass" class="nav-link">{{ 'UserMenuChangePassword' | translate }}</a></li>
+                        </ul>
+                    </li>
+
+
+
+                    <li>
+                        <a data-target="#ArticlePanel" data-toggle="collapse" class="nav-link"
+                           ng-class="{show: $state.current.name.includes('Article')}"><span class="fa fa-graduation-cap mx-2 "></span>{{ 'UserMenuArticles' | translate }}<i ng-controller="translateCtrl" ng-class="{'fa fa-angle-left': isActive('fa'),'fa fa-angle-right': isActive('en')}"></i></a>
+                        <ul class="nav nav-section-menu collapse" ng-class="{show: $state.current.name.includes('Article')}" id="ArticlePanel">
+                            <li><a ui-sref="UserProfile.Article" class="nav-link">{{ 'UserMenuSendArticles' | translate }}</a></li>
+                            <li><a ui-sref="UserProfile.ArticleList({pageNumber: '1'})" class="nav-link">{{ 'UserMenuArticlesStatus' | translate }}</a></li>
+                            <li><a ui-sref="UserProfile.TemplateArticle" class="nav-link">{{ 'UserMenuArticleTemplate' | translate }}</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a data-target="#RegisterPanel" ng-class="{show: $state.current.name.includes('Companion')}" data-toggle="collapse" class="nav-link"><span class="fa fa-slideshare mx-2 "></span>{{ 'UserMenuConferenceRegistration' | translate }}<i ng-controller="translateCtrl" ng-class="{'fa fa-angle-left': isActive('fa'),'fa fa-angle-right': isActive('en')}"></i> </a>
+                        <ul class="nav nav-section-menu collapse" id="RegisterPanel" ng-class="{show: $state.current.name.includes('Companion')}">
+                            <li><a ui-sref="UserProfile.RegisterCompanion" class="nav-link">{{ 'UserMenuSubmitParticipant' | translate }}</a></li>
+                            <li><a ui-sref="UserProfile.CompanionList({pageNumber: '1'})" class="nav-link">{{ 'UserMenuParticipantList' | translate }}</a></li>
+                            <li><a ui-sref="UserProfile.PayConference" class="nav-link">{{ 'UserMenupaypalConference' | translate }}</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a ui-sref="UserProfile.PayVip" data-toggle="" class="nav-link"><span class="fa fa-paypal mx-2 "></span>{{ 'UserMenupaypalSociety' | translate }}</a>
+                    </li>
+                    <li>
+                        <a ui-sref="UserProfile.OrderList({pageNumber:1})" data-toggle="" class="nav-link"><span class="fa fa-shopping-bag mx-2 "></span>{{ 'UserMenuOrderList' | translate }}</a>
+                    </li>
+                    <li>
+                        <a ui-sref="UserProfile.Vote" data-toggle="" class="nav-link"><span class="fa fa-gavel mx-2 "></span>{{ 'Vote' | translate }}</a>
+                    </li>
+                    @* <li>
+             <a data-target="#member" ng-class="{show: $state.current.name.includes('Pay')}" data-toggle="collapse" class="nav-link"><span class="fa fa-paypal mx-2 "></span>{{ 'UserMenupaypal' | translate }} <i ng-controller="translateCtrl" ng-class="{'fa fa-angle-left': isActive('fa'),'fa fa-angle-right': isActive('en')}"></i></a>
+             <ul class="nav nav-section-menu collapse" id="member" ng-class="{show: $state.current.name.includes('Pay')}">
+                 <li><a ui-sref="UserProfile.PayVip" class="nav-link">{{ 'UserMenupaypalSociety' | translate }}</a></li>
+                 <li><a ui-sref="UserProfile.PayConference" class="nav-link">{{ 'UserMenupaypalConference' | translate }}</a></li>
+                 <li><a ui-sref="UserProfile.OrderList({pageNumber:1})" class="nav-link">{{ 'UserMenuOrderList' | translate }}</a></li>
+             </ul>
+         </li>
+        <li>
+             <a data-target="#message" data-toggle="collapse" class="nav-link"><span class="fa fa-envelope-o mx-2 "></span>{{ 'UserMenuMessages' | translate }}<i ng-controller="translateCtrl" ng-class="{'fa fa-angle-left': isActive('fa'),'fa fa-angle-right': isActive('en')}"></i></a>
+             <ul class="nav nav-section-menu collapse" id="message">
+                 <li><a href="MessageSend.aspx" class="nav-link">{{ 'UserMenuSendMessage' | translate }}</a></li>
+                 <li><a href="MessageSendList.aspx" class="nav-link">{{ 'UserMenuSendingList' | translate }}</a></li>
+                 <li><a href="MessageReceiveList.aspx" class="nav-link">{{ 'UserMenuInboxe' | translate }}</a></li>
+             </ul>
+         </li>*@
+                    <li>
+                        <a href="#" ng-click="SignOut('@Url.Action("SignOut", "Home")','@Url.Action("Index","Home")')" class="nav-link"><span class="fa fa-sign-out mx-2 "></span>{{ 'Logout' | translate }}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-9">
+                <div ui-view>
+                    @Html.Action("HomeProfile", "Home")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

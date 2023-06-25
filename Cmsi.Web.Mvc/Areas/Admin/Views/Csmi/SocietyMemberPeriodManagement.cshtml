@@ -1,0 +1,62 @@
+﻿@using AVA.UI.Helpers.Controller;
+@using AVA.Web.Mvc.Areas.Admin.Models.Base;
+@{
+    string ModuleName = "SocietyMemberPeriod";
+}
+<input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>{{ '@(ModuleName + "Management")' | translate }}</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="Home">{{ 'Home' | translate }}</a>
+            </li>
+            <li class="active">
+                <strong>{{  '@(ModuleName + "Management")' | translate }}</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="MyGridController">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content text-center p-md">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-lg-12 btn-rows">
+                                <a class="btn btn-default" ui-sref="@ModuleName"><i class="fa fa-plus"></i>{{  'Add' | translate }}</a>
+                                <button class="btn btn-info" type="button" ng-click="EditAction('@ModuleName')"><i class="fa fa-paste"></i> {{  'Edit' | translate }}</button>
+                                <button class="btn btn-danger" type="button" ng-click="DeleteAction('@("/Admin/"+ModuleName+"/Delete"+ModuleName)','@ViewBag.GridID')"><i class="fa fa-remove"></i>{{  'Delete' | translate }}</button>
+                                <button class="btn btn-primary" type="button" ng-click="AssignSocietyMember('SocietyMemberManagement')"><i class="fa fa-group"></i> {{ 'AssignSocietyMember' | translate }}</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <script>
+                                var selectedIDs;
+                                function OnBeginCallback(s, e) {
+                                    //Pass all selected keys to GridView callback action
+                                    e.customArgs["selectedIDs"] = selectedIDs;
+                                }
+                                function OnSelectionChanged(s, e) {
+                                    s.GetSelectedFieldValues("ID", GetSelectedFieldValuesCallback);
+                                }
+                                function GetSelectedFieldValuesCallback(values) {
+                                    //Capture all selected keys
+                                    selectedIDs = values.join(',');
+                                }
+                            </script>
+                            @Html.Action("Get" + ModuleName + "Partial")
+                            @Html.Partial("GridViewExportPartial", new GridViewExportViewModel() { ModuleName = ModuleName })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

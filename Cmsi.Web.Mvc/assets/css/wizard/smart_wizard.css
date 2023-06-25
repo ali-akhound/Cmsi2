@@ -1,0 +1,238 @@
+/*!  
+ * SmartWizard v4.x
+ * jQuery Wizard Plugin
+ * http://www.techlaboratory.net/smartwizard
+ *
+ * Created by Dipu Raj
+ * http://dipuraj.me
+ *
+ * Licensed under the terms of MIT License
+ * https://github.com/techlab/SmartWizard/blob/master/LICENSE
+ */
+
+/* SmartWizard Basic CSS */
+.sw-main {
+    position: relative;
+    display:block;
+    margin:0;
+    padding:0;
+}
+.sw-main .sw-container {
+    display: block;
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+    position: relative;
+}
+.sw-main .step-content {
+    display:none;
+    position: relative;
+    margin:0;
+}
+.sw-main .sw-toolbar{
+    margin-left: 0;
+}
+
+
+/* SmartWizard Theme: White */
+.sw-theme-default{
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+}
+.sw-theme-default .sw-container {
+    min-height: 250px;
+}
+.sw-theme-default .step-content {
+    padding: 10px;
+    border: 0px solid #D4D4D4;
+    background-color: #FFF;
+    text-align: left;
+}
+.sw-theme-default .sw-toolbar{
+    background: #f9f9f9;
+    border-radius: 0 !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0 !important;
+}
+.sw-theme-default .sw-toolbar-top{
+    border-bottom-color: #ddd !important;
+}
+.sw-theme-default .sw-toolbar-bottom{
+    border-top-color: #ddd !important;
+}
+.sw-theme-default > ul.step-anchor > li > a, .sw-theme-default > ul.step-anchor > li > a:hover  {
+    border: none !important;
+    color: #bbb;
+    text-decoration: none;
+    outline-style:none;
+    background: transparent !important;
+    border: none !important;
+}
+.sw-theme-default > ul.step-anchor > li.clickable > a:hover {
+    color: #4285F4 !important;
+    background: transparent !important;
+}
+.sw-theme-default > ul.step-anchor > li > a::after {
+    content: "";
+    background: #4285F4; /* #5bc0de #4285F4*/
+    height: 2px;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    bottom: 0px;
+    transition: all 250ms ease 0s;
+    transform: scale(0);
+}
+.sw-theme-default > ul.step-anchor > li.active > a {
+    border: none !important;
+    color: #4285F4 !important;
+    background: transparent !important;
+}
+.sw-theme-default > ul.step-anchor > li.active > a::after {
+    transform: scale(1);
+}
+.sw-theme-default > ul.step-anchor > li.done > a {
+    border: none !important;
+    color: #000 !important;
+    background: transparent !important;
+}
+.sw-theme-default > ul.step-anchor > li.done > a::after {
+    background: #5cb85c;
+    transform: scale(1);
+}
+.sw-theme-default > ul.step-anchor > li.danger > a {
+    border: none !important;
+    color: #d9534f !important;
+    background: transparent !important;
+}
+.sw-theme-default > ul.step-anchor > li.danger > a::after {
+    background: #d9534f;
+    transform: scale(1);
+}
+.sw-theme-default > ul.step-anchor > li.disabled > a, .sw-theme-default > ul.step-anchor > li.disabled > a:hover {
+    color: #eee !important;
+}
+
+/* Responsive CSS */
+@media screen and (max-width: 768px) {
+    .sw-theme-default > .nav-tabs > li {
+        float: none !important;
+    }
+}
+
+/* Loader Animation
+Courtesy: http://bootsnipp.com/snippets/featured/loading-button-effect-no-js
+*/
+@-webkit-keyframes ld {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+@-moz-keyframes ld {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+@-o-keyframes ld {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+@keyframes ld {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+.sw-theme-default > ul.step-anchor > li.loading:before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    background: transparent;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 2px solid #fff;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: #4285f4;
+    border-right-color: #4285f4;
+    top: 50%;
+    left: 50%;
+    margin-top: -16px;
+    margin-left: -16px;
+    width: 32px;
+    height: 32px;
+    -webkit-animation: ld 1s ease-in-out infinite;
+    -moz-animation:    ld 1s ease-in-out infinite;
+    -o-animation:      ld 1s ease-in-out infinite;
+    animation:         ld 1s ease-in-out infinite;
+}
+
+
+ /*-------------------------------MY Custom wizard----------------------------------*/
+
+ .smartwizard .nav-tabs>li {
+    float: right;
+    margin-bottom: -1px;
+}
+ .smartwizard  .nav>li {
+    position: relative;
+    display: block;
+}
+
+ .sw-theme-arrows > ul.step-anchor > li > a:after {
+	border-right: 30px solid #f5f5f5 !important; 
+	right: 100% !important;
+    border-left: none !important;
+	left: 0% !important;
+}
+.sw-theme-arrows > ul.step-anchor > li.active > a:after {
+    border-right: 30px solid #5bc0de !important;
+    border-left: none !important;
+}
+.sw-theme-arrows > ul.step-anchor > li > a:before {
+	border-right: 30px solid #ddd !important;
+	margin-right: 1px !important;
+	right: 100% !important;
+    border-left: none !important;
+	margin-left: 0px !important;
+	left: 0% !important; 
+}
+.sw-theme-arrows > ul.step-anchor > li:first-child > a {
+	padding-right: 15px !important;
+    padding-left: 0px !important;
+}
+.sw-theme-arrows > ul.step-anchor > li > a, .sw-theme-arrows > ul.step-anchor > li > a:hover  {
+	padding: 10px 45px 10px 0 !important;
+}
+
+    .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+         border-top-right-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+
+    }
+
+.btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+     border-top-left-radius: 4px !important;
+        border-bottom-left-radius: 4px !important;
+}
+.sw-theme-arrows .step-content {
+    text-align: justify;
+}
+.sw-theme-arrows > ul.step-anchor > li.done > a:after {
+	border-right: 30px solid #5cb85c !important;
+}
+.sw-theme-arrows{
+    border: none;
+}
+.c1{
+    display:inline-block;
+    margin-left:auto;
+}
+.c2{
+    display:inline-block;
+    margin-right:auto;
+}

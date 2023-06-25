@@ -1,0 +1,1173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ArticleClientQuickFilterViewModel_Fields" xml:space="preserve">
+    <value>Fields</value>
+  </data>
+  <data name="ArticleClientQuickFilterViewModel_Keyword" xml:space="preserve">
+    <value>Keyword</value>
+  </data>
+  <data name="ArticleClientQuickFilterViewModel_Title" xml:space="preserve">
+    <value>Article Title</value>
+  </data>
+  <data name="ArticleClientQuickFilterViewModel_Writer" xml:space="preserve">
+    <value>Article Writer</value>
+  </data>
+  <data name="AspUserMembershipViewModel_ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="AspUserMembershipViewModel_ConfirmPassword_Compare" xml:space="preserve">
+    <value>Confirm password  is not equal to password</value>
+  </data>
+  <data name="AspUserMembershipViewModel_ConfirmPassword_ReqMsg" xml:space="preserve">
+    <value>Confirm Password is Required</value>
+  </data>
+  <data name="AspUserMembershipViewModel_CreateDateConverted" xml:space="preserve">
+    <value>CreateDate</value>
+  </data>
+  <data name="AspUserMembershipViewModel_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="AspUserMembershipViewModel_Email_EmailValidation" xml:space="preserve">
+    <value>Email is not correct</value>
+  </data>
+  <data name="AspUserMembershipViewModel_Email_ReqMsg" xml:space="preserve">
+    <value>Email  is Required</value>
+  </data>
+  <data name="AspUserMembershipViewModel_Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="AspUserMembershipViewModel_FirstName" xml:space="preserve">
+    <value>FirstName</value>
+  </data>
+  <data name="AspUserMembershipViewModel_FirstName_ReqMsg" xml:space="preserve">
+    <value>FirstName  is Required</value>
+  </data>
+  <data name="AspUserMembershipViewModel_invite" xml:space="preserve">
+    <value>How to know this website?</value>
+  </data>
+  <data name="AspUserMembershipViewModel_LastName" xml:space="preserve">
+    <value>LastName</value>
+  </data>
+  <data name="AspUserMembershipViewModel_LastName_ReqMsg" xml:space="preserve">
+    <value>LastName is Required</value>
+  </data>
+  <data name="AspUserMembershipViewModel_MeliCardUrl" xml:space="preserve">
+    <value>University Card</value>
+  </data>
+  <data name="AspUserMembershipViewModel_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="AspUserMembershipViewModel_Password_ReqMsg" xml:space="preserve">
+    <value>Confirm Password is Required</value>
+  </data>
+  <data name="AspUserMembershipViewModel_PersonalImageUrl" xml:space="preserve">
+    <value>Personal Image</value>
+  </data>
+  <data name="AspUserMembershipViewModel_PhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="AspUserMembershipViewModel_UniversityCardUrl" xml:space="preserve">
+    <value>University Card</value>
+  </data>
+  <data name="BookViewModel_CreateDateConverted" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="BookViewModel_ImageUrl" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="BookViewModel_LanguageName" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="BookViewModel_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="BookViewModel_Name_ReqMsg" xml:space="preserve">
+    <value>Name is Required</value>
+  </data>
+  <data name="BookViewModel_PrintPeriod" xml:space="preserve">
+    <value>PrintPeriod</value>
+  </data>
+  <data name="BookViewModel_PrintPeriod_ReqMsg" xml:space="preserve">
+    <value>PrintPeriod is Required</value>
+  </data>
+  <data name="BookViewModel_Writer" xml:space="preserve">
+    <value>Writer</value>
+  </data>
+  <data name="BookViewModel_Writer_ReqMsg" xml:space="preserve">
+    <value>Writer is Required</value>
+  </data>
+  <data name="BookViewModel_Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="BookViewModel_Year_ReqMsg" xml:space="preserve">
+    <value>Year is Required</value>
+  </data>
+  <data name="ContactUsViewModel_ContactDateConverted" xml:space="preserve">
+    <value>Contact Date</value>
+  </data>
+  <data name="ContactUsViewModel_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ContactUsViewModel_Email_NotValidMsg" xml:space="preserve">
+    <value>Email is not Valid</value>
+  </data>
+  <data name="ContactUsViewModel_Email_ReqMsg" xml:space="preserve">
+    <value>Email is Required</value>
+  </data>
+  <data name="ContactUsViewModel_Family" xml:space="preserve">
+    <value>Family</value>
+  </data>
+  <data name="ContactUsViewModel_Family_ReqMsg" xml:space="preserve">
+    <value>Family is Required</value>
+  </data>
+  <data name="ContactUsViewModel_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ContactUsViewModel_Name_ReqMsg" xml:space="preserve">
+    <value>Name is Required</value>
+  </data>
+  <data name="ContactUsViewModel_Subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="ContactUsViewModel_Subject_ReqMsg" xml:space="preserve">
+    <value>Subject is Required</value>
+  </data>
+  <data name="ContactUsViewModel_TelNumber" xml:space="preserve">
+    <value>TelNumber</value>
+  </data>
+  <data name="ContactUsViewModel_TelNumber_ReqMsg" xml:space="preserve">
+    <value>TelNumber is Required</value>
+  </data>
+  <data name="ContactUsViewModel_Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="ContactUsViewModel_Text_ReqMsg" xml:space="preserve">
+    <value>Text  is Required</value>
+  </data>
+  <data name="FAQViewModel_Answer" xml:space="preserve">
+    <value>Answer</value>
+  </data>
+  <data name="FAQViewModel_Answer_ReqMsg" xml:space="preserve">
+    <value>Answer is Required</value>
+  </data>
+  <data name="FAQViewModel_CreateDateConverted" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="FAQViewModel_Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="FAQViewModel_LanguageName" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="FAQViewModel_Priority" xml:space="preserve">
+    <value>Priority</value>
+  </data>
+  <data name="FAQViewModel_Priority_ReqMsg" xml:space="preserve">
+    <value>Priority is Required</value>
+  </data>
+  <data name="FAQViewModel_Question" xml:space="preserve">
+    <value>Question</value>
+  </data>
+  <data name="FAQViewModel_Question_ReqMsg" xml:space="preserve">
+    <value>Question is Required</value>
+  </data>
+  <data name="GalleryAlbumViewModel_CreateDateConverted" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="GalleryAlbumViewModel_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="GalleryAlbumViewModel_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="GalleryAlbumViewModel_Name_ReqMsg" xml:space="preserve">
+    <value>Name is Required</value>
+  </data>
+  <data name="GalleryImageViewModel_CreateDateConverted" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="GalleryImageViewModel_Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="GalleryImageViewModel_Explain" xml:space="preserve">
+    <value>Explain</value>
+  </data>
+  <data name="GalleryImageViewModel_GalleryAlbumName" xml:space="preserve">
+    <value>Gallery Album Name</value>
+  </data>
+  <data name="GalleryImageViewModel_Height" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="GalleryImageViewModel_ImageLink" xml:space="preserve">
+    <value>Image Link</value>
+  </data>
+  <data name="GalleryImageViewModel_LongImageFile" xml:space="preserve">
+    <value>Long Image File</value>
+  </data>
+  <data name="GalleryImageViewModel_LongImageFile_ReqMsg" xml:space="preserve">
+    <value>Long Image File is Required</value>
+  </data>
+  <data name="GalleryImageViewModel_LongImageUrl" xml:space="preserve">
+    <value>Long Image</value>
+  </data>
+  <data name="GalleryImageViewModel_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="GalleryImageViewModel_Name_ReqMsg" xml:space="preserve">
+    <value>Name is Required</value>
+  </data>
+  <data name="GalleryImageViewModel_Priority" xml:space="preserve">
+    <value>Priority</value>
+  </data>
+  <data name="GalleryImageViewModel_Priority_ReqMsg" xml:space="preserve">
+    <value>Priority is Required</value>
+  </data>
+  <data name="GalleryImageViewModel_ShortImageUrl" xml:space="preserve">
+    <value>Short Image</value>
+  </data>
+  <data name="GalleryImageViewModel_SmallImage" xml:space="preserve">
+    <value>Small Image File</value>
+  </data>
+  <data name="GalleryImageViewModel_SmallImage_ReqMsg" xml:space="preserve">
+    <value>Small Image File is Required</value>
+  </data>
+  <data name="GalleryImageViewModel_Width" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="InvoiceViewModel_Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankBankName" xml:space="preserve">
+    <value>Bank Name</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankBankName_ReqMsg" xml:space="preserve">
+    <value>Bank Name  is Required</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankPayDate" xml:space="preserve">
+    <value>Pay Date</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankPayDate_ReqMsg" xml:space="preserve">
+    <value>Pay Date  is Required</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankPayFile" xml:space="preserve">
+    <value>Pay File</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankPayFileUrl" xml:space="preserve">
+    <value>Pay File</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankPayFileUrl_ReqMsg" xml:space="preserve">
+    <value>Pay File is Required</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankPayFile_ReqMsg" xml:space="preserve">
+    <value>Pay File is Required</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankPayReceipt" xml:space="preserve">
+    <value>Receipt</value>
+  </data>
+  <data name="InvoiceViewModel_Cash2BankPayReceipt_ReqMsg" xml:space="preserve">
+    <value>Receipt  is Required</value>
+  </data>
+  <data name="InvoiceViewModel_CreateDateConverted" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="InvoiceViewModel_DigitalCode" xml:space="preserve">
+    <value>Digital Code</value>
+  </data>
+  <data name="InvoiceViewModel_InvoiceType" xml:space="preserve">
+    <value>Invoice Type</value>
+  </data>
+  <data name="InvoiceViewModel_ReservationCode" xml:space="preserve">
+    <value>Reservation Code</value>
+  </data>
+  <data name="LoginMembershipViewModel_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="LoginMembershipViewModel_Password_ReqMsg" xml:space="preserve">
+    <value>Password is Required</value>
+  </data>
+  <data name="LoginMembershipViewModel_RememberMe" xml:space="preserve">
+    <value>Remember Me</value>
+  </data>
+  <data name="LoginMembershipViewModel_Username" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LoginMembershipViewModel_Username_ReqMsg" xml:space="preserve">
+    <value>Email is Required</value>
+  </data>
+  <data name="NewsFeedViewModel_NewsFeedEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="NewsFeedViewModel_NewsFeedEmail_EmailValidation" xml:space="preserve">
+    <value>Email is not correct</value>
+  </data>
+  <data name="NewsFeedViewModel_NewsFeedEmail_ReqMsg" xml:space="preserve">
+    <value>Email is Required</value>
+  </data>
+  <data name="OrderItemViewModel_Count" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="OrderItemViewModel_CreateDateConverted" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="OrderItemViewModel_Name" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="OrderItemViewModel_Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="OrderViewModel_Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="OrderViewModel_CreateDateConverted" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="OrderViewModel_Invoice" xml:space="preserve">
+    <value>Invoice</value>
+  </data>
+  <data name="OrderViewModel_OrderItems" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="OrderViewModel_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="PasswordChangeMembershipViewModel_ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="PasswordChangeMembershipViewModel_ConfirmPassword_Compare" xml:space="preserve">
+    <value>Confirm Password is not equal to Password</value>
+  </data>
+  <data name="PasswordChangeMembershipViewModel_ConfirmPassword_ReqMsg" xml:space="preserve">
+    <value>Confirm password Confirm Password</value>
+  </data>
+  <data name="PasswordChangeMembershipViewModel_OldPassword" xml:space="preserve">
+    <value>OldPassword</value>
+  </data>
+  <data name="PasswordChangeMembershipViewModel_OldPassword_ReqMsg" xml:space="preserve">
+    <value>OldPassword is Required</value>
+  </data>
+  <data name="PasswordChangeMembershipViewModel_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordChangeMembershipViewModel_Password_ReqMsg" xml:space="preserve">
+    <value>Password is Required</value>
+  </data>
+  <data name="PasswordRecoveryMembershipViewModel_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="PasswordRecoveryMembershipViewModel_Email_EmailValidation" xml:space="preserve">
+    <value>Email is not correct</value>
+  </data>
+  <data name="PasswordRecoveryMembershipViewModel_Email_ReqMsg" xml:space="preserve">
+    <value>Email  is Required</value>
+  </data>
+  <data name="ResetPasswordViewModel_ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="ResetPasswordViewModel_ConfirmPassword_Compare" xml:space="preserve">
+    <value>Confirm password  is not equal to password</value>
+  </data>
+  <data name="ResetPasswordViewModel_ConfirmPassword_ReqMsg" xml:space="preserve">
+    <value>Confirm Password is Required</value>
+  </data>
+  <data name="ResetPasswordViewModel_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ResetPasswordViewModel_Email_EmailValidation" xml:space="preserve">
+    <value>Email is not correct</value>
+  </data>
+  <data name="ResetPasswordViewModel_Email_ReqMsg" xml:space="preserve">
+    <value>Email  is Required</value>
+  </data>
+  <data name="ResetPasswordViewModel_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="ResetPasswordViewModel_Password_ReqMsg" xml:space="preserve">
+    <value>Password is Required</value>
+  </data>
+  <data name="SocietyExecutorViewModel_CreateDateConverted" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="SocietyExecutorViewModel_DegreeLevel" xml:space="preserve">
+    <value>DegreeLevel</value>
+  </data>
+  <data name="SocietyExecutorViewModel_DegreeLevel_ReqMsg" xml:space="preserve">
+    <value>DegreeLevel is Required</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Email_NotValidMsg" xml:space="preserve">
+    <value>Email is not Valid</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Email_ReqMsg" xml:space="preserve">
+    <value>Email  is Required</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Family" xml:space="preserve">
+    <value>Family</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Family_ReqMsg" xml:space="preserve">
+    <value>Family is Required</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Name_ReqMsg" xml:space="preserve">
+    <value>Name is Required</value>
+  </data>
+  <data name="SocietyExecutorViewModel_PersonalImageUrl" xml:space="preserve">
+    <value>PersonalImageUrl</value>
+  </data>
+  <data name="SocietyExecutorViewModel_PersonalImageUrl_ReqMsg" xml:space="preserve">
+    <value>PersonalImageUrl is Required</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Position_ReqMsg" xml:space="preserve">
+    <value>Position is Required</value>
+  </data>
+  <data name="SocietyExecutorViewModel_ResumeUrl" xml:space="preserve">
+    <value>Resume</value>
+  </data>
+  <data name="SocietyExecutorViewModel_ResumeUrl_ReqMsg" xml:space="preserve">
+    <value>Resume  is Required</value>
+  </data>
+  <data name="SocietyMemberPeriodViewModel_CreateDateConverted" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="SocietyMemberPeriodViewModel_EndDate" xml:space="preserve">
+    <value>EndDate</value>
+  </data>
+  <data name="SocietyMemberPeriodViewModel_EndDate_ReqMsg" xml:space="preserve">
+    <value>EndDate is Required</value>
+  </data>
+  <data name="SocietyMemberPeriodViewModel_StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="SocietyMemberPeriodViewModel_StartDate_ReqMsg" xml:space="preserve">
+    <value>Start Date is Required</value>
+  </data>
+  <data name="SocietyMemberViewModel_CreateDateConverted" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="SocietyMemberViewModel_DegreeLevel" xml:space="preserve">
+    <value>Degree Level</value>
+  </data>
+  <data name="SocietyMemberViewModel_DegreeLevel_ReqMsg" xml:space="preserve">
+    <value>Degree Level is Required</value>
+  </data>
+  <data name="SocietyMemberViewModel_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="SocietyMemberViewModel_Email_NotValidMsg" xml:space="preserve">
+    <value>Email is not Valid</value>
+  </data>
+  <data name="SocietyMemberViewModel_Email_ReqMsg" xml:space="preserve">
+    <value>Email  is Required</value>
+  </data>
+  <data name="SocietyMemberViewModel_Family" xml:space="preserve">
+    <value>Family</value>
+  </data>
+  <data name="SocietyMemberViewModel_Family_ReqMsg" xml:space="preserve">
+    <value>Family is Required</value>
+  </data>
+  <data name="SocietyMemberViewModel_LanguageName" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="SocietyMemberViewModel_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SocietyMemberViewModel_Name_ReqMsg" xml:space="preserve">
+    <value>Name is Required</value>
+  </data>
+  <data name="SocietyMemberViewModel_PersonalImage" xml:space="preserve">
+    <value>Personal Image</value>
+  </data>
+  <data name="SocietyMemberViewModel_PersonalImageUrl" xml:space="preserve">
+    <value>Personal Image</value>
+  </data>
+  <data name="SocietyMemberViewModel_PersonalImage_ReqMsg" xml:space="preserve">
+    <value>Personal Image is Required</value>
+  </data>
+  <data name="SocietyMemberViewModel_Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="SocietyMemberViewModel_Position_ReqMsg" xml:space="preserve">
+    <value>Position is Required</value>
+  </data>
+  <data name="SocietyMemberViewModel_Resume" xml:space="preserve">
+    <value>Resume</value>
+  </data>
+  <data name="SocietyMemberViewModel_ResumeUrl" xml:space="preserve">
+    <value>Resume</value>
+  </data>
+  <data name="SocietyMemberViewModel_Resume_ReqMsg" xml:space="preserve">
+    <value>Resume  is Required</value>
+  </data>
+  <data name="CompanionViewModel_BornDate" xml:space="preserve">
+    <value>Born Date</value>
+  </data>
+  <data name="CompanionViewModel_BornDate_ReqMsg" xml:space="preserve">
+    <value>Born Date is Required</value>
+  </data>
+  <data name="CompanionViewModel_CreateDateConverted" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="CompanionViewModel_Degree" xml:space="preserve">
+    <value>Degree</value>
+  </data>
+  <data name="CompanionViewModel_Degree_ReqMsg" xml:space="preserve">
+    <value>Degree is Required</value>
+  </data>
+  <data name="CompanionViewModel_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="CompanionViewModel_Email_EmailValidation" xml:space="preserve">
+    <value>Email is not valid</value>
+  </data>
+  <data name="CompanionViewModel_Email_ReqMsg" xml:space="preserve">
+    <value>Email is Required</value>
+  </data>
+  <data name="CompanionViewModel_FieldOfStudy" xml:space="preserve">
+    <value>FieldOfStudy</value>
+  </data>
+  <data name="CompanionViewModel_FieldOfStudy_ReqMsg" xml:space="preserve">
+    <value>FieldOfStudy is Required</value>
+  </data>
+  <data name="CompanionViewModel_FirstName" xml:space="preserve">
+    <value>FirstName</value>
+  </data>
+  <data name="CompanionViewModel_FirstName_ReqMsg" xml:space="preserve">
+    <value>FirstName is Required</value>
+  </data>
+  <data name="CompanionViewModel_LastName" xml:space="preserve">
+    <value>LastName</value>
+  </data>
+  <data name="CompanionViewModel_LastName_ReqMsg" xml:space="preserve">
+    <value>LastName is Required</value>
+  </data>
+  <data name="CompanionViewModel_Melicode" xml:space="preserve">
+    <value>Meli code</value>
+  </data>
+  <data name="CompanionViewModel_Melicode_ReqMsg" xml:space="preserve">
+    <value>Meli code is Required</value>
+  </data>
+  <data name="CompanionViewModel_PayReceiptFileImage" xml:space="preserve">
+    <value>Pay Receipt File</value>
+  </data>
+  <data name="CompanionViewModel_PayReceiptFileImageUrl" xml:space="preserve">
+    <value>Pay Receipt File </value>
+  </data>
+  <data name="CompanionViewModel_PhoneNumber" xml:space="preserve">
+    <value>Cellphone</value>
+  </data>
+  <data name="CompanionViewModel_PhoneNumber_ReqMsg" xml:space="preserve">
+    <value>Cellphone is Required</value>
+  </data>
+  <data name="CompanionViewModel_SelectedPackage" xml:space="preserve">
+    <value>Selected Package</value>
+  </data>
+  <data name="CompanionViewModel_University" xml:space="preserve">
+    <value>University</value>
+  </data>
+  <data name="CompanionViewModel_UniversityCardFileImage" xml:space="preserve">
+    <value>University Card File</value>
+  </data>
+  <data name="CompanionViewModel_UniversityCardFileImageUrl" xml:space="preserve">
+    <value>University Card File</value>
+  </data>
+  <data name="CompanionViewModel_University_ReqMsg" xml:space="preserve">
+    <value>University is Required</value>
+  </data>
+  <data name="EditMembershipVm_Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="EditMembershipVm_BornDate" xml:space="preserve">
+    <value>BornDate</value>
+  </data>
+  <data name="EditMembershipVm_BornDate_ReqMsg" xml:space="preserve">
+    <value>BornDate  is Required</value>
+  </data>
+  <data name="EditMembershipVm_Degree" xml:space="preserve">
+    <value>Degree</value>
+  </data>
+  <data name="EditMembershipVm_Degree_ReqMsg" xml:space="preserve">
+    <value>Degree is Required</value>
+  </data>
+  <data name="EditMembershipVm_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EditMembershipVm_Email_EmailValidation" xml:space="preserve">
+    <value>Email is not Valid</value>
+  </data>
+  <data name="EditMembershipVm_Email_ReqMsg" xml:space="preserve">
+    <value>Email  is Required</value>
+  </data>
+  <data name="EditMembershipVm_FieldOfStudy" xml:space="preserve">
+    <value>FieldOfStudy</value>
+  </data>
+  <data name="EditMembershipVm_FieldOfStudy_ReqMsg" xml:space="preserve">
+    <value>FieldOfStudy is Required</value>
+  </data>
+  <data name="EditMembershipVm_FirstName" xml:space="preserve">
+    <value>FirstName</value>
+  </data>
+  <data name="EditMembershipVm_FirstName_ReqMsg" xml:space="preserve">
+    <value>FirstName  is Required</value>
+  </data>
+  <data name="EditMembershipVm_LastName" xml:space="preserve">
+    <value>LastName</value>
+  </data>
+  <data name="EditMembershipVm_LastName_ReqMsg" xml:space="preserve">
+    <value>LastName  is Required</value>
+  </data>
+  <data name="EditMembershipVm_MeliCardFileImage" xml:space="preserve">
+    <value>MeliCard Image</value>
+  </data>
+  <data name="EditMembershipVm_MeliCardUrl" xml:space="preserve">
+    <value>MeliCard Image</value>
+  </data>
+  <data name="EditMembershipVm_Melicode" xml:space="preserve">
+    <value>Melicode</value>
+  </data>
+  <data name="EditMembershipVm_Melicode_ReqMsg" xml:space="preserve">
+    <value>Melicode is Required</value>
+  </data>
+  <data name="EditMembershipVm_PersonalFileImage" xml:space="preserve">
+    <value>Personal Image</value>
+  </data>
+  <data name="EditMembershipVm_PersonalImageUrl" xml:space="preserve">
+    <value>Personal Image</value>
+  </data>
+  <data name="EditMembershipVm_PhoneNumber" xml:space="preserve">
+    <value>CellPhone Number</value>
+  </data>
+  <data name="EditMembershipVm_PhoneNumber_ReqMsg" xml:space="preserve">
+    <value>CellPhone Number  is Required</value>
+  </data>
+  <data name="EditMembershipVm_selectedCityID" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="EditMembershipVm_selectedProvinceID" xml:space="preserve">
+    <value>Province</value>
+  </data>
+  <data name="EditMembershipVm_sex_ReqMsg" xml:space="preserve">
+    <value>Gender  is Required</value>
+  </data>
+  <data name="EditMembershipVm_sex" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="EditMembershipVm_University" xml:space="preserve">
+    <value>University</value>
+  </data>
+  <data name="EditMembershipVm_UniversityCardFileImage" xml:space="preserve">
+    <value>University Card Image</value>
+  </data>
+  <data name="EditMembershipVm_UniversityCardUrl" xml:space="preserve">
+    <value>University Card Image</value>
+  </data>
+  <data name="EditMembershipVm_University_ReqMsg" xml:space="preserve">
+    <value>University is Required</value>
+  </data>
+  <data name="PayVipViewModel_UniversityCardFileImage" xml:space="preserve">
+    <value>University card attach</value>
+  </data>
+  <data name="RegisterMembershipVm_BornDate" xml:space="preserve">
+    <value>Born Date*</value>
+  </data>
+  <data name="RegisterMembershipVm_BornDate_ReqMsg" xml:space="preserve">
+    <value>Born Date is Required</value>
+  </data>
+  <data name="RegisterMembershipVm_Email" xml:space="preserve">
+    <value>Email*</value>
+  </data>
+  <data name="RegisterMembershipVm_Email_EmailValidation" xml:space="preserve">
+    <value>Email is not Valid</value>
+  </data>
+  <data name="RegisterMembershipVm_Email_ReqMsg" xml:space="preserve">
+    <value>Email is Required</value>
+  </data>
+  <data name="RegisterMembershipVm_FirstName" xml:space="preserve">
+    <value>FirstName*</value>
+  </data>
+  <data name="RegisterMembershipVm_FirstName_ReqMsg" xml:space="preserve">
+    <value>FirstName is Required</value>
+  </data>
+  <data name="RegisterMembershipVm_LastName" xml:space="preserve">
+    <value>LastName*</value>
+  </data>
+  <data name="RegisterMembershipVm_LastName_ReqMsg" xml:space="preserve">
+    <value>LastName  is Required</value>
+  </data>
+  <data name="RegisterMembershipVm_PhoneNumber" xml:space="preserve">
+    <value>CellPhone*</value>
+  </data>
+  <data name="RegisterMembershipVm_PhoneNumber_ReqMsg" xml:space="preserve">
+    <value>CellPhone is Required</value>
+  </data>
+  <data name="RegisterMembershipVm_sex" xml:space="preserve">
+    <value>sex*</value>
+  </data>
+  <data name="RegisterMembershipVm_sex_ReqMsg" xml:space="preserve">
+    <value>sex is Required</value>
+  </data>
+  <data name="RegisterMembershipVm_University" xml:space="preserve">
+    <value>University*</value>
+  </data>
+  <data name="RegisterMembershipVm_University_ReqMsg" xml:space="preserve">
+    <value>University is Required</value>
+  </data>
+  <data name="ArticleFilterViewModel_ArticleCategories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="ArticleFilterViewModel_ArticleSelectedCategory" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="ArticleFilterViewModel_ArticleSelectedStatus" xml:space="preserve">
+    <value>Article Status</value>
+  </data>
+  <data name="ArticleFilterViewModel_ArticleStatusName" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="ArticleFilterViewModel_CreateDateFrom" xml:space="preserve">
+    <value>Create Date From</value>
+  </data>
+  <data name="ArticleFilterViewModel_CreateDateTo" xml:space="preserve">
+    <value>Create Date To</value>
+  </data>
+  <data name="ArticleFilterViewModel_Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="ArticleFilterViewModel_EnglishTitle" xml:space="preserve">
+    <value>EnglishTitle</value>
+  </data>
+  <data name="ArticleFilterViewModel_Keywords" xml:space="preserve">
+    <value>Keywords</value>
+  </data>
+  <data name="ArticleFilterViewModel_OwnerCellphone" xml:space="preserve">
+    <value>Sender Cellphone</value>
+  </data>
+  <data name="ArticleFilterViewModel_OwnerEmail" xml:space="preserve">
+    <value>Sender Email</value>
+  </data>
+  <data name="ArticleFilterViewModel_OwnerName" xml:space="preserve">
+    <value>Sender Name</value>
+  </data>
+  <data name="ArticleFilterViewModel_Referees" xml:space="preserve">
+    <value>Referee name</value>
+  </data>
+  <data name="ArticleFilterViewModel_Summary" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="ArticleFilterViewModel_Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="ArticleFilterViewModel_Writers" xml:space="preserve">
+    <value>Writers</value>
+  </data>
+  <data name="ArticleListItemViewModel_ArticleStatusName" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="ArticleListItemViewModel_CreateDateConverted" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="ArticleListItemViewModel_Fields" xml:space="preserve">
+    <value>Fields</value>
+  </data>
+  <data name="ArticleListItemViewModel_RefereeState" xml:space="preserve">
+    <value>Referee State</value>
+  </data>
+  <data name="ArticleListItemViewModel_Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="ArticleListItemViewModel_Title_ReqMsg" xml:space="preserve">
+    <value>Title  is Required</value>
+  </data>
+  <data name="ArticleViewModel_ArticleFields" xml:space="preserve">
+    <value>Article Fields</value>
+  </data>
+  <data name="ArticleViewModel_ArticleFile" xml:space="preserve">
+    <value>Article File</value>
+  </data>
+  <data name="ArticleViewModel_ArticleFileUrl" xml:space="preserve">
+    <value>Article File</value>
+  </data>
+  <data name="ArticleViewModel_ArticleFile_ReqMsg" xml:space="preserve">
+    <value>Article File  is Required</value>
+  </data>
+  <data name="ArticleViewModel_ArticleLanguageSelectedID" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="ArticleViewModel_ArticleStatusName" xml:space="preserve">
+    <value>Status Name</value>
+  </data>
+  <data name="ArticleViewModel_ConferenceName" xml:space="preserve">
+    <value>Conference</value>
+  </data>
+  <data name="ArticleViewModel_CreateDateConverted" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="ArticleViewModel_Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="ArticleViewModel_EnglishTitle" xml:space="preserve">
+    <value>English Title</value>
+  </data>
+  <data name="ArticleViewModel_EnglishTitle_ReqMsg" xml:space="preserve">
+    <value>English Title  is Required</value>
+  </data>
+  <data name="ArticleViewModel_FieldNames" xml:space="preserve">
+    <value>FieldNames</value>
+  </data>
+  <data name="ArticleViewModel_Fields" xml:space="preserve">
+    <value>Fields</value>
+  </data>
+  <data name="ArticleViewModel_FileUrl" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="ArticleViewModel_OwnerCellphone" xml:space="preserve">
+    <value>Sender Cellphone</value>
+  </data>
+  <data name="ArticleViewModel_OwnerEmail" xml:space="preserve">
+    <value>Sender Email</value>
+  </data>
+  <data name="ArticleViewModel_OwnerEmail_EmailValidation" xml:space="preserve">
+    <value>Sender Email is not valid</value>
+  </data>
+  <data name="ArticleViewModel_OwnerName" xml:space="preserve">
+    <value>Sender Name</value>
+  </data>
+  <data name="ArticleViewModel_Published" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="ArticleViewModel_RefereeState" xml:space="preserve">
+    <value>Referee State</value>
+  </data>
+  <data name="ArticleViewModel_Summary" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="ArticleViewModel_Summary_ReqMsg" xml:space="preserve">
+    <value>Summary  is Required</value>
+  </data>
+  <data name="ArticleViewModel_Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="ArticleViewModel_Title_ReqMsg" xml:space="preserve">
+    <value>Title is Required</value>
+  </data>
+  <data name="ArticleViewModel_Visit" xml:space="preserve">
+    <value>Visit</value>
+  </data>
+  <data name="ArticleViewModel_WriterNames" xml:space="preserve">
+    <value>Writer Names</value>
+  </data>
+  <data name="ArticleViewModel_Writers" xml:space="preserve">
+    <value>Writers</value>
+  </data>
+  <data name="ArticleViewModel_Writers_ReqMsg" xml:space="preserve">
+    <value>Writers is Required</value>
+  </data>
+  <data name="WriterViewModel_Cellphone" xml:space="preserve">
+    <value>Cellphone</value>
+  </data>
+  <data name="WriterViewModel_Cellphone_ReqMsg" xml:space="preserve">
+    <value>Cellphone  is Required</value>
+  </data>
+  <data name="WriterViewModel_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="WriterViewModel_Email_EmailValidation" xml:space="preserve">
+    <value>Email is not Valid</value>
+  </data>
+  <data name="WriterViewModel_Email_ReqMsg" xml:space="preserve">
+    <value>Email  is Required</value>
+  </data>
+  <data name="WriterViewModel_FirstName" xml:space="preserve">
+    <value>FirstName</value>
+  </data>
+  <data name="WriterViewModel_FirstName_ReqMsg" xml:space="preserve">
+    <value>FirstName  is Required</value>
+  </data>
+  <data name="WriterViewModel_LastName" xml:space="preserve">
+    <value>LastName</value>
+  </data>
+  <data name="WriterViewModel_LastName_ReqMsg" xml:space="preserve">
+    <value>LastName  is Required</value>
+  </data>
+  <data name="RegisterMembershipVm_Degree" xml:space="preserve">
+    <value>Degree</value>
+  </data>
+  <data name="RegisterMembershipVm_FieldOfStudy" xml:space="preserve">
+    <value>FieldOfStudy*</value>
+  </data>
+  <data name="RegisterMembershipVm_FieldOfStudy_ReqMsg" xml:space="preserve">
+    <value>FieldOfStudy is Required</value>
+  </data>
+  <data name="RegisterMembershipVm_Melicode" xml:space="preserve">
+    <value>Melicode*</value>
+  </data>
+  <data name="RegisterMembershipVm_Melicode_ReqMsg" xml:space="preserve">
+    <value>Melicode is Required</value>
+  </data>
+  <data name="RegisterMembershipVm_Password" xml:space="preserve">
+    <value>Password*</value>
+  </data>
+  <data name="RegisterMembershipVm_Password_ReqMsg" xml:space="preserve">
+    <value>Password is Required</value>
+  </data>
+  <data name="ArticleViewModel_FileUrl_ReqMsg" xml:space="preserve">
+    <value>Article File is Required</value>
+  </data>
+  <data name="PaymentViewModel_Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="PaymentViewModel_CreateDateConverted" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="PaymentViewModel_Explain" xml:space="preserve">
+    <value>Explain</value>
+  </data>
+  <data name="PaymentViewModel_PaymentTypeName" xml:space="preserve">
+    <value>Payment Type</value>
+  </data>
+  <data name="PaymentViewModel_OrderStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="PaymentViewModel_UserNameFamily" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="PaymentViewModel_PayExplain" xml:space="preserve">
+    <value>Pay Explain</value>
+  </data>
+  <data name="PaymentViewModel_InvoiceTypeName" xml:space="preserve">
+    <value>Invoice Type</value>
+  </data>
+  <data name="ArticleViewModel_Keywords" xml:space="preserve">
+    <value>Keywords</value>
+  </data>
+  <data name="ArticleViewModel_Keywords_ReqMsg" xml:space="preserve">
+    <value>Keywords is Required</value>
+  </data>
+  <data name="EditMembershipVm_EnglishFirstName" xml:space="preserve">
+    <value>English LastName*</value>
+  </data>
+  <data name="EditMembershipVm_EnglishFirstName_ReqMsg" xml:space="preserve">
+    <value>English LastName  is Required</value>
+  </data>
+  <data name="EditMembershipVm_EnglishLastName" xml:space="preserve">
+    <value>English FirstName*</value>
+  </data>
+  <data name="EditMembershipVm_EnglishLastName_ReqMsg" xml:space="preserve">
+    <value>English FirstName  is Required</value>
+  </data>
+  <data name="RegisterMembershipVm_EnglishFirstName" xml:space="preserve">
+    <value>FirstName*</value>
+  </data>
+  <data name="RegisterMembershipVm_EnglishFirstName_ReqMsg" xml:space="preserve">
+    <value>FirstName  is Required</value>
+  </data>
+  <data name="RegisterMembershipVm_EnglishLastName" xml:space="preserve">
+    <value>LastName*</value>
+  </data>
+  <data name="RegisterMembershipVm_EnglishLastName_ReqMsg" xml:space="preserve">
+    <value>LastName  is Required</value>
+  </data>
+  <data name="RegisterMembershipVm_PhoneNumber_RegEx" xml:space="preserve">
+    <value>Cellphone is not valid</value>
+  </data>
+  <data name="AspUserMembershipViewModel_EnglishFirstName_RegEx" xml:space="preserve">
+    <value>English Firstname should be [a-z][A-Z]</value>
+  </data>
+  <data name="AspUserMembershipViewModel_EnglishLastName_RegEx" xml:space="preserve">
+    <value>English Lastname should be [a-z][A-Z]</value>
+  </data>
+  <data name="CompanionViewModel_PhoneNumber_RegEx" xml:space="preserve">
+    <value>Cellphone is not valid</value>
+  </data>
+  <data name="EditMembershipVm_EnglishFirstName_RegEx" xml:space="preserve">
+    <value>English Firstname should be [a-z][A-Z]</value>
+  </data>
+  <data name="EditMembershipVm_EnglishLastName_RegEx" xml:space="preserve">
+    <value>English Lastname should be [a-z][A-Z]</value>
+  </data>
+  <data name="RegisterMembershipVm_EnglishFirstName_RegEx" xml:space="preserve">
+    <value>English Firstname should be [a-z][A-Z]</value>
+  </data>
+  <data name="RegisterMembershipVm_EnglishLastName_RegEx" xml:space="preserve">
+    <value>English Lastname should be [a-z][A-Z]</value>
+  </data>
+  <data name="ArticleClientQuickFilterViewModel_ConferenceName" xml:space="preserve">
+    <value>Conference Name</value>
+  </data>
+  <data name="ArticleListItemViewModel_ArticlePresentTypeName" xml:space="preserve">
+    <value>Present Type</value>
+  </data>
+  <data name="ArticleViewModel_ArticlePresentTypeName" xml:space="preserve">
+    <value>Present Type</value>
+  </data>
+  <data name="ArticleViewModel_RefereeArticleResults" xml:space="preserve">
+    <value>Referee Results</value>
+  </data>
+  <data name="ArticleViewModel_ConferencePlace" xml:space="preserve">
+    <value>Conference Place</value>
+  </data>
+  <data name="SocietyExecutorViewModel_Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="SocietyMemberViewModel_Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="SocietyExecutorViewModel_LanguageName" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="ArticleListItemViewModel_ArticlePresentTypeNameExpain" xml:space="preserve">
+    <value>Explain</value>
+  </data>
+  <data name="ArticleViewModel_ArticleWordFile" xml:space="preserve">
+    <value>Article Word File</value>
+  </data>
+  <data name="ArticleViewModel_ArticleWordFile_ReqMsg" xml:space="preserve">
+    <value>Article Word File  is Required</value>
+  </data>
+  <data name="ArticleViewModel_FileWordUrl" xml:space="preserve">
+    <value>Word File</value>
+  </data>
+  <data name="ArticleViewModel_FileWordUrl_ReqMsg" xml:space="preserve">
+    <value>Article Word File is Required</value>
+  </data>
+  <data name="ArticleViewModel_PosterUrl" xml:space="preserve">
+    <value>Article Poster</value>
+  </data>
+  <data name="ArticleViewModel_PresentTime" xml:space="preserve">
+    <value>Present time</value>
+  </data>
+  <data name="ArticleViewModel_PresentLocation" xml:space="preserve">
+    <value>Present Location</value>
+  </data>
+  <data name="ArticleViewModel_RegisterationStatus" xml:space="preserve">
+    <value>Registeration Status</value>
+  </data>
+  <data name="ArticleViewModel_PosterFile" xml:space="preserve">
+    <value>Article Poster</value>
+  </data>
+  <data name="WriterViewModel_IsMainWriter" xml:space="preserve">
+    <value>Main Writer</value>
+  </data>
+</root>

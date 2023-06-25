@@ -1,0 +1,167 @@
+﻿@model AVA.Web.Mvc.Models.ArticleFilterViewModel
+@using AVA.Web.Mvc.Areas.Admin.Models.Base;
+@using AVA.UI.Helpers.Common;
+@{
+    string ModuleName = "RefereeArticle";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>{{ '@(Model.IsReceive == 1 ? "RefereeArticleManagementReceive" : "RefereeArticleManagementSend")' | translate }}</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="Home">{{ 'Home' | translate }}</a>
+            </li>
+            <li class="active">
+                <strong>{{  '@(Model.IsReceive == 1 ? "RefereeArticleManagementReceive" : "RefereeArticleManagementSend")' | translate }}</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="MyGridController">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content text-center p-md">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-lg-12 btn-rows">
+                                @{
+                                    if (Model.IsReceive == 1)
+                                    {
+                                        <button class="btn btn-info" type="button" ng-click="EditAction('@ModuleName')"><i class="fa fa-paste"></i> داوری</button>
+                                    }
+                                }                                
+                                <a class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i>جستجو</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <script>
+                                var selectedIDs;
+                                function OnBeginCallback(s, e) {
+                                    //Pass all selected keys to GridView callback action
+                                    e.customArgs["selectedIDs"] = selectedIDs;
+                                    e.customArgs["vm"] = CurrentModel;
+                                }
+                                function OnSelectionChanged(s, e) {
+                                    s.GetSelectedFieldValues("ID", GetSelectedFieldValuesCallback);
+                                }
+                                function GetSelectedFieldValuesCallback(values) {
+                                    //Capture all selected keys
+                                    selectedIDs = values.join(',');
+                                }
+                            </script>
+
+                            @Html.Action("Get" + ModuleName + "Partial", new { vm = Model })
+                            @Html.Partial("GridViewExportPartial", new GridViewExportViewModel() { ModuleName = ModuleName,Parameters=new {vm=Model } })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" ng-controller="MySubmitController">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">فرم جستجو</h4>
+                @*<small class="font-bold">برای جستجو مقاد.</small>*@
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title, new { @class = "control-label" }):
+
+                        @Html.TextBoxFor(model => model.Title, new
+                   {
+                       @class = "form-control",
+                       ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Title).Name
+                   })
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EnglishTitle, new { @class = "control-label" }):
+
+                        @Html.TextBoxFor(model => model.EnglishTitle, new
+                   {
+                       @class = "form-control",
+                       ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.EnglishTitle).Name
+                   })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Keywords, new { @class = "control-label" }):
+
+                        @Html.TextBoxFor(model => model.Keywords, new
+                   {
+                       @class = "form-control",
+                       ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Keywords).Name
+                   })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ArticleSelectedStatus, new { @class = "control-label" }):
+                        @Html.DropDownListFor(model => model.ArticleSelectedStatus, new List<SelectListItem>(), new
+                   {
+                       @class = "form-control",
+                       ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ArticleSelectedStatus).Name,
+                       ng_options = "s.ID as s.Name for s in model.DprItems",
+                   })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ArticleCategories, new { @class = "control-label" }):
+                        @Html.DropDownListFor(model => model.ArticleCategories, new List<SelectListItem>(), new
+                   {
+                       @class = "form-control",
+                       ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ArticleCategories).Name,
+                       ng_options = "s.ID as s.Name for s in model.ArticleCategories",
+                   })
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            @Html.LabelFor(model => model.CreateDateFrom, new { @class = "control-label" }):
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(model => model.CreateDateFrom, new
+                       {
+                           @class = "form-control",
+                           ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.CreateDateFrom).Name,
+                           data_mask = "9999/99/99"
+                       })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.LabelFor(model => model.CreateDateTo, new { @class = "control-label" }):
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(model => model.CreateDateTo, new
+                       {
+                           @class = "form-control",
+                           ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.CreateDateTo).Name,
+                           data_mask = "9999/99/99"
+                       })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="FilterBtn" onclick="RefereeArticleManagementGrid.PerformCallback();$('#myModal').modal('hide');">جستجو</button>
+                <button type="button" class="btn btn-white" data-dismiss="modal">انصراف</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+    CurrentModel.DprItems=new Object();
+    CurrentModel.DprItems=@Html.Raw(Json.Encode(Model.ArticleSelectedStatus));
+    CurrentModel.ArticleCategories=new Object();
+    CurrentModel.ArticleCategories=@Html.Raw(Json.Encode(Model.ArticleCategories));
+</script>

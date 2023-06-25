@@ -1,0 +1,61 @@
+﻿@model AVA.Web.Mvc.Models.PasswordChangeMembershipViewModel
+@using AVA.UI.Helpers.Controller;
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Base;
+@{
+    string ModuleName = "ChangePass";
+}
+<update-title title="{{'ChangePass' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'ChangePass' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'ChangePass' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'ChangePass' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'ChangePass' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+@using (Html.BeginForm("Submit" + ModuleName, "Home", null, FormMethod.Post, new { id = "form-" + ModuleName, ng_controller = "MySubmitController" }))
+{
+    <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+    <div class="form-login form-wrapper form-narrow animated fadeIn animation-delay-7">
+        <h4 class="text-center">تغییر رمز عبور </h4>
+        @*<div class="col-md-12 mb-3 ">
+                 @Html.LabelFor(model => model.OldPassword)
+                 @Html.PasswordFor(model => model.OldPassword, new
+            {
+                @class = "form-control",
+                ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.OldPassword).Name,
+                placeholder = CommonHelper.GetDisplayName(Model, m => m.OldPassword)
+            })
+                 @Html.ValidationMessageFor(model => model.OldPassword, "", new { @class = "text-danger" })
+             </div>*@
+        <div class="col-md-12 mb-3 ">
+            <label for="exampleSelect2">
+                @Html.LabelFor(model => model.Password)
+            </label>
+            @Html.PasswordFor(model => model.Password, new
+            {
+                @class = "form-control",
+                ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Password).Name,
+                placeholder = CommonHelper.GetDisplayName(Model, m => m.Password)
+            })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-12 mb-3 ">
+            <label for="exampleSelect4">
+                @Html.LabelFor(model => model.ConfirmPassword)
+            </label>
+            @Html.PasswordFor(model => model.ConfirmPassword, new
+            {
+                @class = "form-control",
+                ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ConfirmPassword).Name,
+                placeholder = CommonHelper.GetDisplayName(Model, m => m.ConfirmPassword)
+            })
+            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-12 mb-3 ">
+            <button class="mb-1 btn btn-block btn-green-bright" type="button" ng-click="submitForm($event,'@Url.Action("UserChangePass", "Home")','form-@ModuleName')">ثبت</button>
+        </div>
+    </div>
+
+    <script>
+        var CurrentModel=@Html.Raw(Json.Encode(Model));
+    </script>
+}

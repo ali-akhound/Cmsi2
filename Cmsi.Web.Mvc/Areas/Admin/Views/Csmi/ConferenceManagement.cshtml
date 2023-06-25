@@ -1,0 +1,78 @@
+﻿@using AVA.UI.Helpers.Controller;
+@using AVA.Web.Mvc.Areas.Admin.Models.Base;
+@{
+    string ModuleName = "Conference";
+}
+<input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>{{ '@(ModuleName + "Management")' | translate }}</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="Home">{{ 'Home' | translate }}</a>
+            </li>
+            <li class="active">
+                <strong>{{  '@(ModuleName + "Management")' | translate }}</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="MyGridController">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content text-center p-md">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-lg-12 btn-rows">
+                                @if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.Managment }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                                {
+                                    <a class="btn btn-default" ui-sref="@ModuleName"><i class="fa fa-plus"></i>{{  'Add' | translate }}</a>
+                                    <button class="btn btn-info" type="button" ng-click="EditAction('@ModuleName')"><i class="fa fa-paste"></i> ویرایش</button>
+                                    <button class="btn btn-danger" type="button" ng-click="DeleteAction('@("/Admin/" + ModuleName + "/Delete" + ModuleName)','@ViewBag.GridID')"><i class="fa fa-remove"></i>{{  'Delete' | translate }}</button>
+                                    <button class="btn btn-warning" type="button" ng-click="ActiveAction('@("/Admin/" + ModuleName + "/Active" + ModuleName)','@ViewBag.GridID')"><i class="fa fa-check"></i>{{  'Active' | translate }}</button>
+                                    <button class="btn btn-primary" type="button" ng-click="ActiveAction('@("/Admin/" + ModuleName + "/Visible" + ModuleName)','@ViewBag.GridID')"><i class="fa fa-upload"></i>نمایش</button>
+                                    <button class="btn btn-success" type="button" ng-click="AssignScientificSecretary('ConferenceScientificSecretaryManagement')"><i class="fa fa-id-badge"></i> دبیرعلمی</button>
+                                    <button class="btn btn-primary" type="button" ng-click="AssignReferee('ConferenceRefereeManagement')"><i class="fa fa-group"></i> داوران</button>
+                                    <button class="btn btn-warning" type="button" ng-click="AssignCategory('ConferenceDefinedCategoryManagement')"><i class="fa fa-group"></i> رشته ها</button>
+                                    <button class="btn btn-success" type="button" ng-click="AssignExecutor('ConferenceExecutorManagement')"><i class="fa fa-cogs"></i> مجریان</button>
+                                }
+                                @if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.ConferenceCompanion }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                                {
+                                    <button class="btn btn-warning" type="button" ng-click="ConferenceCompanion('ConferenceCompanionManagement')"><i class="fa fa-group"></i>شرکت کنندگان</button>
+                                }
+                                @if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelIDs = new int[] { (int)ControllerHelper.SysModuleType.Article, (int)ControllerHelper.SysModuleType.ScientificSecretaryCircle } }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                                {
+                                    <button class="btn btn-success" type="button" ng-click="ConferenceArticle('ArticleManagement')"><i class="fa fa-book"></i> مقالات</button>
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <script>
+                                var selectedIDs;
+                                function OnBeginCallback(s, e) {
+                                    //Pass all selected keys to GridView callback action
+                                    e.customArgs["selectedIDs"] = selectedIDs;
+                                }
+                                function OnSelectionChanged(s, e) {
+                                    s.GetSelectedFieldValues("ID", GetSelectedFieldValuesCallback);
+                                }
+                                function GetSelectedFieldValuesCallback(values) {
+                                    //Capture all selected keys
+                                    selectedIDs = values.join(',');
+                                }
+                            </script>
+                            @Html.Action("Get" + ModuleName + "Partial")
+                            @Html.Partial("GridViewExportPartial", new GridViewExportViewModel() { ModuleName = ModuleName })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

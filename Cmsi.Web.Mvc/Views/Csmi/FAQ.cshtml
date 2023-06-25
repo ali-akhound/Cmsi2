@@ -1,0 +1,37 @@
+﻿@model AVA.Web.Mvc.Models.Admin.FAQListViewModel
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Controller;
+<update-title title="{{'FAQ' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'FAQ' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'FAQ' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'FAQ' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'FAQ' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<div id="content">
+    <div class="container" ng-controller="ListController">
+        <h3 class="title-divider">
+            <span>{{$state.current.title | translate}}</span>
+        </h3>
+        <div class="alert alert-info" role="alert"><i class="ion-alert icon-1x pl-1"></i> <strong>توجه: </strong>کاربر گرامی برای مشاهده پاسخ سوالات بر روی متن سوال کلیک کنید.</div>
+        <div class="card-accordion card-accordion-list-style card-accordion-icons-left" id="accordion-list-style" role="tablist" aria-multiselectable="true">
+            <!-- Card 1 -->
+            <div class="card" dir-paginate="item in DataModel | itemsPerPage: pageSize" total-items="totalRecords" current-page="pagination.current">
+                <div class="card-header py-0 px-0" role="tab" id="headingOne2"> <a data-toggle="collapse" data-parent="#accordion-list-style" data-target="#collapseOneList" aria-expanded="true" aria-controls="collapseOne">متن سوال در این قسمت نوشته می شود؟</a> </div>
+                <div id="collapseOneList" class="collapse in" role="tabpanel" aria-labelledby="headingOne1">
+                    <div class="card-body">
+                        {{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleFAQ, m => m.Question).Name)}}
+                        <br>
+                        {{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleFAQ, m => m.Answer).Name)}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" template-url="@Url.Content("~/assets/template/dirPagination.tpl.html")"></dir-pagination-controls>
+    </div>
+</div>
+
+<script>
+    var PageChangeActionUrl ='@Url.Action("FAQListFeed", "Csmi")';
+    var ListModel=@Html.Raw(Json.Encode(Model));
+    var ListName='@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.FAQs).Name)';
+</script>

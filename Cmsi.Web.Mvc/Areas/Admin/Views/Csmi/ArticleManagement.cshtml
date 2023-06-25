@@ -1,0 +1,316 @@
+﻿@model AVA.Web.Mvc.Models.ArticleFilterViewModel
+@using AVA.UI.Helpers.Controller;
+@using AVA.UI.Helpers.Common;
+@using AVA.Web.Mvc.Areas.Admin.Models.Base;
+@{
+    string ModuleName = "Article";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>{{ '@(ModuleName + "Management")' | translate }}</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="Home">{{ 'Home' | translate }}</a>
+            </li>
+            <li class="active">
+                <strong>{{  '@(ModuleName + "Management")' | translate }} @(ViewBag.ConferenceName)</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="MyGridController">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content text-center p-md">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-lg-12 btn-rows">
+                                @*<a class="btn btn-default" ui-sref="@ModuleName"><i class="fa fa-plus"></i> {{  'Add' | translate }}</a>
+                                *@
+                                @*<button class="btn btn-danger" type="button" ng-click="DeleteAction('@("/Admin/"+ModuleName+"/Delete"+ModuleName)','@ViewBag.GridID')"><i class="fa fa-remove"></i>{{  'Delete' | translate }} </button>*@
+                                <button class="btn btn-info" type="button" ng-click="EditAction('@ModuleName')"><i class="fa fa-paste"></i> {{  'Show' | translate }}</button>
+                                @if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.Article }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                                {
+                                    <button class="btn btn-warning" type="button" ng-click="ActiveAction('@("/Admin/"+ModuleName+"/Active"+ModuleName)','@ViewBag.GridID')"><i class="fa fa-check"></i> {{'Active' | translate}}</button>
+                                    <button class="btn btn-primary" type="button" ng-click="ActiveAction('@("/Admin/"+ModuleName+"/Publish"+ModuleName)','@ViewBag.GridID')"><i class="fa fa-upload"></i>انتشار</button>
+                                }
+                                <button class="btn btn-success" type="button" ng-click="GotoState('ConferenceManagement')"><i class="fa fa-reply"></i> همایش</button>
+                                <a class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i>جستجو</a>
+                                @{
+
+                                    if (Model.ConferenceID != -1)
+                                    {
+                                        <a class="btn btn-warning" ng-click="OpenSendArticleModal()"><i class="fa fa-upload"></i>ارسال به داوری</a>
+                                        <a class="btn btn-info" ng-click="OpenPeresentArticleModal()"><i class="fa fa-upload"></i>نتیجه داوری</a>
+                                        <a class="btn btn-default" ng-click="GetArchivedArticles('@Url.Action("GetArchivedArticles", "Article", new { ConferenceID = Model.ConferenceID })')"><i class="fa fa-download"></i>دریافت مقالات</a>
+
+                                    }
+
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <script>
+                                var selectedIDs;
+                                function OnBeginCallback(s, e) {
+                                    //Pass all selected keys to GridView callback action
+                                    e.customArgs["selectedIDs"] = selectedIDs;
+                                    e.customArgs["vm"] = CurrentModel;
+                                }
+                                function OnSelectionChanged(s, e) {
+                                    s.GetSelectedFieldValues("ID", GetSelectedFieldValuesCallback);
+                                }
+                                function GetSelectedFieldValuesCallback(values) {
+                                    //Capture all selected keys
+                                    selectedIDs = values.join(',');
+                                }
+                            </script>
+
+                            @Html.Action("Get" + ModuleName + "Partial", new { Conference = ViewBag.Conference })
+                            @Html.Partial("GridViewExportPartial", new GridViewExportViewModel() { ModuleName = ModuleName, Parameters = Model })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" ng-controller="MySubmitController">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">فرم جستجو</h4>
+                @*<small class="font-bold">برای جستجو مقاد.</small>*@
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title, new { @class = "control-label" }):
+
+                        @Html.TextBoxFor(model => model.Title, new
+                        {
+                            @class = "form-control",
+                            ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Title).Name
+                        })
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EnglishTitle, new { @class = "control-label" }):
+
+                        @Html.TextBoxFor(model => model.EnglishTitle, new
+                        {
+                            @class = "form-control",
+                            ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.EnglishTitle).Name
+                        })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Keywords, new { @class = "control-label" }):
+
+                        @Html.TextBoxFor(model => model.Keywords, new
+                        {
+                            @class = "form-control",
+                            ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Keywords).Name
+                        })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ArticleSelectedStatus, new { @class = "control-label" }):
+                        @Html.DropDownListFor(model => model.ArticleSelectedStatus, new List<SelectListItem>(), new
+                        {
+                            @class = "form-control",
+                            ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ArticleSelectedStatus).Name,
+                            ng_options = "s.ID as s.Name for s in model.DprItems",
+                        })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ArticleCategories, new { @class = "control-label" }):
+                        @Html.DropDownListFor(model => model.ArticleCategories, new List<SelectListItem>(), new
+                        {
+                            @class = "form-control",
+                            ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ArticleCategories).Name,
+                            ng_options = "s.ID as s.Name for s in model.ArticleCategories",
+                        })
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            @Html.LabelFor(model => model.CreateDateFrom, new { @class = "control-label" }):
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(model => model.CreateDateFrom, new
+                            {
+                                @class = "form-control",
+                                ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.CreateDateFrom).Name,
+                                data_mask = "9999/99/99"
+                            })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.LabelFor(model => model.CreateDateTo, new { @class = "control-label" }):
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(model => model.CreateDateTo, new
+                            {
+                                @class = "form-control",
+                                ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.CreateDateTo).Name,
+                                data_mask = "9999/99/99"
+                            })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="FilterBtn" onclick="ArticleManagementGrid.PerformCallback();$('#myModal').modal('hide');">جستجو</button>
+                <button type="button" class="btn btn-white" data-dismiss="modal">انصراف</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal inmodal" id="myModal2" tabindex="false" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" ng-controller="MySubmitController">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">ارسال مقاله</h4>
+            </div>
+            <div class="modal-body">
+                <form id="SendArticleForm2">
+                    <div class="form-horizontal">
+                        <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                @Html.LabelFor(model => model.SendArticleViewModel.Referees, new { @class = "control-label" }):
+                            </div>
+                            <div class="col-sm-3">
+                                <ui-select multiple ng-model="model.SendArticleViewModel.Referees" theme="select2" ng-disabled="disabled" style="min-width: 300px;">
+                                    <ui-select-match placeholder="داور را انتخاب کنید...">{{$item.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="referee in model.SendArticleViewModel.RefereesFeed | filter:{Name: $select.search}" refresh="searchReferee($select)" refresh-delay="300">
+                                        <div ng-bind-html="referee.Name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="FilterBtn" ng-click="SendArticle($event,'@Url.Action("SendArticle", ModuleName)','SendArticleForm2')">ارسال</button>
+                    <button type="button" class="btn btn-white" data-dismiss="modal">انصراف</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal inmodal" id="myModal3" tabindex="false" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" ng-controller="MySubmitController">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">نتیجه داوری و نحوه ارائه</h4>
+            </div>
+            <div class="modal-body">
+                <form id="SendArticleForm">
+                    <div class="form-horizontal">
+                        <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                @Html.LabelFor(model => model.ArticleStatusTypeViewModel.ArticleStatuses, new { @class = "control-label" }):
+                            </div>
+                            <div class="col-sm-9">
+                                <select class="form-control" ng-model="@("model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ArticleStatusTypeViewModel).Name+"."+CommonHelper.ExposeProperty.GetPropertyInfo(Model.ArticleStatusTypeViewModel, m => m.SelectedStatusID).Name)"
+                                        ng-change="ChangeArticleStatus()"
+                                        ng-options="Status.Value as Status.Text for Status in @("model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ArticleStatusTypeViewModel).Name+"."+CommonHelper.ExposeProperty.GetPropertyInfo(Model.ArticleStatusTypeViewModel, m => m.ArticleStatuses).Name)"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                @Html.LabelFor(model => model.ArticleStatusTypeViewModel.ArticlePresentTypes, new { @class = "control-label" }):
+                            </div>
+                            <div class="col-sm-9">
+                                <select class="form-control" ng-disabled="ArticleStatusType" ng-model="@("model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ArticleStatusTypeViewModel).Name+"."+CommonHelper.ExposeProperty.GetPropertyInfo(Model.ArticleStatusTypeViewModel, m => m.SelectedPresentTypeID).Name)"
+                                        ng-options="Present.Value as Present.Text for Present in @("model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ArticleStatusTypeViewModel).Name+"."+CommonHelper.ExposeProperty.GetPropertyInfo(Model.ArticleStatusTypeViewModel, m => m.ArticlePresentTypes).Name)"
+                                        ng-change="ChangeArticlePresentType()">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="ArticlePosterEnabled">
+                            <div class="col-sm-3">
+                                @Html.LabelFor(model => model.ArticleStatusTypeViewModel.PosterFileUrl, new { @class = "control-label" }):
+                            </div>
+                            <div class="col-sm-9">
+                                <input type="file" class="form-control"
+                                       name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.ArticleStatusTypeViewModel, m => m.PosterFile).Name)" />
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="ArticlePosterEnabled">
+                            <div class="col-sm-3">
+                                @Html.LabelFor(model => model.ArticleStatusTypeViewModel.PresentTime, new { @class = "control-label" }):
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.ArticleStatusTypeViewModel.PresentDate, new
+                           {
+                               @class = "form-control",
+                               ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ArticleStatusTypeViewModel).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.ArticleStatusTypeViewModel, m => m.PresentDate).Name,
+                               data_mask = "9999/99/99"
+                           })
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.ArticleStatusTypeViewModel.PresentTime, new
+                           {
+                               @class = "form-control",
+                               ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ArticleStatusTypeViewModel).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.ArticleStatusTypeViewModel, m => m.PresentTime).Name,
+                               data_mask = "99:99"
+                           })
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="ArticlePosterEnabled">
+                            <div class="col-sm-3">
+                                @Html.LabelFor(model => model.ArticleStatusTypeViewModel.PresentLocation, new { @class = "control-label" }):
+                            </div>
+                            <div class="col-sm-9">
+                                @Html.TextAreaFor(model => model.ArticleStatusTypeViewModel.PresentLocation, new
+                           {
+                               @class = "form-control",
+                               ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ArticleStatusTypeViewModel).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.ArticleStatusTypeViewModel, m => m.PresentLocation).Name
+                           })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                @Html.LabelFor(model => model.ArticleStatusTypeViewModel.Explain, new { @class = "control-label" }):
+                            </div>
+                            <div class="col-sm-9">
+                                @Html.TextAreaFor(model => model.ArticleStatusTypeViewModel.Explain, new
+                           {
+                               @class = "form-control comment",
+                               ng_disabled = "EnableExplain",
+                               ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ArticleStatusTypeViewModel).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.ArticleStatusTypeViewModel, m => m.Explain).Name
+                           })
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="FilterBtn" ng-click="SetArticlePresentType($event,'@Url.Action("SetArticlePresentType", ModuleName)','SendArticleForm')">ارسال</button>
+                    <button type="button" class="btn btn-white" data-dismiss="modal">انصراف</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+    CurrentModel.DprItems=new Object();
+    CurrentModel.DprItems=@Html.Raw(Json.Encode(Model.ArticleSelectedStatus));
+    CurrentModel.ArticleCategories=new Object();
+    CurrentModel.ArticleCategories=@Html.Raw(Json.Encode(Model.ArticleCategories));
+    CurrentModel.SendArticleViewModel.Referees=[];
+    var feedUrl= '@Url.Action("ConferenceRefereeFeed", "Article", new { Conference = ViewBag.Conference })';
+</script>

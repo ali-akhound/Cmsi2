@@ -1,0 +1,117 @@
+﻿@model AVA.Web.Mvc.Models.Admin.ElectionResultViewModel
+<div id="content" class="pt-0 ng-scope">
+    <div class="container  animated fadeIn animation-delay-7">
+        <h3 class="title-divider">
+            <span>نتایج @Model.ElectionName</span>
+        </h3>
+        <div class="row">
+            <div class="col-sm-12" id="container">
+
+            </div>
+        </div>
+        <div class="row">
+            <div   class="col-sm-12" id="container2">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var CurrentModel =@Html.Raw(Json.Encode(Model));
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column',
+            style: {
+                fontFamily: 'iransans'
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: 'نتایج رای گیری اعضا'
+        },
+        xAxis: {
+            categories:@Html.Raw(Model.CandidCategories),
+            crosshair: true,
+            labels: {
+                rotation: -45
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'تعداد'
+            },
+            allowDecimals: false
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'اعضا',
+            data: @Html.Raw(Model.CandidVoteCount)
+
+        }
+        ]
+    });
+     Highcharts.chart('container2', {
+        chart: {
+             type: 'column',
+             style: {
+                 fontFamily: 'iransans'
+             }
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: 'نتایج رای گیری بازرس'
+        },
+        xAxis: {
+            categories:@Html.Raw(Model.InspectorCategories),
+            crosshair: true,
+            labels: {
+                rotation: -45
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'تعداد'
+            },
+            allowDecimals: false
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'بازرس',
+            data: @Html.Raw(Model.InspectorVoteCount)
+
+        }
+        ]
+    });
+</script>

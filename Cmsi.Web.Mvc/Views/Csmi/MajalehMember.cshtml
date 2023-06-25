@@ -1,0 +1,159 @@
+﻿@Html.Action("DynamicPage", "Home", new { id = 40 })
+@*<div id="content animated fadeIn animation-delay-7">
+    <div class="container">
+        <h3 class="title-divider"><span>هیات تحریریه</span></h3>
+        <table class="table table-striped">
+            <thead>
+                <tr class="bg-success text-white">
+                    <th>#</th>
+                    <th>سمت</th>
+                    <th>نام و نام خانوادگي</th>
+                    <th>رتبه علمي</th>
+                    <th>پست الکترونيکي</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>صاحب‌ امتياز</td>
+                    <td>انجمن‌ بلـورشنـاسي‌ و كـاني‌شنـاسي‌ ايران</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>سردبير و مدير مسؤول</td>
+                    <td>دكتر ناصر تجبر</td>
+                    <td>دانشگاه‌ فردوسي‌ مشهد</td>
+                    <td>ntajabor@yahoo.com </td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>هيأت‌ تحريريه</td>
+                    <td>دكتر بيژن‌ اعتمادي</td>
+                    <td>دانشیار دانشگاه‌ شيراز</td>
+                    <td>Etemadi_bi@yahoo.com </td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>هيأت‌ تحريريه</td>
+                    <td> دکتر ناصر تجبر</td>
+                    <td>استاد دانشگاه‌ فردوسی‌ مشهد</td>
+                    <td>ntajabor@yahoo.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">5</th>
+                    <td>هيأت‌ تحريريه</td>
+                    <td>دکتر مرتضی زرگر شوشتری</td>
+                    <td>استاد دانشگاه شهید چمران اهواز</td>
+                    <td>zargar@scu.ac.ir</td>
+                </tr>
+                <tr>
+                    <th scope="row">6</th>
+                    <td>هيأت‌ تحريريه</td>
+                    <td>دکتر محمد علی‌ زنجانچی</td>
+                    <td>استاد دانشگاه‌ گیلان‌</td>
+                    <td>zanjanchi@guilan.ac.ir</td>
+                </tr>
+                <tr>
+                    <th scope="row">7</th>
+                    <td>هيأت‌ تحريريه</td>
+                    <td>دکتر ژانت سلیمان نژاد</td>
+                    <td>دانشیار دانشگاه تهران‌</td>
+                    <td>janet_soleimannejad@khayam.ut.ac.ir </td>
+                </tr>
+                <tr>
+                    <th scope="row">8</th>
+                    <td>هيأت‌ تحريريه</td>
+                    <td>دکتر ایران شیخ شعاعی</td>
+                    <td>استاد دانشگاه شهید باهنر کرمان‌</td>
+                    <td>I_shoaie@yahoo.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">9</th>
+                    <td>هيأت‌ تحريريه</td>
+                    <td>دکتر عباس‌ طائب‌</td>
+                    <td>استاد دانشگاه‌ علم‌ و صنعت‌ ایران‌‌</td>
+                    <td>taeb@iust.ac.ir</td>
+                </tr>
+                <tr>
+                    <th scope="row">10</th>
+                    <td>هيأت‌ تحريريه</td>
+                    <td>دکتر حبیب اله قاسمی‌</td>
+                    <td>استاد دانشگاه صنعتی شاهرود‌‌</td>
+                    <td>habibghasemi45@gmail.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">11</th>
+                    <td>هيأت‌ تحريريه</td>
+                    <td>دکتر محمدحسن‌ کریم‌پور‌</td>
+                    <td>استاد دانشگاه‌ فردوسی‌ مشهد‌‌</td>
+                    <td>karimpur@um.ac.ir</td>
+                </tr>
+                <tr>
+                    <th scope="row">12</th>
+                    <td>هيأت‌ تحريريه</td>
+                    <td>دکتر امیرحسین کوهساری‌</td>
+                    <td>دانشیار دانشگاه یزد‌‌</td>
+                    <td>kohsary@yazduni.ac.ir</td>
+                </tr>
+                <tr>
+                    <th scope="row">13</th>
+                    <td>هيأت‌ تحريريه</td>
+                    <td>دکتر محسن مؤذن‌</td>
+                    <td>استاد دانشگاه تبریز‌‌</td>
+                    <td>moazzen@tabrizu.ac.ir</td>
+                </tr>
+                <tr>
+                    <th scope="row">14</th>
+                    <td>هيأت‌ تحريريه</td>
+                    <td>دکتر موسی نقره­ ئیان‌</td>
+                    <td>استاد دانشگاه اصفهان‌‌</td>
+                    <td>noghreyan.moussa@sci.ui.ac.ir  </td>
+                </tr>
+                <tr>
+                    <th scope="row">15</th>
+                    <td>ویراستار متن فارسی</td>
+                    <td>دکتر میرعباس‌ رحمتی‌‌</td>
+                    <td>دانشگاه‌ فردوسی‌ مشهد‌‌</td>
+                    <td>rahmati@yahoo.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">16</th>
+                    <td>ویراستار متن انگلیسی</td>
+                    <td>دکتر سید رضا موسوی‌ حرمی‌‌‌</td>
+                    <td>دانشگاه‌ فردوسی‌ مشهد‌‌</td>
+                    <td>Harami2004@yahoo.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">17</th>
+                    <td>مدیر اجرایی</td>
+                    <td>دکتر سید مسعود همام‌‌‌</td>
+                    <td>دانشگاه‌ فردوسی‌ مشهد‌‌</td>
+                    <td>rezanima2010@yahoo.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">18</th>
+                    <td>تایپ و صفحه آرایی</td>
+                    <td>سعیده قوامی صبوری ‌‌‌</td>
+                    <td>---------</td>
+                    <td>---------</td>
+                </tr>
+                <tr>
+                    <th scope="row">19</th>
+                    <td>امور اجرایی و فنی</td>
+                    <td>حمیده قوامی صبوری ‌‌‌</td>
+                    <td>---------</td>
+                    <td>---------</td>
+                </tr>
+                <tr>
+                    <th scope="row">20</th>
+                    <td>چاپ</td>
+                    <td>چاپخانه دانشگاه‌ فردوسی‌ مشهد‌‌‌</td>
+                    <td>---------‌‌</td>
+                    <td>---------</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>*@

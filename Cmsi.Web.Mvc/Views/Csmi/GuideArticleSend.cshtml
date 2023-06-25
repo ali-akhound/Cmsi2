@@ -1,0 +1,67 @@
+﻿@Html.Action("DynamicPage", "Home", new { id = 39 })
+@*<div id="content" class="animated fadeIn animation-delay-7">
+    <div class="container">
+        <h3 class="title-divider">
+            <span>راهنمای ارسال مقاله</span>
+        </h3>
+        <div class="alert alert-primary">
+            <h4 class="alert-heading">کاربر گرامی!</h4>
+            <hr>
+            <p>سیستم ارسال مقاله، برای دریافت مقالات کاربران، امکان بررسی وضعیت مقاله در هر زمان، اصلاح و تغییر مقاله توسط کاربران و نیز برقراری ارتباط موثر بین مدیر اجرایی و نگارنده، برای هر مقاله، طراحی شده است. این سیستم همه‌ی مراحل ثبت مشخصات نگارنده، ثبت مشخصات مقاله، بررسی پرونده مقاله، اعلام وضعیت مقاله و و اعلام نظر در مورد هر مقاله را در نظر گرفته است. مراحل کار به صورت زیر است:</p>
+        </div>
+        <div class="pb-4">
+            <ul class="nav nav-steps flex-column flex-lg-row justify-content-lg-around">
+                <li class="nav-item col-lg-2 col-md-12">
+                    <a data-target="#tab-steps1" class="nav-link active" data-toggle="tab"><h4 class="font-weight-bold d-block">گام 1:</h4> ثبت نام در سامانه </a>
+                </li>
+                <li class="nav-item col-lg-2 col-md-12">
+                    <a data-target="#tab-steps2" class="nav-link" data-toggle="tab"><h4 class="font-weight-bold d-block">گام 2:</h4> ارسال مقاله</a>
+                </li>
+                <li class="nav-item col-lg-2 col-md-12">
+                    <a data-target="#tab-steps3" class="nav-link" data-toggle="tab"><h4 class="font-weight-bold d-block">گام 3:</h4> پیگیری نتیجه داوری</a>
+                </li>
+                <li class="nav-item col-lg-2 col-md-12">
+                    <a data-target="#tab-steps4" class="nav-link" data-toggle="tab"><h4 class="font-weight-bold d-block">گام 4:</h4> شرکت در همایش</a>
+                </li>
+            </ul>
+            <div class="tab-content text-center px-2 ">
+                <div class="tab-pane fade show active" id="tab-steps1">
+                    <h3>
+                        ثبت نام در سامانه
+                    </h3>
+                    <p> برای ارسال مقاله در همایش، باید ابتدا در سامانه ثبت نام کنید تا پس از تایید عضویت شما از امکانات وب سایت برخوردار گردید. شما می توانید از طریق لینک زیر در سامانه ثبت نام کنید.</p>
+                    <a ui-sref="Login" class="btn btn-lg btn-outline-primary" href="#/Login">عضویت در سامانه</a>
+                </div>
+                <div class="tab-pane fade" id="tab-steps2">
+                    <h3>
+                        ارسال مقاله
+                    </h3>
+                    <p>برای فرستادن مقاله‌ی خود باید از طریق فرم ارسال مقاله که در صفحه کاربری شما وجود دارد اقدام کنید. پس از ورود به فرم ارسال مقاله، مراحل زیر برای دریافت مشخصات و پرونده‌ی مقاله در دسترس شما قرار می‌گیرد.</p>
+                    <p><span class="font-weight-bold tx">1. </span>تعیین مشخصات اصلی مقاله</p>
+                    <p><span class="font-weight-bold ">2. </span>بارگذاری مقاله</p>
+                    <p><span class="font-weight-bold ">3. </span>درج نویسندگان مقاله</p>
+                    <p><span class="font-weight-bold ">4. </span>شرکت در همایش</p>
+                    <a ui-sref="Login" class="btn btn-lg btn-outline-primary" href="#/Login">ورود به سامانه</a>
+                </div>
+                <div class="tab-pane fade" id="tab-steps3">
+                    <h3>
+                        پیگیری نتیجه داوری
+                    </h3>
+                    <p>برای آگاهی از آخرین وضعیت مقاله به صفحه‌ی شخصی خود بروید. در این صفحه فهرست مقالات فرستاده از سوی شما و همچنین وضعیت و نظر داوران همایش درباره‌ی هر مقاله دیده می‌شود. همچنین امکان ویرایش اطلاعات مقاله تا قبل از پایان مهلت ارسال یا بعد از اتمام داوری برای فرستنده ی مقاله وجود دارد.</p>
+                    <a ui-sref="Login" class="btn btn-lg btn-outline-primary" href="#/Login">ورود به سامانه</a>
+                </div>
+                <div class="tab-pane fade" id="tab-steps4">
+                    <h3>
+                        شرکت در همایش
+                    </h3>
+                    <p>
+                        کاربران علاقه مند به شرکت در همایش پس تایید نهایی داوران منتخب، می توانند با تکمیل فرم شرکت در همایش جهت ارائه شفاهی و پوستر در همایش حضور یابند.
+                        همچنین افراد فاقد مقاله نیز قادر به ثبت نام در همایش هستند.
+                    </p>
+                    <p>شایان ذکر است که تعرفه ی های شرکت در همایش بنابر مصوبه هیات رئیسه انجمن بلورشناسی و کانی شناسی ایران محاسبه می گردد.</p>
+                    <a ui-sref="Login" class="btn btn-lg btn-outline-primary" href="#/Login">ورود به سامانه</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@

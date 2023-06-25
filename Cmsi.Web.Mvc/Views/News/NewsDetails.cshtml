@@ -1,0 +1,64 @@
+﻿@model AVA.Web.Mvc.Models.Admin.NewsViewModel
+@using System.Configuration;
+<update-title title="@Model.Subject"></update-title>
+<update-meta property="og:title" content="@Model.Subject"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-@Model.Description"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-@Model.Description"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},@(ConfigurationManager.AppSettings["keyword"].ToString()+","+Model.Keywords)"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<div id="content" class="pt-0">
+    <div class="container">
+        <h3 class="title-divider">
+            <span>{{'NewsDetails' | translate}}:</span>
+            <small>
+                <a ui-sref="NewsList({pageNumber: '1'})"><i class="mx-1" ng-controller="translateCtrl" ng-class="{'fa fa-arrow-right': isActive('fa'),'fa fa-arrow-left': isActive('en')}"></i>{{'NewsListReturn' | translate}} </a>
+            </small>
+        </h3>
+        <div class="row">
+            <!-- Blog post -->
+            <div class="row blog-post">
+                <div class="col-md-1 date-md">
+                    <!-- Date desktop -->
+                    <div class="date-wrapper">
+                        <span class="date-m bg-primary">@Model.MonthName</span> <span class="date-d">@Model.Day</span>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="media-body">
+                        <h4 class="title media-heading">
+                            @Model.Subject
+                        </h4>
+                        <!--Main content of post-->
+                        <div class="blog-content">
+                            <p>@Html.Raw(@Model.Explain)</p>
+                        </div>
+
+                        <!-- Post tags -->
+                        <div class="tag-cloud post-tag-cloud">
+                            <h4>
+                                {{'Tags' | translate}}
+                            </h4>
+                            @{
+                                foreach (string key in Model.Keywords.Split(','))
+                                {
+                                    <a href="javascript:void(0)" class="badge badge-secondary">@key</a>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cbp-item graphics pb-1">
+                        <div class="blog-media">
+                            <a href="#">
+                                <img src="@Model.Image" alt="Project 1" class="img-fluid" />
+                                <span class="overlay-hover-content"><i class="ion-ios-search-strong icon-4x text-white"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+@using AVA.Web.Mvc.Controllers.Admin;
+@model AVA.Web.Mvc.Areas.Admin.Models.Base.HtmlEditorViewModel
+@Html.DevExpress().HtmlEditor(settings => {
+    settings.Name = Model.HtmlEditorID;
+    settings.Theme = "Material";
+    settings.RightToLeft = DefaultBoolean.True;
+    settings.CallbackRouteValues = new { Controller = "HtmlEditorPartial", Action = "HtmlEditorView", HtmlEditorID= Model.HtmlEditorID, HtmlChangedEventName=Model.HtmlChangedEventName, InitEventName=Model.InitEventName };
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.ToolbarMode = HtmlEditorToolbarMode.Menu;
+
+    settings.SettingsDialogs.InsertImageDialog.SettingsImageUpload.UploadCallbackRouteValues = new { Controller = "HtmlEditorPartial", Action = "HtmlEditorPartialImageUpload", HtmlEditorID = Model.HtmlEditorID};
+    settings.SettingsDialogs.InsertImageDialog.SettingsImageUpload.UploadFolder = AVA.Web.Mvc.Controllers.Admin.HtmlEditorSettings.ImageUploadDirectory;
+    settings.SettingsHtmlEditing.AllowedDocumentType = DevExpress.Web.ASPxHtmlEditor.AllowedDocumentType.HTML5;
+    settings.SettingsDialogs.InsertImageDialog.SettingsImageUpload.ValidationSettings.Assign(AVA.Web.Mvc.Controllers.Admin.HtmlEditorSettings.ImageUploadValidationSettings);
+    settings.SettingsDialogs.InsertImageDialog.SettingsImageSelector.Assign(AVA.Web.Mvc.Controllers.Admin.HtmlEditorSettings.ImageSelectorSettings);
+    settings.ClientSideEvents.HtmlChanged = Model.HtmlChangedEventName;
+    settings.ClientSideEvents.Init = Model.InitEventName;
+    settings.ControlStyle.Font.Name = "Tahoma";
+    settings.ControlStyle.Font.Size = 12;
+}).GetHtml()

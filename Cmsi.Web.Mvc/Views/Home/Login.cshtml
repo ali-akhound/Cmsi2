@@ -1,0 +1,78 @@
+﻿@model AVA.Web.Mvc.Models.LoginMembershipViewModel
+@using AVA.UI.Helpers.Controller;
+@using AVA.UI.Helpers.Common;
+<update-title title="{{'Login' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'Login' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'Login' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'Login' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'Login' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<div id="content" ng-controller="CleanCache">
+    <div class="container animated fadeIn animation-delay-7">
+        <!-- Login form -->
+        <div class="form-login form-wrapper form-narrow">
+            <h3 class="title-divider text-center">
+                <span>درگاه ورود</span>
+            </h3>
+            @*<div class="form-group">
+                    <h5>ورود به عنوان</h5>
+                    <select class="form-control">
+                        <option>کاربر عادی</option>
+                        <option>داوران</option>
+                    </select>
+                </div>
+                <hr />*@
+            <h5>اطلاعات حساب کاربری</h5>
+            @using (Html.BeginForm("SignIn", "Home", null, FormMethod.Post, new { id = "form-Membership", ng_controller = "MySubmitController" }))
+            {
+                <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Username, new { @class = "sr-only" })
+                    @Html.TextBoxFor(model => model.Username, new
+                    {
+                        @class = "form-control email",
+                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Username).Name,
+                        placeholder = CommonHelper.GetDisplayName(Model, m => m.Username)
+                    })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, new { @class = "sr-only" })
+                    @Html.PasswordFor(model => model.Password, new
+                    {
+                        @class = "form-control password",
+                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Password).Name,
+                        placeholder = CommonHelper.GetDisplayName(Model, m => m.Password)
+                    })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <div class="form-group no-mt">
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBoxFor(model => model.RememberMe, new
+                                {
+                                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.RememberMe).Name
+                                })
+                                @Html.LabelFor(model => model.RememberMe, new { @class = "control-label" })
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" ng-click="SignIn($event,'@Url.Action("SignIn", "Home")','form-Membership')">ورود</button>
+                </div>
+                <div class="modal-footer">
+                    <small>اگر عضو سامانه نیستید لطفاً <a ui-sref="Signup" class="signup">ثبت نام </a>کنید.</small>
+                    <br />
+                    <small><a ui-sref="PasswordRecovery">فراموشی رمز عبور؟</a></small>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+</script>

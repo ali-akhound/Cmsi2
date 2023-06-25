@@ -1,0 +1,21 @@
+<div class="pagination">
+    <nav aria-label="Page navigation" class="mypager">
+        <ul class="pagination pagination-lg justify-content-center" ng-if="1 < pages.length || !autoHide">
+            <li class="page-item" ng-if="boundaryLinks" ng-class="{ 'page-item disabled' : pagination.current == 1 }">
+                <a class="page-link" href="" ng-click="setCurrent(1)" aria-label="Previous"><span aria-hidden="true">&laquo;</span> <span class="sr-only"></span>&raquo;</a>
+            </li>
+            <li class="page-item" ng-class="{ disabled : pagination.current == 1 }" ng-if="directionLinks">
+                <a class="page-link" href="" ng-click="setCurrent(pagination.current - 1)">&lsaquo;</a>
+            </li>
+            <li class="page-item" ng-class="{ active: pagination.current == pageNumber, disabled : pageNumber == '...' }" ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)">
+                <a class="page-link" href="" ng-click="setCurrent(pageNumber)">{{ pageNumber }}</a>
+            </li>
+            <li class="page-item" ng-class="{ disabled : pagination.current == pagination.last }" ng-if="directionLinks">
+                <a class="page-link" href="" ng-click="setCurrent(pagination.current + 1)">&rsaquo;</a>
+            </li>
+            <li class="page-item" ng-class="{ disabled : pagination.current == pagination.last }" ng-if="boundaryLinks">
+                <a class="page-link" href="" ng-click="setCurrent(pagination.last)" aria-label="Next"><span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a>
+            </li>
+        </ul>
+    </nav>
+</div>

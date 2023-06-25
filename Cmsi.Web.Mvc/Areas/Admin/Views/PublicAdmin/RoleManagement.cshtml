@@ -1,0 +1,59 @@
+﻿@using AVA.UI.Helpers.Controller;
+@using AVA.Web.Mvc.Areas.Admin.Models.Base;
+<input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>{{ 'ROlEMANAGEMENT' | translate }}</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="Home">{{ 'Home' | translate }}</a>
+            </li>
+            <li class="active">
+                <strong>{{ 'ROlEMANAGEMENT' | translate }}</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="MyGridController">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content text-center p-md">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-lg-12 btn-rows">
+                                <a class="btn btn-default" ui-sref="role"><i class="fa fa-plus"></i>{{  'Add' | translate }}</a>
+                                <button class="btn btn-info" type="button" ng-click="EditAction('role')"><i class="fa fa-paste"></i> ویرایش</button>
+                                <button class="btn btn-danger" type="button" ng-click="DeleteAction('/Admin/PublicAdmin/DeleteRoles','@ViewBag.GridID')"><i class="fa fa-remove"></i>{{  'Delete' | translate }}</button>
+                                <button class="btn btn-warning" type="button" ng-click="AssignModule('SysRoleModule')"><i class="fa fa-cogs"></i> سطح دسترسی</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <script>
+                                var selectedIDs;
+                                function OnBeginCallback(s, e) {
+                                    //Pass all selected keys to GridView callback action
+                                    e.customArgs["selectedIDs"] = selectedIDs;
+                                }
+                                function OnSelectionChanged(s, e) {
+                                    s.GetSelectedFieldValues("ID", GetSelectedFieldValuesCallback);
+                                }
+                                function GetSelectedFieldValuesCallback(values) {
+                                    //Capture all selected keys
+                                    selectedIDs = values.join(',');
+                                }
+                            </script>
+                            @Html.Action("GetRolesPartial")
+                            @Html.Partial("GridViewExportPartial", new GridViewExportViewModel() { ModuleName = "PublicAdmin", ActionName = "ExportRolesTo" })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

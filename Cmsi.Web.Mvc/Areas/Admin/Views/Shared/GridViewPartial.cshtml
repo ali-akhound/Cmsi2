@@ -1,0 +1,56 @@
+﻿@model AVA.Web.Mvc.Areas.Admin.Models.Base.GridViewViewModel
+@{
+
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = Model.GridViewID;
+        settings.CallbackRouteValues = new { Controller = Model.ControllerName, Action = Model.ActionName };
+        //settings.Toolbars.Add(t =>
+        //{
+        //    t.EnableAdaptivity = true;
+        //    t.Items.Add(GridViewToolbarCommand.ExportToPdf);
+        //    t.Items.Add(GridViewToolbarCommand.ExportToXlsx);
+        //});
+        //settings.SettingsExport.EnableClientSideExportAPI = true;
+        //settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+        //settings.SettingsPager.EnableAdaptivity = true;
+        // settings.CustomBindingRouteValuesCollection.Add(
+        //    GridViewOperationType.Paging,
+        //    new { Controller = "GridViewPartial", Action = "BindingPaging" }
+        //);
+        // settings.CustomBindingRouteValuesCollection.Add(
+        //     GridViewOperationType.Sorting,
+        //     new { Controller = "GridViewPartial", Action = "BindingSorting" }
+        // );
+        settings.Columns.AddRange(Model.Columns);
+        settings.KeyFieldName = Model.KeyFieldName;
+        settings.Theme = "Material";
+        settings.SettingsBehavior.AllowEllipsisInText = true;
+        settings.RightToLeft = DevExpress.Utils.DefaultBoolean.True;
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.SettingsResizing.ColumnResizeMode = ColumnResizeMode.Control;
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.CommandColumn.SelectAllCheckboxMode = GridViewSelectAllCheckBoxMode.Page;
+        settings.CommandColumn.ShowClearFilterButton = true;
+        settings.CommandColumn.ShowSelectCheckbox = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.Width = 50;
+        settings.SettingsPager.Summary.Text = "صفحه {0} از {1} تعداد کل {2}";
+        settings.GroupSummary.Add(new ASPxSummaryItem() { SummaryType = DevExpress.Data.SummaryItemType.Count, DisplayFormat = "(تعداد: {0})" });
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+        settings.ClientSideEvents.SelectionChanged = "OnSelectionChanged";
+        settings.ClientSideEvents.BeginCallback = "OnBeginCallback";
+        settings.ControlStyle.Font.Name = "Tahoma";
+        settings.ControlStyle.Font.Size = 10;
+        settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;        
+    });
+    @grid.Bind(Model.DataModel).GetHtml()
+}

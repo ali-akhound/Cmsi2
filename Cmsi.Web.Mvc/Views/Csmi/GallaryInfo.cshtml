@@ -1,0 +1,40 @@
+﻿@model AVA.Web.Mvc.Models.Admin.GalleryImageListViewModel
+@using AVA.UI.Helpers.Common;
+<update-title title="@Model.GalleryAlbums[0].Name"></update-title>
+<update-meta property="og:title" content="@Model.GalleryAlbums[0].Name"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-@Model.GalleryAlbums[0].Name-@Model.GalleryAlbums[0].Description"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-@Model.GalleryAlbums[0].Name-@Model.GalleryAlbums[0].Description"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},@(Model.GalleryAlbums[0].Name+","+Model.GalleryAlbums[0].Description)"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<div id="content" class="pt-0">
+    <div class="container pb-1 ">
+        <h4 class="title-divider">
+            <span>@Model.GalleryAlbums[0].Name</span>
+            <small>
+                <a ui-sref="Gallary"><i class="mx-1" ng-controller="translateCtrl" ng-class="{'fa fa-arrow-right': isActive('fa'),'fa fa-arrow-left': isActive('en')}"></i>{{'Return' | translate}} </a>
+            </small>
+        </h4>
+        <div class="container">
+            <h3 class="text-uppercase text-letter-spacing-sm my-0 text-primary font-weight-bold text-center">
+                نام گروه
+            </h3>
+            <p class="text-sm text-inverse mt-0 mb-5">@Model.GalleryAlbums[0].Description</p>
+            <div class="row no-gutters" data-toggle="magnific-popup" data-magnific-popup-settings='{"delegate": "a.gallery-trigger", "gallery":{"enabled":true}}'>
+                @{
+                    foreach (var image in Model.GalleryImages)
+                    {
+                        <div class="col-6 col-lg-3">
+                            <div class="card-effect card-effect-front-to-back">
+                                <img src="@Url.Content(image.ShortImageUrl)" data-toggle="unveil" alt="@image.Name" class="img-fluid" />
+                                <div class="card-back rounded bg-inverse bg-op-8 flex-valign text-center p-3">
+                                    <a href="@Url.Content(image.LongImageUrl)" class="text-white gallery-trigger"> <i class="fa fa-search"></i> </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

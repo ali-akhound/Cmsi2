@@ -1,0 +1,243 @@
+﻿@model AVA.Web.Mvc.Models.EditMembershipVm
+@using AVA.UI.Helpers.Controller;
+@using AVA.UI.Helpers.Common;
+@{
+    string ModuleName = "EditUser";
+}
+<update-title title="{{'Profile' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'Profile' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'Profile' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'Profile' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'Profile' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+@using (Html.BeginForm("EditUser", "Home", null, FormMethod.Post, new { id = "form-" + ModuleName, ng_controller = "MySubmitController" }))
+{
+    <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+    @Html.HiddenFor(model => model.ObjectState)
+    <h4>ویرایش حساب کاربردی</h4>
+    <div class="mb-4 bg-faded p-3 rounded mb-4 text-sm" id="billing">
+        <div class="row">
+            <div class="container animated fadeIn animation-delay-7">
+                <div class="pt-3 pb-4">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <a href="@Model.PersonalImageUrl" target="_blank">
+                                <img src="@Model.PersonalImageUrl" class="img-thumbnail" alt="@(Model.FirstName+" "+Model.LastName)">
+                            </a>
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="mb-3">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.PersonalFileImage, new { @class = "col-md-7" })
+                                    <input type="file" class="form-control-file col-md-5"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.PersonalFileImage).Name)" />
+                                </div>
+                                <small class="form-text text-muted">حداکثر حجم فایل باید 512 کیلوبایت و پسوند آن jpg یا png باشد.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.FirstName, new { @class = "" })
+                @Html.TextBoxFor(model => model.FirstName, new
+                {
+                    @class = "form-control",
+                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.FirstName).Name,
+                    placeholder = CommonHelper.GetDisplayName(Model, m => m.FirstName)
+                })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.LastName, new { @class = "" })
+                @Html.TextBoxFor(model => model.LastName, new
+                {
+                    @class = "form-control",
+                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.LastName).Name,
+                    placeholder = CommonHelper.GetDisplayName(Model, m => m.LastName)
+                })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.EnglishFirstName, new { @class = "" })
+                @Html.TextBoxFor(model => model.EnglishFirstName, new
+                {
+                    @class = "form-control",
+                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.EnglishFirstName).Name,
+                    placeholder = CommonHelper.GetDisplayName(Model, m => m.EnglishFirstName)
+                })
+                @Html.ValidationMessageFor(model => model.EnglishFirstName, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.EnglishLastName, new { @class = "" })
+                @Html.TextBoxFor(model => model.EnglishLastName, new
+                {
+                    @class = "form-control",
+                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.EnglishLastName).Name,
+                    placeholder = CommonHelper.GetDisplayName(Model, m => m.EnglishLastName)
+                })
+                @Html.ValidationMessageFor(model => model.EnglishLastName, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.sex, new { @class = "" })
+                <select class="form-control" id="exampleSelect3" ng-model="@("model."+ CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.sex).Name)"
+                        ng-options="o.v as o.n for o in [{ n: 'زن', v: false }, { n: 'مرد', v: true }]">
+                    >
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.BornDate, new { @class = "" })
+                @Html.TextBoxFor(model => model.BornDate, new
+                {
+                    @class = "form-control",
+                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.BornDate).Name,
+                    data_mask = "9999/99/99",
+                    placeholder = "1300/01/01",
+                })
+                @Html.ValidationMessageFor(model => model.BornDate, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.Degree, new { @class = "" })
+                <select class="form-control" id="exampleSelect5" ng-model="@("model."+ CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Degree).Name)">
+                    >
+                    <option value="فوق دیپلم" selected="selected">فوق دیپلم</option>
+                    <option value="کارشناسی">کارشناسی</option>
+                    <option value="کارشناسی ارشد">کارشناسی ارشد</option>
+                    <option value="دکتری">دکتری</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.FieldOfStudy, new { @class = "" })
+                @Html.TextBoxFor(model => model.FieldOfStudy, new
+                {
+                    @class = "form-control",
+                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.FieldOfStudy).Name,
+                    placeholder = CommonHelper.GetDisplayName(Model, m => m.FieldOfStudy)
+                })
+                @Html.ValidationMessageFor(model => model.FieldOfStudy, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.University, new { @class = "" })
+                @Html.TextBoxFor(model => model.University, new
+                {
+                    @class = "form-control",
+                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.University).Name,
+                    placeholder = CommonHelper.GetDisplayName(Model, m => m.University),
+                })
+                @Html.ValidationMessageFor(model => model.University, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.PhoneNumber, new { @class = "" })
+                @Html.TextBoxFor(model => model.PhoneNumber, new
+                {
+                    @class = "form-control",
+                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.PhoneNumber).Name,
+                    placeholder = CommonHelper.GetDisplayName(Model, m => m.PhoneNumber)
+                })
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.Melicode, new { @class = "" })
+                @Html.TextBoxFor(model => model.Melicode, new
+                {
+                    @class = "form-control",
+                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Melicode).Name,
+                    placeholder = CommonHelper.GetDisplayName(Model, m => m.Melicode),
+                })
+                @Html.ValidationMessageFor(model => model.Melicode, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6 mb-3  ">
+                @Html.LabelFor(model => model.Email, new { @class = "" })
+                @Html.TextBoxFor(model => model.Email, new
+                {
+                    @class = "form-control",
+                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Email).Name,
+                    placeholder = CommonHelper.GetDisplayName(Model, m => m.Email),
+                    @readonly = "true"
+                })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="col-md-3 mb-3">
+                @Html.LabelFor(model => model.selectedProvinceID, new { @class = "" })
+                <select class="form-control" ng-model="@("model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.selectedProvinceID).Name)" ng-change="searchCity()"
+                        ng-options="Province.Value as Province.Text for Province in @("model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ProvinceFeeds).Name)"></select>
+            </div>
+            <div class="col-md-3 mb-3">
+                @Html.LabelFor(model => model.selectedCityID, new { @class = "" })
+                <select class="form-control" ng-model="@("model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.selectedCityID).Name)"
+                        ng-options="City.Value as City.Text for City in @("model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.CityFeeds).Name)"></select>
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.Address, new { @class = "" })
+                @Html.TextBoxFor(model => model.Address, new
+                {
+                    @class = "form-control",
+                    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Address).Name,
+                    placeholder = CommonHelper.GetDisplayName(Model, m => m.Address),
+                })
+            </div>
+            <div class="row">
+                <div class="container animated fadeIn animation-delay-7">
+                    <div class="pt-3 pb-4">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <a href="@Model.MeliCardUrl" target="_blank">
+                                    <img src="@Model.MeliCardUrl" class="img-thumbnail" alt="تصویر کارت ملی">
+                                </a>
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="mb-3">
+                                    <div class="row">
+                                        @Html.LabelFor(model => model.MeliCardFileImage, new { @class = "col-md-5" })
+                                        <input type="file" class="form-control-file col-md-7"
+                                               name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.MeliCardFileImage).Name)" />
+                                    </div>
+                                    <small id="fileHelp2" class="form-text text-muted">حداکثر حجم فایل باید 512 کیلوبایت و پسوند آن jpg یا png باشد.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* <div class="row">
+                    <div class="container animated fadeIn animation-delay-7">
+                        <div class="pt-3 pb-4">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <a href="@Model.UniversityCardUrl" target="_blank">
+                                        <img src="@Model.UniversityCardUrl" class="img-thumbnail" alt="تصویر کارت دانشجویی">
+                                    </a>
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="mb-3">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.UniversityCardFileImage, new { @class = "col-md-5" })
+                                            <input type="file" class="form-control-file col-md-7"
+                                                   name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.UniversityCardFileImage).Name)" />
+                                        </div>
+                                        <small id="fileHelp2" class="form-text text-muted">حداکثر حجم فایل باید 512 کیلوبایت و پسوند آن jpg یا png باشد.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+        </div>
+    </div>
+    <button class="mb-1 btn btn-block btn-green-bright" type="button" ng-click="submitForm($event,'@Url.Action("EditUser", "Home")','form-@ModuleName',1)">ثبت اطلاعات</button>
+
+}
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+    $('input[name=@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.BornDate).Name)]').mask('9999/99/99');
+    $('input[name=@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Melicode).Name)]').mask('9999999999');
+    //CurrentModel.UniversityCardFileImage = new Object();
+    //CurrentModel.MeliCardFileImage = new Object();
+    //CurrentModel.PersonalFileImage = new Object();
+    var feedUrl='@Url.Action("ProvinceFeed", "Home")'
+</script>

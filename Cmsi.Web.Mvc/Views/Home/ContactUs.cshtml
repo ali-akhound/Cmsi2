@@ -1,0 +1,180 @@
+﻿@model AVA.Web.Mvc.Models.Admin.ContactUsViewModel
+@using AVA.UI.Helpers.Controller;
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Base;
+@{
+    string ModuleName = "ContactUs";
+}
+<update-title title="{{'ContactUs' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'ContactUs' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'ContactUs' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'ContactUs' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'ContactUs' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<div id="content" class="pt-0">
+    <div class="container fadeIn animated  animation-delay-7">
+        <div class="row">
+            <!--main content-->
+            <div class="col-md-12" ng-controller="MySubmitController">
+                <h3 class="title-divider">
+                    <span>{{$state.current.title | translate}}</span>
+                    <small>{{'ContactUsMiniTitle' | translate}}</small>
+                </h3>
+                <div class="row">
+                    <div class="col-lg-7 col-xl-8">
+                        @using (Html.BeginForm("Submit" + ModuleName, "Home", null, FormMethod.Post, new { id = "form-" + ModuleName }))
+                        {
+                            @Html.HiddenFor(model => model.ID)
+                            @Html.HiddenFor(model => model.ObjectState)
+                            <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.Name, new { @class = "col-sm-3 col-form-label" })
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.Name, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Name).Name,
+                                        placeholder = CommonHelper.GetDisplayName(Model, m => m.Name)
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.Family, new { @class = "col-sm-3 col-form-label" })
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.Family, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Family).Name,
+                                        placeholder = CommonHelper.GetDisplayName(Model, m => m.Family)
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Family, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.Email, new { @class = "col-sm-3 col-form-label" })
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.Email, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Email).Name,
+                                        placeholder = CommonHelper.GetDisplayName(Model, m => m.Email)
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.TelNumber, new { @class = "col-sm-3 col-form-label" })
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.TelNumber, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.TelNumber).Name,
+                                        placeholder = CommonHelper.GetDisplayName(Model, m => m.TelNumber)
+                                    })
+                                    @Html.ValidationMessageFor(model => model.TelNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.Subject, new { @class = "col-sm-3 col-form-label" })
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.Subject, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Subject).Name,
+                                        placeholder = CommonHelper.GetDisplayName(Model, m => m.Subject)
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.Text, new { @class = "col-sm-3 col-form-label" })
+                                <div class="col-sm-8">
+                                    @Html.TextAreaFor(model => model.Text, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Text).Name,
+                                        placeholder = CommonHelper.GetDisplayName(Model, m => m.Text)
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-8">
+                                    <input type="button" class="btn btn-outline-primary btn-lg btn-block border-w-2" ng-click="submitForm($event,'@Url.Action("SubmitContactUs", "Home")','form-@ModuleName')" value="{{'Submit' | translate}}">
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="col-lg-5 col-xl-4">
+                        @Html.Action("DynamicPageBlockUI", "Home", new { id = 25 })
+                        @*@<div class="bg-primary bg-shadow border-primary-darkend text-white p-4  mb-4 pos-relative">
+                                <i class="fa fa-phone-square icon-10x icon-rotate-25 icon-bg icon-bg-l-ol icon-bg-b-ol op-3 text-white"></i>
+                                <h4 class="my-2 font-weight-bold text-uppercase text-center">
+                                    دفتر مشهد!
+                                </h4>
+
+                                <p>
+                                    <abbr title="Phone"><i class="fa fa-phone pl-2"></i></abbr>
+                                    تلفن - دورنگار (مشهد):8763647-0511
+
+                                </p>
+                                <p>
+                                    <abbr title="Email"><i class="fa fa-at pl-2"></i></abbr>
+                                    crystal@ferdowsi.um.ac.ir
+
+                                </p>
+                                <p>
+                                    <abbr title="Email"><i class="fa fa-google pl-2"></i></abbr>
+                                    crystal.mineral90@gmail.com
+
+                                </p>
+                                <p>
+                                    <abbr title="Email"><i class="fa fa-envelope pl-2"></i></abbr>
+
+                                    صندوق پستی : 1436-91775
+
+                                </p>
+                                <p>
+                                    <abbr title="Address"><i class="fa fa-home pl-2"></i></abbr>
+                                    مشهد ، پردیس دانشگاه فردوسی ، دانشکده علوم پایه ، دبیرخانه انجمن بلورشناسی و کانی شناسی ایران.
+
+                                </p>
+                                <hr class="hr-lg my-2  hr-white w-100" />
+                                <h4 class="my-2 font-weight-bold text-uppercase text-center">
+                                    دفتر تهران!
+                                </h4>
+                                <p>
+                                    <abbr title="Phone"><i class="fa fa-phone pl-2"></i></abbr>
+                                    تلفن - دورنگار (تهران):88311866-021
+
+                                </p>
+                                <p>
+                                    <abbr title="Email"><i class="fa fa-envelope pl-2"></i></abbr>
+
+                                    صندوق پستی : 3587-15815
+
+                                </p>
+                                <p>
+                                    <abbr title="Address"><i class="fa fa-home pl-2"></i></abbr>
+                                    تهران ، خیابان شهید دکتر مفتح، دانشگاه تربیت معلم ،ساختمان مرکزی آموزش ،دبیرخانه انجمن بلورشناسی و کانی شناسی ایران
+
+                                </p>
+                            </div>@*@
+                    </div>
+
+                    <div class="col-md-12 mb-4 mt-4">
+                        <div class="google-map">
+                            <iframe src="http://maps.google.com/maps?q=36.31185613760046,59.530891851271015&z=15&output=embed" width="600" height="450" frameborder="0" style="border: 0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+</script>

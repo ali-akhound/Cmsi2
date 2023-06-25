@@ -1,0 +1,206 @@
+﻿@model AVA.Web.Mvc.Models.Admin.LayoutViewModel
+@using AVA.UI.Helpers.CustomAttribute;
+@using AVA.UI.Helpers.Controller;
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="profile-element" uib-dropdown>
+                    <img alt="image" class="img-circle" src="~/Areas/Admin/assets/img/profile_small.jpg" />
+                    <a uib-dropdown-toggle>
+                        <span class="clear">
+                            <span class="block m-t-xs">
+                                <strong class="font-bold">@Model.FirstName @Model.LastName</strong>
+                            </span>
+                            <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
+                        </span>
+                    </a>
+                    <ul uib-dropdown-menu class="animated fadeInRight m-t-xs" ng-controller="MyLayoutController">
+                        @foreach (var role in Model.Roles)
+                        {
+                            <li><a ui-sref="app.profile">@role.Name</a></li>
+                        }
+                        <li><a ui-sref="ChangePass">{{'ChangePass' | translate}}</a></li>
+                        <li class="divider"></li>
+                        <li><a ng-click="SignOut('@Url.Action("SignOut", "PublicAdmin")','@Url.Action("Index", "PublicAdmin")')">{{ 'Logout' | translate }}</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    IN+
+                </div>
+            </li>
+            <li ng-class="{active: $state.current.name.includes('Home')}">
+                <a ui-sref="HomeAdmin"><i class="fa fa-home"></i> <span class="nav-label">{{ 'Home' | translate }}</span></a>
+            </li>
+            @{
+                if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.Managment }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                {
+                    <li ng-class="{active: $state.current.name.includes('role')}">
+                        <a href="#"><i class="fa fa-cogs"></i> <span class="nav-label">{{ 'MANAGEMENT' | translate }}</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse" ng-class="{in: $state.current.name.includes('role')}">
+                            <li ui-sref-active="active"><a ui-sref="rolemanagement">{{ 'ROlEMANAGEMENT' | translate }}</a></li>
+                            <li ui-sref-active="active"><a ui-sref="UserManagement">{{ 'UserManagement' | translate }}</a></li>
+                            <li ui-sref-active="active"><a ui-sref="MailTemplate">{{ 'MailTemplate' | translate }}</a></li>
+                        </ul>
+                    </li>
+                }
+
+                if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.ContactUs }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                {
+                    <li ng-class="{active: $state.current.name.includes('ContactUs')}">
+                        <a ui-sref="ContactUsMessages"><i class="fa fa-envelope"></i> <span class="nav-label">{{ 'ContactUs' | translate }}</span></a>
+                    </li>
+                }
+                if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.DynamicPage }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                {
+                    <li ng-class="{active: $state.current.name.includes('DynamicPage')}">
+                        <a ui-sref="DynamicPageManagement"><i class="fa fa-credit-card"></i> <span class="nav-label">{{ 'DynamicPageSection' | translate }}</span></a>
+                    </li>
+                }
+                if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.News }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                {
+                    <li ng-class="{active: $state.current.name.includes('News')}">
+                        <a ui-sref="NewsManagement"><i class="fa fa-file-text"></i> <span class="nav-label">{{ 'NewsManagement' | translate }}</span></a>
+                    </li>
+                }
+                if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.FAQ }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                {
+                    <li ng-class="{active: $state.current.name.includes('FAQ')}">
+                        <a ui-sref="FAQManagement"><i class="fa fa-question-circle"></i> <span class="nav-label">{{ 'FAQManagement' | translate }}</span></a>
+                    </li>
+                }
+                if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.Poll }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                {
+                    <li ng-class="{active: $state.current.name.includes('FAQ')}">
+                        <a ui-sref="PollManagement"><i class="fa fa-calendar-check-o"></i> <span class="nav-label">{{ 'PollManagement' | translate }}</span></a>
+                    </li>
+                }
+                if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.Election }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                {
+                    <li ng-class="{active: $state.current.name.includes('Election')}">
+                        <a ui-sref="ElectionManagement"><i class="fa fa-calendar-check-o"></i> <span class="nav-label">{{ 'ElectionManagement' | translate }}</span></a>
+                    </li>
+                }
+                @*if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.Vote }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                {
+                    <li ng-class="{active: $state.current.name.includes('Vote')}">
+                        <a ui-sref="Vote"><i class="fa fa-gavel"></i> <span class="nav-label">{{ 'Vote' | translate }}</span></a>
+                    </li>
+                }*@
+                if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.SocietyMember }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                {
+                    <li ng-class="{active: $state.current.name.includes('SocietyMember')}">
+                        <a ui-sref="SocietyMemberPeriodManagement"><i class="fa fa-street-view"></i> <span class="nav-label">{{ 'SocietyMemberPeriodManagement' | translate }}</span></a>
+                    </li>
+                }
+                if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.SocietyExecutor }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                {
+                    <li ng-class="{active: $state.current.name.includes('SocietyExecutor')}">
+                        <a ui-sref="SocietyExecutorManagement"><i class="fa fa-street-view"></i> <span class="nav-label">{{ 'SocietyExecutorManagement' | translate }}</span></a>
+                    </li>
+                }
+                if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.GalleryAlbum }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                {
+                    <li ng-class="{active: $state.current.name.includes('GalleryAlbum')}">
+                        <a ui-sref="GalleryAlbumManagement"><i class="fa fa-picture-o"></i> <span class="nav-label">{{ 'GalleryAlbumManagement' | translate }}</span></a>
+                    </li>
+                }
+                if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.Book }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                {
+                    <li ng-class="{active: $state.current.name.includes('Book')}">
+                        <a ui-sref="BookManagement"><i class="fa fa-book"></i> <span class="nav-label">{{ 'BookManagement' | translate }}</span></a>
+                    </li>
+                }
+                if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.PackageName }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                {
+                    <li ng-class="{active: $state.current.name.includes('Package')}">
+                        <a ui-sref="PackageNameManagement"><i class="fa fa-dollar"></i> <span class="nav-label">{{ 'PackageNameManagement' | translate }}</span></a>
+                    </li>
+                }
+                if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.Payment }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                {
+                    <li ng-class="{active: $state.current.name.includes('SocietyPayment')}">
+                        <a ui-sref="SocietyPayment"><i class="fa fa-eur"></i> <span class="nav-label">{{ 'SocietyPayment' | translate }}</span></a>
+                    </li>
+                }
+                if (
+                new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute()
+                {
+                    AccessLevelIDs = new int[] {
+                                                        (int)ControllerHelper.SysModuleType.Managment,
+                                                        (int)ControllerHelper.SysModuleType.ScientificSecretaryCircle,
+                                                        (int)ControllerHelper.SysModuleType.Executor,
+                                                        (int)ControllerHelper.SysModuleType.Referee,
+                                                        (int)ControllerHelper.SysModuleType.Conference,
+                                                        (int)ControllerHelper.SysModuleType.Article,
+                                                        (int)ControllerHelper.SysModuleType.Payment,
+                                      }
+                }.HasAccess(new HttpContextWrapper(HttpContext.Current))
+                )
+                {
+                    <li ng-class="{active: $state.current.url.includes('Conference')}">
+                        <a href="#"><i class="fa fa-group"></i> <span class="nav-label">{{ 'ConferenceManagement' | translate }}</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse" ng-class="{in: $state.current.url.includes('Conference')}">
+
+                            @if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.Managment }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                            {
+                                <li ui-sref-active="active"><a ui-sref="ArticleStatusManagement">{{ 'ArticleStatusManagement' | translate }}</a></li>
+
+                                <li ui-sref-active="active"><a ui-sref="RefereeStatusManagement">{{ 'RefereeStatusManagement' | translate }}</a></li>
+
+                                <li ui-sref-active="active"><a ui-sref="ArticlePresentTypeManagement">{{ 'ArticlePresentTypeManagement' | translate }}</a></li>
+
+                                <li ui-sref-active="active"><a ui-sref="RefereeQuestionManagement">{{ 'RefereeQuestionManagement' | translate }}</a></li>
+                                <li ui-sref-active="active"><a ui-sref="RefereeManagement">{{ 'RefereeManagement' | translate }}</a></li>
+                                <li ui-sref-active="active"><a ui-sref="ExecutorManagement">{{ 'ExecutorManagement' | translate }}</a></li>
+                                <li ui-sref-active="active"><a ui-sref="ScientificSecretaryManagement">{{ 'ScientificSecretaryManagement' | translate }}</a></li>
+                                <li ui-sref-active="active"><a ui-sref="ConferenceCategoryManagement({TableName: 'Conference', ParentID: '-1'})">{{ 'ConferenceCategoryManagement' | translate }}</a></li>
+                            }
+
+                            @if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute()
+                            {
+                                AccessLevelIDs = new int[] { (int)ControllerHelper.SysModuleType.Conference, }
+                            }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                            {
+                                <li ui-sref-active="active"><a ui-sref="ConferenceManagement">{{ 'ConferenceManagement' | translate }}</a></li>
+                            }
+                            @if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.Managment }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                            {
+                                <li ui-sref-active="active"><a ui-sref="ArticleManagement({ConferenceID: '-1'})">{{ 'ArticleManagement' | translate }}</a></li>
+                            }
+                            @if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.Payment }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                            {
+                                <li ui-sref-active="active"><a ui-sref="PaymentManagement">{{ 'PaymentManagement' | translate }}</a></li>
+                            }
+
+                            @*
+                        <li ui-sref-active="active"><a ui-sref="Features">{{ 'Features' | translate }}</a></li>
+                        <li ui-sref-active="active"><a ui-sref="FeaturesManagement({CatID: '-1'})">{{ 'FeaturesManagement' | translate }}</a></li>
+                        <li ui-sref-active="active"><a ui-sref="CityZones">{{ 'CityZones' | translate }}</a></li>
+                        <li ui-sref-active="active"><a ui-sref="CityZonesManagement">{{ 'CityZonesManagement' | translate }}</a></li>*@
+                        </ul>
+                    </li>
+                }
+                if (new AVA.UI.Helpers.CustomAttribute.AuthorizeUserAttribute() { AccessLevelID = (int)ControllerHelper.SysModuleType.RefereeArticle }.HasAccess(new HttpContextWrapper(HttpContext.Current)))
+                {
+                    <li ng-class="{active: $state.current.url.includes('RefereeArticleManagement')}">
+                        <a href="#"><i class="fa fa-drivers-license-o"></i> <span class="nav-label">{{ 'RefereeArticleManagement' | translate }}</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse" ng-class="{in: $state.current.url.includes('Conference')}">
+                            <li ui-sref-active="active"><a ui-sref="RefereeArticleManagement({Receive: '1'})">{{ 'RefereeArticleManagementReceive' | translate }}</a></li>
+                            <li ui-sref-active="active"><a ui-sref="RefereeArticleManagement({Receive: '0'})">{{ 'RefereeArticleManagementSend' | translate }}</a></li>
+                        </ul>
+                    </li>
+                }
+                <li ng-class="{active: $state.current.name.includes('Logout')}" ng-controller="MyLayoutController">
+                    <a ng-click="SignOut('@Url.Action("SignOut", "PublicAdmin")','@Url.Action("Index", "PublicAdmin")')">
+                        <i class="fa fa-power-off"></i>
+                        <span class="nav-label">{{ 'Logout' | translate }}</span>
+                    </a>
+                </li>
+            }
+        </ul>
+
+
+
+    </div>
+</nav>

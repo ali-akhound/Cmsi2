@@ -1,0 +1,282 @@
+﻿<div id="header" ng-controller="translateCtrl">
+    <update-meta http-equiv="Content-Language" content="{{language}}"></update-meta>
+    <!--Hidden Header Region-->
+    <div class="header-hidden collapse">
+        <div class="header-hidden-inner container">
+            <div class="row">
+
+                @Html.Action("DynamicPageBlockUI", "Home", new { id = 32 })
+
+                @*@<div class="col-sm-6">
+                        <!--todo: replace with company contact details-->
+                        <h4>
+                            دفتر مشهد!
+                        </h4>
+                        <address>
+                            <p>
+                                <abbr title="Phone"><i class="fa fa-phone  pl-2"></i></abbr>
+                                تلفن - دورنگار (مشهد):8763647-0511
+
+                            </p>
+                            <p>
+                                <abbr title="Email"><i class="fa fa-at  pl-2"></i></abbr>
+                                crystal@ferdowsi.um.ac.ir
+
+                            </p>
+                            <p>
+                                <abbr title="Email"><i class="fa fa-google  pl-2"></i></abbr>
+                                crystal.mineral90@gmail.com
+
+                            </p>
+                            <p>
+                                <abbr title="Email"><i class="fa fa-envelope  pl-2"></i></abbr>
+
+                                صندوق پستی : 1436-91775
+
+                            </p>
+                            <p>
+                                <abbr title="Address"><i class="fa fa-home"></i></abbr>
+                                مشهد ، پردیس دانشگاه فردوسی ، دانشکده علوم پایه ، دبیرخانه انجمن بلورشناسی و کانی شناسی ایران.
+
+                            </p>
+                        </address>
+                    </div>
+                    <div class="col-sm-6">
+                        <!--todo: replace with company contact details-->
+                        <h4>
+                            دفتر تهران!
+                        </h4>
+                        <address>
+                            <p>
+                                <abbr title="Phone"><i class="fa fa-phone pl-2"></i></abbr>
+                                تلفن - دورنگار (تهران):88311866-021
+
+                            </p>
+                            <p>
+                                <abbr title="Email"><i class="fa fa-at  pl-2"></i></abbr>
+
+                            </p>
+                            <p>
+                                <abbr title="Email"><i class="fa fa-google  pl-2"></i></abbr>
+
+                            </p>
+                            <p>
+                                <abbr title="Email"><i class="fa fa-envelope pl-2"></i></abbr>
+
+                                صندوق پستی : 3587-15815
+
+                            </p>
+                            <p>
+                                <abbr title="Address"><i class="fa fa-home pl-2"></i></abbr>
+                                تهران ، خیابان شهید دکتر مفتح، دانشگاه تربیت معلم ،ساختمان مرکزی آموزش ،دبیرخانه انجمن بلورشناسی و کانی شناسی ایران
+
+                            </p>
+                        </address>
+                    </div>@*@
+
+            </div>
+        </div>
+    </div>
+
+    <!--Header upper region-->
+    <div class="header-upper">
+
+        <!--Show/hide trigger for #hidden-header -->
+        <div id="header-hidden-link">
+            <a class="show-hide" data-toggle="show-hide" data-target=".header-hidden"><i></i>باز</a>
+        </div>
+
+        <!-- all direct children of the .header-inner element will be vertically aligned with each other you can override all the behaviours using the flexbox utilities (flexbox.htm) All elements with .header-brand & .header-block-flex wrappers will automatically be aligned inline & vertically using flexbox, this can be overridden using the flexbox utilities (flexbox.htm) Use .header-block to stack elements within on small screen & "float" on larger screens use .order-first or/and .order-last classes to make an element show first or last within .header-inner or .headr-block elements -->
+        <div class="header-inner container">
+            <div class="header-block-flex order-1 mr-auto">
+
+                <!--user menu-->
+                <div class="dropdown dropdowns-no-carets">
+                    <a class="nav-link text-sm p-1 dropdown-toggle" data-toggle="dropdown">
+                        <span class="cart-link-icon"><i class="fa fa-user text-grey icon-1x"></i></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-mini">
+                        <div id="NoLoginHeaderPanel" style="@(User.Identity.IsAuthenticated ? "display:none" : "")">
+                            <a class="dropdown-item" ui-sref="Login"><i class="fa fa-users mx-1"></i>{{ 'MenuLogin' | translate }}</a>
+                            <a class="dropdown-item" ui-sref="Signup"><i class="fa fa-pencil mx-1"></i>{{ 'MenuSignup' | translate }}</a>
+                            <hr class="my-0 hr-grey " />
+                            <a class="dropdown-item" href="http://cmsi.ir/admin#/HomeAdmin?Mode=referee" target="_blank"><i class="fa fa-gavel mx-1"></i>{{ 'MenuLoginArbiter' | translate }}</a>
+                        </div>
+                        <div id="LoginHeaderPanel" style="@(!User.Identity.IsAuthenticated ? "display:none" : "")">
+                            @{
+                                if (User.Identity.IsAuthenticated)
+                                {
+                                    <a class="dropdown-item" id="UsernameLbl">@(ViewBag.FirstName + " " + ViewBag.LastName)</a>
+                                }
+                                else
+                                {
+                                    <a class="dropdown-item" id="UsernameLbl"></a>
+                                }
+                            }
+                            <a class="dropdown-item" ui-sref="UserProfile.Profile"><i class="fa fa-users mx-1"></i>{{ 'UserMenuEditUserProfile' | translate }}</a>
+                            <hr class="my-0 hr-grey " />
+                            <a class="dropdown-item" href="#" style="cursor:pointer" ng-click="SignOut('@Url.Action("SignOut", "Home")','@Url.Action("Index","Home")')" ng-controller="MyLayoutController"><i class="fa fa-gavel mx-1"></i>{{ 'Logout' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Language-->
+                <div class="header-divider header-divider-sm"></div>
+                <div class="dropdown dropdowns-no-carets">
+                    <a class="nav-link p-1 dropdown-toggle" data-toggle="dropdown"><i class="flag-icon" ng-class="{'flag-icon-ir': isActive('fa'),'flag-icon-gb': isActive('en')}"></i></a>
+                    <div class="dropdown-menu dropdown-menu-mini">
+                        <button ng-click="changeLanguage('fa')" class="dropdown-item lang-es" ng-class="{active: isActive('fa')}"><i class="flag-icon flag-icon-ir mx-1"></i>فارسی</button>
+                        <button ng-click="changeLanguage('en')" class="dropdown-item lang-pt" ng-class="{active: isActive('en')}"><i class="flag-icon flag-icon-gb mx-1"></i>English</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-toggle="sticky">
+        <!--Header & Branding region-->
+        <div class="header">
+            <!-- all direct children of the .header-inner element will be vertically aligned with each other you can override all the behaviours using the flexbox utilities (flexbox.htm) All elements with .header-brand & .header-block-flex wrappers will automatically be aligned inline & vertically using flexbox, this can be overridden using the flexbox utilities (flexbox.htm) Use .header-block to stack elements within on small screen & "float" on larger screens use .order-first or/and .order-last classes to make an element show first or last within .header-inner or .headr-block elements -->
+            <div class="header-inner container">
+                <div class="header-block ">
+
+                    <!-- mobile collapse menu button - data-toggle="collapse" = default BS menu - data-toggle="jpanel-menu" = jPanel Menu - data-toggle="overlay" = Overlay Menu -->
+                    <a href="#top" class="btn btn-link btn-icon header-btn float-right d-lg-none" data-toggle="jpanel-menu" data-target=".navbar-main" data-direction="right"> <i class="fa fa-bars"></i> </a>
+                </div>
+                <!--branding/logo -->
+                <a class="header-brand-text text-black" ui-sref="Home" title="Home">
+                    <h3>
+                        <span>{{ 'HeaderTitle' | translate }}</span>
+                    </h3>
+                </a>
+                <a class="header-brand" ui-sref="Home" title="Home">
+                    <img src="/assets/img/logo/logo.jpg" class="img-fluid" />
+                </a>
+                <!-- other header content -->
+                <div class="navbar navbar-expand-md ">
+                    <!--everything within this div is collapsed on mobile-->
+                    <div class="navbar-main collapse pt-2">
+                        <!--main navigation-->
+                        <ul class="nav navbar-nav float-lg-right dropdown-effect-fade" id="menuContainer">
+                            <!-- Homepages -->
+                            <li class="nav-item ">
+                                <a ui-sref="Home" class="nav-link "><i class="fa fa-home nav-link-icon"></i>{{ 'MenuHome' | translate }} </a>
+                            </li>
+                            <!-- Majale Society -->
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link  dropdown-toggle" id="shop-drop" data-toggle="dropdown" data-hover="dropdown">{{ 'MenuMajaleh' | translate }}</a>
+                                <!-- Dropdown Menu -->
+                                <div class="dropdown-menu">
+                                    <a href="http://ijcm.ir/browse.php?&slct_pg_id=45&sid=1&slc_lang=fa" target="_blank" class="dropdown-item">{{ 'MenuMajalehArchive' | translate }}</a>
+                                    <a ui-sref="MajalehAbout" class="dropdown-item">{{ 'MenuMajalehAbout' | translate }}</a>
+                                    <a ui-sref="MajalehBases" class="dropdown-item">{{ 'MenuMajalehBases' | translate }}</a>
+                                    <a ui-sref="MajalehMember" class="dropdown-item">{{ 'MenuMajalehMember' | translate }}</a>
+                                    <a href="http://ijcm.ir/form_send_article.php?&slct_pg_id=50&sid=1&slc_lang=fa" target="_blank" class="dropdown-item">{{ 'MenuMajalehijcm' | translate }}</a>
+                                    <a href="http://ijcm.ir/form_register.php?&slct_pg_id=55&sid=1&slc_lang=fa" target="_blank" class="dropdown-item">{{ 'MenuJournalmemberships' | translate }}</a>
+                                </div>
+                            </li>
+
+                            <!-- Hamayesh -->
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" id="more-drop" data-toggle="dropdown" data-hover="dropdown">{{ 'MenuHamayesh' | translate }}</a>
+                                <!-- Dropdown Menu -->
+                                <div class="dropdown-menu">
+                                    <a ui-sref="ConferenceList" class="dropdown-item">{{ 'MenuHamayeshHa' | translate }}</a>
+                                    <a ui-sref="HamayeshActive" class="dropdown-item">{{ 'MenuHamayeshRegister' | translate }}</a>
+                                    <a ui-sref="ArticleList({ConferenceID:0,FieldID:''})" class="dropdown-item">{{ 'MenuArticleDatabase' | translate }}</a>
+                                    @*<a ui-sref="PaperArbiterList" class="dropdown-item">{{ 'MenuArbiterList' | translate }}</a>*@
+                                </div>
+                            </li>
+                            <!-- guide -->
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" id="more-drop" data-toggle="dropdown" data-hover="dropdown">{{ 'MenuGuide' | translate }}</a>
+                                <!-- Dropdown Menu -->
+                                <div class="dropdown-menu">
+                                    <a ui-sref="GuideArticleSend" class="dropdown-item">{{ 'MenuArticleSend' | translate }}</a>
+                                    <a ui-sref="GuideArticleArbiter" class="dropdown-item">{{ 'MenuArticleArbiter' | translate }}</a>
+                                    <a ui-sref="ArticleWrite" class="dropdown-item">{{ 'MenuArticleWrite' | translate }}</a>
+                                    <a ui-sref="FAQ({pageNumber:1})" class="dropdown-item ">{{ 'MenuFAQ' | translate }}</a>
+                                    <a ui-sref="GuideSitemap" class="dropdown-item">{{ 'MenuSiteMap' | translate }}</a>
+                                </div>
+                            </li>
+                            <!-- Login -->
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" id="more-drop" data-toggle="dropdown" data-hover="dropdown">{{ 'MenuLoginAndSignup' | translate }}</a>
+                                <!-- Dropdown Menu -->
+                                <div class="dropdown-menu">
+                                    <a ui-sref="SocientyRules" class="dropdown-item">{{ 'MenuSocientyRules' | translate }}</a>
+                                    <a ui-sref="RegisterFeatures" class="dropdown-item">{{ 'MenuRegisterFeatures' | translate }}</a>
+                                    <a ui-sref="RegisterHelp" class="dropdown-item">{{ 'MenuRegisterHelp' | translate }}</a>
+                                    <a ui-sref="Signup" class="dropdown-item">{{ 'MenuSignup' | translate }}</a>
+                                    <a ui-sref="Login" class="dropdown-item">{{ 'MenuLogin' | translate }}</a>
+                                    <a href="http://cmsi.ir/admin#/HomeAdmin?Mode=referee" target="_blank" class="dropdown-item">{{ 'MenuLoginArbiter' | translate }}</a>
+                                </div>
+                            </li>
+
+                            <!-- News -->
+                            <li class="nav-item ">
+                                <a ui-sref="NewsList({pageNumber: '1',year:''})" class="nav-link " id="elements-drop">{{ 'MenuNewsList' | translate }}</a>
+                            </li>
+
+                            <li class="nav-item ">
+                                <a ui-sref="Gallary" class="nav-link ">{{ 'MenuGallary' | translate }} </a>
+                            </li>
+                            <!-- Crystal -->
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" id="more-drop" data-toggle="dropdown" data-hover="dropdown">{{ 'MenuCrystal' | translate }}</a>
+                                <!-- Dropdown Menu -->
+                                <div class="dropdown-menu">
+                                    <a ui-sref="HistoryCrystal" class="dropdown-item">{{ 'MenuHistory' | translate }}</a>
+                                    <a ui-sref="BookList({pageNumber: '1',WriterName:'',OrderType:'ASC'})" class="dropdown-item">{{ 'MenuBookList' | translate }}</a>
+
+                                </div>
+                            </li>
+                            <!-- about us -->
+                            <li class="nav-item dropdown dropdown-mega-menu dropdown-mega-menu-75">
+                                <a href="#" class="nav-link dropdown-toggle" id="more-drop" data-toggle="dropdown" data-hover="dropdown">{{ 'MenuAboutUs' | translate }}</a>
+                                <!-- Dropdown Menu -->
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <a ui-sref="SocietyCertificate" class="dropdown-item">{{ 'MenuSocietyCertificate' | translate }}</a>
+                                            <a ui-sref="SocietyHistory" class="dropdown-item">{{ 'MenuSocietyHistory' | translate }}</a>
+                                            <a ui-sref="SocietyGoals" class="dropdown-item">{{ 'MenuSocietyGoals' | translate }}</a>
+                                            <a ui-sref="SocietyActivities" class="dropdown-item">{{ 'MenuSocietyActivities' | translate }}</a>
+                                            <a ui-sref="SocietyBases" class="dropdown-item">{{ 'MenuSocietyBases' | translate }}</a>
+                                            <a ui-sref="SocietyChart" class="dropdown-item">{{ 'MenuSocietyChart' | translate }}</a>
+                                            @*<a ui-sref="AnnualProgram" class="dropdown-item">{{ 'MenuAnnualProgram' | translate }}</a>*@
+                                            <a ui-sref="SocietyMembers" class="dropdown-item">{{ 'MenuSocietyMembers' | translate }} </a>
+                                            <a ui-sref="SocietyDirector" class="dropdown-item">{{ 'MenuSocietyDirector' | translate }}</a>
+                                        </div>
+                                        <div class="col-lg-6 d-none d-lg-block">
+                                            <div class="dropdown-widget">
+                                                <!-- Shop product carousel Uses Owl Carousel plugin All options here are customisable from the data-owl-carousel-settings="{OBJECT}" item via data- attributes: http://www.owlgraphic.com/owlcarousel/#customizing ie. data-settings="{"items": "4", "lazyLoad":"true", "navigation":"true"}" -->
+                                                <div class="products-carousel owl-nav-over" data-toggle="owl-carousel" data-owl-carousel-settings='{"items": 1,"responsive":{"0":{"items":1,"nav":true, "dots":false}}}'>
+                                                    <img src="/assets/img/shop/jacket-3.png" alt="Item 3 image" class="lazyOwl img-fluid" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!-- contact us -->
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" id="more-drop" data-toggle="dropdown" data-hover="dropdown">{{ 'MenuContactUs' | translate }}</a>
+                                <!-- Dropdown Menu -->
+                                <div class="dropdown-menu">
+                                    <a ui-sref="ContactUs" class="dropdown-item ">{{ 'MenuContactUs' | translate }}</a>
+                                    <a ui-sref="Poll" class="dropdown-item">{{ 'MenuPoll' | translate }}</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.navbar-collapse -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,100 @@
+﻿<update-title title="{{'GuideSitemap' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'GuideSitemap' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'GuideSitemap' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'GuideSitemap' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'GuideSitemap' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<div id="content  animated fadeIn animation-delay-7">
+    <div class="container">
+        <h3 class="title-divider">
+            <span>{{$state.current.title | translate}}</span>
+        </h3>
+        <div class="card">
+            <h5 class="card-header">
+                <a class="text-black list-group-item-action" ui-sref="Home">
+                    {{ 'MenuHome' | translate }}
+                </a>
+            </h5>
+            <h5 class="card-header">
+                {{ 'MenuMajaleh' | translate }}
+            </h5>
+            <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action" href="http://ijcm.ir/browse.php?&slct_pg_id=45&sid=1&slc_lang=fa">{{ 'MenuMajalehArchive' | translate }}</a>
+                <a class="list-group-item list-group-item-action" ui-sref="MajalehAbout">{{ 'MenuMajalehAbout' | translate }}</a>
+                <a class="list-group-item list-group-item-action" ui-sref="MajalehBases">{{ 'MenuMajalehBases' | translate }}</a>
+                <a class="list-group-item list-group-item-action" ui-sref="MajalehMember">{{ 'MenuMajalehMember' | translate }}</a>
+                <a class="list-group-item list-group-item-action" href="http://ijcm.ir/form_send_article.php?&slct_pg_id=50&sid=1&slc_lang=fa">{{ 'MenuMajalehijcm' | translate }}</a>
+                <a class="list-group-item list-group-item-action" href="http://ijcm.ir/form_register.php?&slct_pg_id=55&sid=1&slc_lang=fa">{{ 'MenuJournalmemberships' | translate }}</a>
+            </div>
+            <h5 class="card-header">
+                {{ 'MenuHamayesh' | translate }}
+            </h5>
+            <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action" ui-sref="ConferenceList">{{ 'MenuHamayeshHa' | translate }}</a>
+                <a class="list-group-item list-group-item-action" ui-sref="HamayeshActive">{{ 'MenuHamayeshRegister' | translate }}</a>
+                <a class="list-group-item list-group-item-action" ui-sref="ArticleList({ConferenceID:0,FieldID:''})">{{ 'MenuArticleDatabase' | translate }}</a>
+            </div>
+            <h5 class="card-header">
+                {{ 'MenuGuide' | translate }}
+            </h5>
+            <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action" ui-sref="GuideArticleSend">{{ 'MenuArticleSend' | translate }}</a>
+                <a class="list-group-item list-group-item-action" ui-sref="GuideArticleArbiter">{{ 'MenuArticleArbiter' | translate }}</a>
+                <a class="list-group-item list-group-item-action" ui-sref="ArticleWrite">{{ 'MenuArticleWrite' | translate }}</a>
+                <a class="list-group-item list-group-item-action" ui-sref="FAQ({pageNumber:1})">{{ 'MenuFAQ' | translate }}</a>
+                <a class="list-group-item list-group-item-action" ui-sref="GuideSitemap">{{ 'MenuSiteMap' | translate }}</a>
+            </div>
+            <h5 class="card-header">
+                {{ 'MenuLoginAndSignup' | translate }}
+            </h5>
+            <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action" ui-sref="Login">{{ 'MenuLogin' | translate }}</a>
+                <a class="list-group-item list-group-item-action" href="http://cmsi.ir/admin#/HomeAdmin?Mode=referee">{{ 'MenuLoginArbiter' | translate }}</a>
+                <a class="list-group-item list-group-item-action" ui-sref="Signup">{{ 'MenuSignup' | translate }}</a>
+            </div>
+            <h5 class="card-header">
+                <a class="text-black list-group-item-action" ui-sref="NewsList({pageNumber: '1'})">
+                    {{ 'MenuNewsList' | translate }}
+                </a>
+            </h5>
+            <h5 class="card-header">
+                <a class="text-black list-group-item-action" ui-sref="Gallary">
+                    {{ 'MenuGallary' | translate }}
+                </a>
+            </h5>
+
+
+            <h5 class="card-header">
+                {{ 'MenuCrystal' | translate }}
+            </h5>
+            <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action" ui-sref="HistoryCrystal">{{ 'MenuHistory' | translate }}</a>
+                <a class="list-group-item list-group-item-action" ui-sref="BookList({pageNumber: '1',WriterName:'',OrderType:'ASC'})">{{ 'MenuBookList' | translate }}</a>
+            </div>
+
+
+
+            <h5 class="card-header">
+                {{ 'MenuAboutUs' | translate }}
+            </h5>
+            <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action" ui-sref="SocietyCertificate">{{ 'MenuSocietyCertificate' | translate }}</a>
+                <a class="list-group-item list-group-item-action" ui-sref="SocietyHistory">{{ 'MenuSocietyHistory' | translate }}</a>
+                <a class="list-group-item list-group-item-action" ui-sref="SocietyMembers">{{ 'MenuSocietyMembers' | translate }}</a>
+                <a class="list-group-item list-group-item-action" ui-sref="SocietyDirector">{{ 'MenuSocietyDirector' | translate }}</a>
+                <a class="list-group-item list-group-item-action" ui-sref="SocietyBases">{{ 'MenuSocietyBases' | translate }}</a>
+                <a class="list-group-item list-group-item-action" ui-sref="SocietyChart">{{ 'MenuSocietyChart' | translate }}</a>
+                <a class="list-group-item list-group-item-action" ui-sref="AnnualProgram">{{ 'MenuAnnualProgram' | translate }}</a>
+            </div>
+            <h5 class="card-header">
+                <a class="text-black list-group-item-action" ui-sref="ContactUs">
+                    {{ 'MenuContactUs' | translate }}
+                </a>
+            </h5>
+            <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action" ui-sref="ContactUs">{{ 'MenuContactUs' | translate }}</a>
+                <a class="list-group-item list-group-item-action" ui-sref="Poll">{{ 'MenuPoll' | translate }}</a>
+            </div>
+        </div>
+    </div>
+</div>

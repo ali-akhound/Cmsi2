@@ -1,0 +1,46 @@
+﻿@model AVA.Web.Mvc.Models.Admin.PollViewModel
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Controller;
+@{
+    string ModuleName = "Poll";
+}
+<update-title title="{{'Poll' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'Poll' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'Poll' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'Poll' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'Poll' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+@using (Html.BeginForm("Submit" + ModuleName, "Poll", null, FormMethod.Post, new { id = "form-" + ModuleName, ng_controller = "MySubmitController" }))
+{
+    <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+    @Html.HiddenFor(model => model.ID)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div id="content">
+        <div class="container" ng-controller="MySubmitController">
+            <h3 class="title-divider">
+                <span>{{$state.current.title | translate}}</span>
+            </h3>
+            <div class="alert alert-info" role="alert"><i class="ion-alert icon-1x pl-1"></i> <strong>توجه: </strong>کاربر گرامی برای شرکت در نظرسنجی به سوالات زیر پاسخ دهدید.</div>
+            <div ng-repeat="ques in model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Questions).Name)">
+                <div class="form-group row">
+                    <div class="col-sm-12 text-right">
+                        {{$index+1}}.<label>{{ques.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleQuestion, m => m.Question).Name)}}</label>
+                    </div>
+                    <div class="col-sm-3" ng-repeat="ans in ques.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleQuestion, m => m.Answers).Name)">
+                        <label>
+                            <input data-ng-value="{{ans.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleQuestion.SingleAnswer, m => m.ID).Name)}}" type="radio" name="{{'Question'+ques.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleQuestion, m => m.ID).Name)}}"
+                                   ng-model="ques.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleQuestion, m => m.SelectedAnswerID).Name)"> {{ans.Answer}}
+                        </label>
+                    </div>
+                </div>
+                <hr />
+            </div>
+            <div class="form-group row">
+                <input type="button" class="btn btn-primary btn-lg border-w-2" ng-click="submitForm($event,'/Csmi/SubmitPoll','form-@ModuleName')" value="ثبت">
+            </div>
+        </div>
+    </div>
+}
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+</script>

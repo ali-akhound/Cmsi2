@@ -1,0 +1,13 @@
+﻿<Project ToolsVersion="4.0" 
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>   
+    <ExcludeFromPackageFolders Include="assets">
+      <FromTarget>AVA.Web.Mvc.wpp.targets</FromTarget>
+    </ExcludeFromPackageFolders>
+  </ItemGroup>
+	<ItemGroup>
+		<ExcludeFromPackageFolders Include="Areas/Admin/assets">
+			<FromTarget>AVA.Web.Mvc.wpp.targets</FromTarget>
+		</ExcludeFromPackageFolders>
+	</ItemGroup>
+</Project>

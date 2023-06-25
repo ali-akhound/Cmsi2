@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+@model AVA.Web.Mvc.Models.Admin.LayoutViewModel
+@using AVA.Web.Mvc.Admin.Helpers
+<html ng-app="inspinia">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="noindex">
+    <title ng-bind="title"></title>
+    <!-- Primary Inspinia style -->
+    @Styles.Render("~/AdminBundles/core-css")
+    <!--Font awesome -->
+    <link href="@Styles.Url("~/Areas/Admin/assets/font-awesome/css/font-awesome.css")" rel="stylesheet" type="text/css" />
+    <link href="@Styles.Url("~/Areas/Admin/assets/css/style.css")" rel="stylesheet" type="text/css" id="loadBefore" />
+    <link href="@Styles.Url("~/Areas/Admin/assets/css/MyCustom.css")" rel="stylesheet" type="text/css" />
+    @Html.DevExpress().GetStyleSheets(
+        new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.Editors },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.GridView, Theme = "Material" },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.HtmlEditor, Theme = "Material" }
+        )
+    <link rel="apple-touch-icon" sizes="57x57" href="~/assets/img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/assets/img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/assets/img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/assets/img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/assets/img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/assets/img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/assets/img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/assets/img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/assets/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/~/assets/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/assets/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/assets/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+</head>
+<body ng-cloak ng-controller="MainCtrl as main" class="{{$state.current.data.specialClass}} @ViewBag.SpecialClass" landing-scrollspy id="page-top">
+    @{
+        if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+            <!-- Skin configuration box -->
+            <!-- @Html.Partial("~/Areas/Admin/Views/Shared/_SkinConfig.cshtml") -->
+            <!-- Wrapper-->
+            <!-- PageClass give you ability to specify custom style for specific view based on action -->
+            <div id="wrapper" class="@Html.PageClass()">
+                <!-- Navigation -->
+                @Html.Partial("~/Areas/Admin/Views/Shared/_Navigation.cshtml", Model)
+
+                <!-- Page wraper -->
+                <div id="page-wrapper" class="gray-bg @ViewBag.SpecialClass">
+
+                    <!-- Top Navbar -->
+                    @Html.Partial("~/Areas/Admin/Views/Shared/_TopNavbar.cshtml", Model)
+
+                    <toaster-container></toaster-container>
+                    <!-- Main view  -->
+                    <div ui-view>
+                        @RenderBody()
+                    </div>
+
+                    <!-- Footer -->
+                    @Html.Partial("~/Areas/Admin/Views/Shared/_Footer.cshtml")
+
+                </div>
+                <!-- End page wrapper-->
+                <!-- Left Sidebar -->
+                @Html.Partial("~/Areas/Admin/Views/Shared/_RightSidebar.cshtml")
+
+
+            </div>
+            <!-- End wrapper-->
+        }
+        else
+        {
+            <div ui-view>
+                @RenderBody()
+            </div>
+        }
+
+    }
+
+
+
+    @Scripts.Render("~/AdminBundles/core-js")
+    @Scripts.Render("~/Areas/Admin/assets/js/translations.js")
+    @Scripts.Render("~/Areas/Admin/assets/js/config.js")
+    @Scripts.Render("~/Areas/Admin/assets/js/directives.js")
+    @Scripts.Render("~/Areas/Admin/assets/js/controllers.js")
+
+    @Html.DevExpress().GetScripts(
+            new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+            new Script { ExtensionSuite = ExtensionSuite.Editors },
+            new Script { ExtensionSuite = ExtensionSuite.GridView },
+            new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
+            )
+
+    @*<!-- Skin configuration box -->
+        <!-- @Html.Partial("_SkinConfig") -->
+        <!-- Wrapper-->
+        <!-- PageClass give you ability to specify custom style for specific view based on action -->
+        <div id="wrapper" class="@Html.PageClass()">
+
+            <!-- Navigation -->
+            @Html.Partial("_Navigation")
+
+            <!-- Page wraper -->
+            <div id="page-wrapper" class="gray-bg @ViewBag.SpecialClass">
+
+                <!-- Top Navbar -->
+                @Html.Partial("_TopNavbar")
+
+                <!-- Main view  -->
+                @RenderBody()
+
+                <!-- Footer -->
+                @Html.Partial("_Footer")
+
+            </div>
+            <!-- End page wrapper-->
+            <!-- Right Sidebar -->
+            @Html.Partial("_RightSidebar")
+
+        </div>
+        <!-- End wrapper-->
+        <!-- Section for main scripts render -->
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/plugins/slimScroll")
+        @Scripts.Render("~/bundles/inspinia")
+
+        <!-- Skin config script - only for demo purpose-->
+        @Scripts.Render("~/bundles/skinConfig")
+
+        <!-- Handler for local scripts -->
+        @RenderSection("scripts", required: false)*@
+</body>
+</html>

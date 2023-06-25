@@ -1,0 +1,665 @@
+﻿@model AVA.Web.Mvc.Models.DefaultViewModel
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Controller;
+<update-title title="{{'HeaderTitle'| translate}}-{{'Home' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'HeaderTitle'| translate}}-{{'Home' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'Home' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'Home' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}}-{{'Home' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<!-- ======== Region: #highlighted ======== -->
+<div id="highlighted">
+    <!-- Showshow - Slider Revolution see: plugins/slider-revolution/examples&sources for help invoke using data-toggle="slider-rev" options can be passed to the slider via HTML5 data- ie. data-startwidth="960" -->
+    <div class="slider-wrapper rev_slider_wrapper fullscreen-container bg-black" data-page-class="slider-appstrap-theme">
+        <div class="rev_slider fullscreenbanner" data-toggle="slider-rev" data-settings='{"startwidth":1100, "startheight":520, "delay":10000}'>
+            <ul>
+                <!-- SLIDE 1 -->
+                <li class="slide overlay overlay-op-4 overlay-gradient" data-transition="fadethroughdark" data-slotamount="7" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="assets/img/slides/app_bg.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-link="#">
+                    <img src="~/assets/img/slide-dummy.png" data-lazyload="@Url.Content("~/assets/img/slides/app_bg.jpg")" alt="background image" data-bgposition="center top" data-bgfit="cover" data-bgparallax="off" class="rev-slidebg" data-no-retina />
+                    <!-- SLIDE 1 Content-->
+                    <div class="slide-content container" style="z-index: 10;">
+                        <!--elements within .slide-content are pushed below navbar on "behind"-->
+                        <!-- Layer 1 -->
+                        <div class="tp-caption text-grey"
+                             data-x="1136px"
+                             data-hoffset="['0','0','0','40']"
+                             data-y="['bottom','bottom','bottom','bottom']"
+                             data-voffset="['120','120','120','120']"
+                             data-fontsize="['39','39','39','39']"
+                             data-lineheight="['52','52','52','52']"
+                             data-width="400"
+                             data-height="none"
+                             data-whitespace="normal"
+                             data-type="text"
+                             data-basealign="slide"
+                             data-responsive_offset="on"
+                             data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","speed":1200,"to":"o:1;","delay":1300,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"opacity:0;","ease":"nothing"}]' data-textalign="right">
+                            <span class="font-weight-bold text-uppercase text-white">{{'WelcomeSlider' | translate}}</span>
+                        </div>
+                        <!-- Layer 3 -->
+                        <div class="tp-caption text-grey"
+                             data-x="1136px"
+                             data-hoffset="['0','0','0','40']"
+                             data-y="['bottom','bottom','bottom','bottom']"
+                             data-voffset="['60','60','60','60']"
+                             data-fontsize="['20','20','20','30']"
+                             data-width="none" data-height="none"
+                             data-whitespace="nowrap"
+                             data-type="text" data-basealign="slide"
+                             data-responsive_offset="on"
+                             data-frames='[{"delay":0,"speed":1200,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","to":"o:1;","delay":1400},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]' data-textalign="['center','center','center','center']">
+                            {{'CompanyName' | translate}}
+                        </div>
+                        <!-- Layer 3 -->
+                        <div class="tp-caption rs-parallaxlevel-8"
+                             data-frames='[{"from":"o:0;sX:3;sY:3;","speed":2000,"to":"o:0.20;sX:3;sY:3;","delay":1800,"ease":"default"},{"delay":"wait","speed":1200,"to":"x:[100%];","ease":"Power3.easeInOut"}]'
+                             data-x="right" data-y="bottom"
+                             data-hoffset="-1360"
+                             data-voffset="0"
+                             data-width="none"
+                             data-height="none" data-type="image" data-basealign="slide">
+                            <i class="fa fa-bullseye icon-20x icon-bg op-1 text-white"></i>
+                        </div>
+                        <!-- Layer 4 -->
+                        <div class="tp-caption tp-resizeme bg-primary-bright"
+                             data-frames='[{"from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","speed":1500,"to":"o:1;","delay":500,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"x:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]'
+                             data-x="1136px"
+                             data-hoffset="['0','0','0','40']"
+                             data-y="bottom"
+                             data-voffset="100"
+                             data-width="380"
+                             data-height="4"
+                             data-basealign="slide"></div>
+                    </div>
+                </li>
+                <!-- SLIDE 2 -->
+                <li class="slide" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-rotate="0" data-saveperformance="off" data-title="Slide" style="direction: ltr">
+                    <img src="~/assets/img/slides/transparent.png" class="rev-slidebg bg-white" alt="Background image" data-bgcolor="#ffffff" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" data-no-retina />
+                    <!-- LAYERS -->
+                    <!-- Layer 1 -->
+                    <div class="tp-caption tp-resizeme rs-parallaxlevel-8" data-x="['left','left','left','left']" data-hoffset="['-364','-364','-420','-416']" data-y="['top','top','top','top']" data-voffset="['-185','-185','-185','-185']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="image" data-basealign="slide" data-responsive_offset="off" data-frames='[{"from":"x:left;rZ:-90deg;","speed":2500,"to":"o:1;","delay":500,"ease":"Power4.easeOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]' data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5; border-width: 0px;">
+                        <img src="~/assets/img/slides/header_penpot.png" alt="" data-ww="['650px','650px','650px','650px']" data-hh="['500px','500px','500px','500px']" width="650" height="500" data-no-retina />
+                    </div>
+                    <!-- Layer 2 -->
+                    <div class="tp-caption tp-resizeme rs-parallaxlevel-9" data-x="['right','right','right','right']" data-hoffset="['-100','-100','-120','-144']" data-y="['top','top','top','top']" data-voffset="['-254','-254','-254','-254']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="image" data-basealign="slide" data-responsive_offset="on" data-frames='[{"from":"x:right;y:-500px;rZ:90deg;","speed":2500,"to":"o:1;","delay":500,"ease":"Power4.easeOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]' data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 6; border-width: 0px;">
+                        <img src="~/assets/img/slides/header_flowerpot.png" alt="" data-ww="['700px','700px','700px','700px']" data-hh="['600px','600px','600px','600px']" width="700" height="600" data-no-retina />
+                    </div>
+                    <!-- Layer 3 -->
+                    <div class="tp-caption tp-resizeme rs-parallaxlevel-10" data-x="['left','left','left','left']" data-hoffset="['-472','-372','-340','-638']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['-484','-484','-520','-522']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="image" data-basealign="slide" data-responsive_offset="off" data-frames='[{"from":"x:left;rZ:45deg;","speed":2500,"to":"o:1;","delay":650,"ease":"Power4.easeOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]' data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; border-width: 0px;">
+                        <img src="~/assets/img/slides/header_papers.png" alt="" data-ww="['900px','900px','900px','900px']" data-hh="['1000px','1000px','1000px','1000px']" width="900" height="1000" data-no-retina />
+                    </div>
+                    <!-- Layer 4 -->
+                    <div class="tp-caption tp-resizeme rs-parallaxlevel-12" data-x="['left','left','left','left']" data-hoffset="['134','134','-2','-57']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['67','67','50','6']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="image" data-basealign="slide" data-responsive_offset="on" data-frames='[{"from":"y:bottom;rZ:90deg;","speed":1500,"to":"o:1;","delay":1050,"ease":"Power4.easeOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]' data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 8; border-width: 0px;">
+                        <img src="~/assets/img/slides/header_marker.png" alt="" data-ww="['200px','200px','200px','200px']" data-hh="['300px','300px','300px','300px']" width="200" height="300" data-no-retina />
+                    </div>
+                    <!-- Layer 5 -->
+                    <div class="tp-caption tp-resizeme rs-parallaxlevel-11" data-x="['left','left','left','left']" data-hoffset="['181','181','30','-39']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['-170','-170','-190','-212']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="image" data-basealign="slide" data-responsive_offset="on" data-frames='[{"from":"y:bottom;rZ:-90deg;","speed":1500,"to":"o:1;","delay":1250,"ease":"Power4.easeOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]' data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 9; border-width: 0px;">
+                        <img src="~/assets/img/slides/header_edding.png" alt="" data-ww="['300px','300px','300px','300px']" data-hh="['400px','400px','400px','400px']" width="300" height="400" data-no-retina />
+                    </div>
+                    <!-- Layer 6 -->
+                    <div class="tp-caption tp-resizeme rs-parallaxlevel-9" data-x="['right','right','right','right']" data-hoffset="['-364','-364','-479','-553']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['-155','-155','-180','-202']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="image" data-basealign="slide" data-responsive_offset="on" data-frames='[{"from":"x:right;rZ:-65deg;","speed":1500,"to":"o:1;","delay":700,"ease":"Power4.easeOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]' data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 13; border-width: 0px;">
+                        <img src="~/assets/img/slides/header_tablet.png" alt="" data-ww="['730px','730px','730px','730px']" data-hh="['520px','520px','520px','520px']" width="730" height="520" data-no-retina />
+                    </div>
+                    <!-- Layer 7 -->
+                    <div class="tp-caption tp-resizeme rs-parallaxlevel-11" data-x="['right','right','right','right']" data-hoffset="['222','222','105','8']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['8','8','-17','-10']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="image" data-basealign="slide" data-responsive_offset="on" data-frames='[{"from":"x:right;rZ:90deg;","speed":1500,"to":"o:1;","delay":500,"ease":"Power4.easeOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]' data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 12; border-width: 0px;">
+                        <img src="~/assets/img/slides/header_pen.png" alt="" data-ww="['300px','300px','300px','300px']" data-hh="['500px','500px','500px','500px']" width="300" height="500" data-no-retina />
+                    </div>
+                    <div class="slide-content">
+                        <!-- Layer 8 -->
+                        <div class="tp-caption tp-resizeme rs-parallaxlevel-2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-70','-70','-70','-90']" data-fontsize="['32','32','32','32']" data-lineheight="['60','60','60','60']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"from":"y:-50px;rX:-45deg;sX:2;sY:2;opacity:0;","speed":1500,"to":"o:1;","delay":510,"ease":"Power4.easeOut"},{"delay":640,"speed":600,"to":"y:30px;rX:45deg;sX:0.8;sY:0.8;opacity:0;","ease":"Power2.easeInOut"}]' data-textalign="['center','center','center','center']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]">برگزاری چندین همایش علمی در سال</div>
+                        <!-- Layer 9 -->
+                        <div class="tp-caption tp-resizeme rs-parallaxlevel-2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-70','-70','-70','-90']" data-fontsize="['26','26','26','26']" data-lineheight="['60','60','60','60']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"from":"y:-50px;rX:-45deg;sX:2;sY:2;opacity:0;","speed":1500,"to":"o:1;","delay":3240,"ease":"Power4.easeOut"},{"delay":660,"speed":600,"to":"y:30px;rX:45deg;sX:0.8;sY:0.8;opacity:0;","ease":"Power2.easeInOut"}]' data-textalign="['center','center','center','center']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]">پاسخگوی کلیه نیازهای دبیرخانه کنفرانس ها و همایش ها</div>
+                        <!-- Layer 10 -->
+                        <div class="tp-caption tp-resizeme rs-parallaxlevel-2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-70','-70','-70','-90']" data-fontsize="['26','26','26','26']" data-lineheight="['60','60','60','60']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"from":"y:-50px;rX:-45deg;sX:2;sY:2;opacity:0;","speed":1500,"to":"o:1;","delay":6900,"ease":"Power4.easeOut"},{"delay":"690","speed":600,"to":"y:30px;rX:45deg;sX:0.8;sY:0.8;opacity:0;","ease":"Power2.easeInOut"}]' data-textalign="['center','center','center','center']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]">... مرجع همایش ها، پاسخی به نیاز جامعه علمی</div>
+                        <!-- Layer 12 -->
+                        <div class="tp-caption tp-resizeme rs-parallaxlevel-2" data-x="['center','center','center','center']" data-hoffset="['-8','-8','-8','-8']" data-y="['middle','middle','middle','middle']" data-voffset="['-10','-10','-10','-10']" data-fontsize="['20','20','20','25']" data-lineheight="['20','20','20','30']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"from":"y:50px;rX:45deg;sX:2;sY:2;opacity:0;","speed":1500,"to":"o:1;","delay":600,"ease":"Power4.easeOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]' data-textalign="['center','center','center','center']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]">سامانه جامع برگزاری همایش</div>
+                        <!-- Layer 13 -->
+                        <div class="tp-caption rs-parallaxlevel-3" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['92','92','92','92']" data-width="none" data-height="none" data-whitespace="nowrap" data-responsive_offset="on" data-responsive="off" data-frames='[{"from":"y:100px;rX:90deg;opacity:0;","speed":1500,"to":"o:1;","delay":700,"ease":"Power4.easeOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]' style="z-index: 13">
+                            <a ui-sref="HamayeshActive" class="mb-2 btn btn-outline-success btn-rounded">شرکت در همایش</a>
+                        </div>
+                    </div>
+                </li>
+                <!-- SLIDE 3 -->
+                <li class="slide" data-transition="fadethroughdark" data-slotamount="7" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="assets/img/shop/mens-1-thumb.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-link="http://ijcm.ir" data-target="_blank">
+                    <img src="assets/img/slide-dummy.png" style='background-color:#151513' data-lazyload="@Url.Content("~/assets/img/shop/websitebg-bl_compr1_3.png")" alt="Background image" data-bgposition="center top" data-bgfit="cover" data-bgparallax="10" class="rev-slidebg" data-no-retina />
+                    <!-- SLIDE 1 Content-->
+                    <div class="slide-content container">
+                        <!--elements within .slide-content are pushed below navbar on "behind"-->
+                        <!-- Layer 1 -->
+                        <div class="tp-caption text-grey"
+                             data-x="1136px"
+                             data-hoffset="['0','0','0','40']"
+                             data-y="['bottom','bottom','bottom','bottom']"
+                             data-voffset="['180','180','180','180']"
+                             data-fontsize="['26','26','26','26']"
+                             data-lineheight="['52','52','52','52']"
+                             data-width="420" data-height="none"
+                             data-whitespace="normal"
+                             data-type="text"
+                             data-basealign="slide"
+                             data-responsive_offset="on"
+                             data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","speed":1200,"to":"o:1;","delay":1300,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"opacity:0;","ease":"nothing"}]' data-textalign="right">
+                            <span class="font-weight-bold text-uppercase text-white">مجله بلورشناسی و کانی شناسی ایران</span>
+                        </div>
+                        <!-- Layer 2 -->
+                        <div class="tp-caption text-grey"
+                             data-x="1136px"
+                             data-hoffset="['0','0','0','40']"
+                             data-y="['bottom','bottom','bottom','bottom']"
+                             data-voffset="['140','140','140','140']"
+                             data-fontsize="['13','13','13','13']"
+                             data-lineheight="['52','52','52','52']"
+                             data-width="620"
+                             data-height="none"
+                             data-whitespace="normal"
+                             data-type="text"
+                             data-basealign="slide"
+                             data-responsive_offset="on"
+                             data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","speed":1200,"to":"o:1;","delay":1300,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"opacity:0;","ease":"nothing"}]' data-textalign="right">
+                            <span class="font-weight-bold text-uppercase text-white">Iranian Journal of Crystallography and Mineralogy</span>
+                        </div>
+                        <!-- Layer 3 -->
+                        <div class="tp-caption text-grey"
+                             data-x="1136px"
+                             data-hoffset="['0','0','0','40']"
+                             data-y="['bottom','bottom','bottom','bottom']"
+                             data-voffset="['80','80','80','80']"
+                             data-fontsize="['20','20','20','30']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-type="text"
+                             data-basealign="slide"
+                             data-responsive_offset="on"
+                             data-frames='[{"delay":0,"speed":1200,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","to":"o:1;","delay":1400},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]' data-textalign="['center','center','center','center']">
+                            نشانی وبگاه<a href="http://ijcm.ir" target="_blank" class="text-grey pr-3">http://ijcm.ir</a>
+                        </div>
+                        <!-- Layer 3 -->
+                        <div class="tp-caption rs-parallaxlevel-8"
+                             data-frames='[{"from":"o:0;sX:3;sY:3;","speed":2000,"to":"o:0.20;sX:3;sY:3;","delay":1800,"ease":"default"},{"delay":"wait","speed":1200,"to":"x:[100%];","ease":"Power3.easeInOut"}]'
+                             data-x="right" data-y="bottom"
+                             data-hoffset="-1360"
+                             data-voffset="0"
+                             data-width="none"
+                             data-height="none" data-type="image" data-basealign="slide">
+                            <i class="fa fa-bullseye icon-20x icon-bg op-2 text-white"></i>
+                        </div>
+                        <!-- Layer 4 -->
+                        <div class="tp-caption tp-resizeme bg-primary-bright"
+                             data-frames='[{"from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","speed":1500,"to":"o:1;","delay":500,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"x:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]'
+                             data-x="1136px"
+                             data-hoffset="['0','0','0','40']"
+                             data-textalign="['right','right','right','right']"
+                             data-y="bottom"
+                             data-voffset="120"
+                             data-width="380"
+                             data-basealign="slide"
+                             data-height="4">
+                        </div>
+                        <!-- Layer 5 -->
+                        <div class="tp-caption tp-resizeme"
+                             data-x="['350','350','350','350']"
+                             data-hoffset="['0','0','0','40']"
+                             data-y="top"
+                             data-voffset="100"
+                             data-width="380"
+                             data-height="4"
+                             data-basealign="slide"
+                             data-whitespace="nowrap"
+                             data-type="image"
+                             data-responsive_offset="on"
+                             data-frames='[{"delay":500,"speed":3800,"frame":"0","from":"opacity:0;x:150%;","to":"o:1;x:0;","ease":"Circ.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                             data-paddingtop="[0,0,0,0]"
+                             data-paddingright="[0,0,0,0]"
+                             data-paddingbottom="[0,0,0,0]"
+                             data-paddingleft="[0,0,0,0]"
+                             style="z-index: 5;">
+                            <img src="assets/img/slide-dummy.png" alt="" data-lazyload="@Url.Content("~/assets/img/shop/imac.png")" data-no-retina />
+                        </div>
+                        <div class="tp-caption tp-resizeme"
+                             data-x="475"
+                             data-basealign="slide"
+                             data-hoffset="['0','0','0','40']"
+                             data-y="['top','top','top','top']"
+                             data-voffset="['360','360','360','360']"
+                             data-width="full-proportional"
+                             data-height="full-proportional"
+                             data-whitespace="nowrap"
+                             data-type="image" data-responsive_offset="on" data-frames='[{"delay":500,"speed":3800,"frame":"0","from":"opacity:0;x:150%;","to":"o:1;x:0;","ease":"Circ.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                             data-textalign="['inherit','inherit','inherit','inherit']"
+                             data-paddingtop="[0,0,0,0]"
+                             data-paddingright="[0,0,0,0]"
+                             data-paddingbottom="[0,0,0,0]"
+                             data-paddingleft="[0,0,0,0]"
+                             style="z-index: 5;">
+                            <img src="~/assets/img/slide-dummy.png" alt="" data-lazyload="@Url.Content("~/assets/img/shop/kanex-multi-sync-keyboard-profile-100056590-orig.png")" data- data-no-retina />
+                        </div>
+
+                    </div>
+
+                </li>
+            </ul>
+            <div class="tp-bannertimer tp-bottom"></div>
+        </div>
+        <!--end of tp-banner-->
+    </div>
+</div>
+@if (Model.Election.ID == 0)
+{
+    if (Model.PosterImageUrl != null)
+    {
+        <!-- Promos -->
+        <div class="container py-4 py-lg-6">
+            <div class="row text-center">
+                <div class="col-md-4 d-flex">
+                    <div class=" overlay-gradient overlay-op-5 rounded mb-4 mb-lg-0 flex-ew flex-valign">
+                        <img src="@Url.Content(Model.PosterImageUrl)" class="img-thumbnail" alt="@Model.ConferenceTitle" title="@Model.ConferenceTitle" />
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <!-- Call to action -->
+                    <div class="bg-primary-darkend bg-shadow border-primary-darkend text-white p-5 px-lg-4 pos-relative">
+                        <i class="fa fa-clock-o icon-15x icon-bg text-left mb-4-neg ml-6-neg mt-6-neg op-3 text-white d-flex  justify-content-end"></i>
+                        <h4 class="my-0 font-weight-bold text-uppercase">
+                            روزشمار همایش
+                        </h4>
+                        <hr class="hr-lg mt-2 mb-3  w-20" />
+                        <div class="countdown countdown-cards w-90 w-lg-50 mx-auto pb-4" data-animate-delay="0.55"
+                             data-countdown="@Model.ConferenceEventDate.Value.ToString("yyyy/MM/dd HH:mm:ss")" AM data-countdown-format='
+                    <span class="count p-3 border-faded border-op-3 text-white bg-faded bg-op-1">
+                        <h2 class="digit">
+                            %-S
+                        </h2>
+                        ثانیه
+                    </span>
+                    <span class="count p-3 border-faded border-op-3 text-white bg-faded bg-op-1">
+                        <h2 class="digit">
+                            %-M
+                        </h2>
+                        دقیقه
+                    </span>
+                    <span class="count p-3 border-faded border-op-3 text-white bg-faded bg-op-1">
+                        <h2 class="digit">
+                            %-H
+                        </h2>
+                        ساعت
+                    </span>
+                    <span class="count p-3 border-faded border-op-3 text-white bg-faded bg-op-1">
+                        <h2 class="digit">
+                            %D
+                        </h2>
+                        روز
+                    </span>
+                    '>
+                </div>
+                        <div id="callback-form" action="#" role="form">
+                            <div class="input-group row">
+                                <!-- Blog post 1 -->
+                                <div class="col-8">
+                                    <h5 class="my-0">
+                                        @Model.ConferenceTitle
+                                    </h5>
+                                </div>
+                                <hr class="hr-faded my-2" />
+                                <!-- Blog post 2 -->
+                                <div class="col-4">
+                                    <h5 class="my-0">
+                                        @Model.ConferencePlace
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="input-group row pt-3">
+                                <!-- Blog post 1 -->
+                                <div class="col-4">
+                                    <p class="my-0 text-sm">آغاز ارسال مقاله</p>
+                                    <h5 class="my-0">
+                                        @Model.ConferenceSendStartDate
+                                    </h5>
+                                </div>
+                                <hr class="hr-faded my-2" />
+                                <!-- Blog post 2 -->
+                                <div class="col-4">
+                                    <p class="my-0 text-sm">پایان مهلت ارسال مقاله</p>
+                                    <h5 class="my-0">
+                                        @Model.ConferenceSendEndDate
+                                    </h5>
+                                </div>
+                                <hr class="hr-faded my-2" />
+                                <!-- Blog post 3 -->
+                                <div class="col-4">
+                                    <p class="my-0 text-sm">زمان برگزاری همایش</p>
+                                    <h5 class="my-0">
+                                        @Model.ConferenceEventDatePersian
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="p-5">
+                        <a ui-sref="HamayeshActive" class="btn btn-primary btn-rounded btn-lg py-lg-3 px-lg-5 animated animated-done" data-toggle="scroll-link" data-animate="fadeIn" data-animate-delay="0.55" style="animation-delay: 0.55s;">ورود به همایش</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+}
+else
+{
+
+    if (Model.PosterImageUrl != null)
+    {
+        <div class="container py-4 py-lg-6">
+            <div class="row text-center">
+                <div class="col-md-4 d-flex">
+                    <div class=" overlay-gradient overlay-op-5 rounded mb-4 mb-lg-0 flex-ew flex-valign">
+                        <img src="@Url.Content(Model.Election.PosterImageUrl)" class="img-thumbnail" alt="@Model.Election.Name" title="@Model.Election.Name" />
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <!-- Call to action -->
+                    <div class="bg-primary-darkend bg-shadow border-primary-darkend text-white p-5 px-lg-4 pos-relative">
+                        <i class="fa fa-clock-o icon-15x icon-bg text-left mb-4-neg ml-6-neg mt-6-neg op-3 text-white d-flex  justify-content-end"></i>
+                        <h4 class="my-0 font-weight-bold text-uppercase">
+                            روزشمار انتخابات
+                        </h4>
+                        <hr class="hr-lg mt-2 mb-3  w-20" />
+                        <div class="countdown countdown-cards w-90 w-lg-50 mx-auto pb-4" data-animate-delay="0.55"
+                             data-countdown="@Model.Election.StartDate.Value.ToString("yyyy/MM/dd HH:mm:ss")" AM data-countdown-format='
+                    <span class="count p-3 border-faded border-op-3 text-white bg-faded bg-op-1">
+                        <h2 class="digit">
+                            %-S
+                        </h2>
+                        ثانیه
+                    </span>
+                    <span class="count p-3 border-faded border-op-3 text-white bg-faded bg-op-1">
+                        <h2 class="digit">
+                            %-M
+                        </h2>
+                        دقیقه
+                    </span>
+                    <span class="count p-3 border-faded border-op-3 text-white bg-faded bg-op-1">
+                        <h2 class="digit">
+                            %-H
+                        </h2>
+                        ساعت
+                    </span>
+                    <span class="count p-3 border-faded border-op-3 text-white bg-faded bg-op-1">
+                        <h2 class="digit">
+                            %D
+                        </h2>
+                        روز
+                    </span>
+                    '>
+                </div>
+                        <div id="callback-form" action="#" role="form">
+                            <div class="input-group row">
+                                <!-- Blog post 1 -->
+                                <div class="col-12">
+                                    <h5 class="my-0">
+                                        @Model.Election.Name
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="input-group row pt-3">
+                                <!-- Blog post 1 -->
+                                <div class="col-4">
+                                    <p class="my-0 text-sm">آغاز انتخابات</p>
+                                    <h5 class="my-0">
+                                        @Model.Election.StartDateConverted
+                                    </h5>
+                                </div>
+                                <hr class="hr-faded my-2" />
+                                <!-- Blog post 2 -->
+                                <div class="col-4">
+                                    <p class="my-0 text-sm">پایان مهلت انتخابات</p>
+                                    <h5 class="my-0">
+                                        @Model.Election.EndDateConverted
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="p-4">
+                        @if (Model.Election.EndDate.Date >= DateTime.Now.Date)
+                        {
+                            <a ui-sref="UserProfile.Vote" class="btn btn-primary btn-rounded btn-lg py-lg-3 px-lg-5 animated animated-done" data-toggle="scroll-link" data-animate="fadeIn" data-animate-delay="0.55" style="animation-delay: 0.55s;">ورود به انتخابات</a>
+                        }
+                        @if (Model.Election.EndDate.Date < DateTime.Now.Date)
+                        {
+                            <a ui-sref="ElectionResult({id:'@Model.Election.ID'})" class="btn btn-primary btn-rounded btn-lg py-lg-3 px-lg-5 animated animated-done" data-toggle="scroll-link" data-animate="fadeIn" data-animate-delay="0.55" style="animation-delay: 0.55s;">نمایش نتایج انتخابات</a>
+                        }
+                    </div>
+                    <div>
+                        <a href="@Model.Election.AttachUrl" target="_blank" class="btn btn-primary btn-rounded btn-lg py-lg-3 px-lg-5 animated animated-done" data-toggle="scroll-link" data-animate="fadeIn" data-animate-delay="0.55" style="animation-delay: 0.55s;">پیام نماینده محترم کمیسیون انجمن های علمی ایران</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+<!-- ======== Region: #content ======== -->
+<div id="content" class="p-0 bg-faded ">
+    <!-- Features -->
+    <div id="features" class="container py-5">
+        <hr class="hr-lg mt-0 mb-3 w-10 mx-auto hr-primary" />
+        <h3 class="text-center text-uppercase font-weight-bold my-0">
+            زمینه های همایش
+        </h3>
+        <h5 class="text-center font-weight-light mt-2 mb-0 text-muted">
+            لیست مقالات در سه زمینه ی اصلی
+        </h5>
+        <hr class="mb-5 w-50 mx-auto" />
+        <div class="row text-center">
+            @foreach (var item in Model.ConferenceCategories)
+            {
+                <div class="col-lg-4 py-2">
+                    <i class="fa @(item.IconName) icon-4x icon-sq bg-primary text-white rounded-circle bg-shadow" data-animate-delay="0.1"></i>
+                    <h4 class="mt-2">@item.Name</h4>
+                    <p>@item.Explain</p>
+                    <a class="text-sm font-weight-bold" ui-sref="ArticleList({ConferenceID:0,FieldID:'@item.ID'})">
+                        مشاهده لیست مقالات
+                        <i class="ion-ios-arrow-back pr-1"></i>
+                    </a>
+                </div>
+            }
+
+            @*@ <div class="col-lg-4 py-2">
+                    <i class="fa fa-globe icon-4x icon-sq bg-primary text-white rounded-circle bg-shadow" data-animate="fadeIn" data-animate-delay="0.1"></i>
+                    <h4 class="mt-2">زمين شناسي</h4>
+                    <p>توضیح گروه همایشی در این قسمت درج میگردد</p>
+                    <a class="text-sm font-weight-bold" href="PaperList.aspx">
+                        مشاهده لیست مقالات
+                        <i class="ion-ios-arrow-back pr-1"></i>
+                    </a>
+                </div>
+
+                <div class="col-lg-4 py-2 ">
+                    <i class="fa fa-flask  icon-4x  icon-sq bg-primary text-white rounded-circle bg-shadow" data-animate="fadeIn" data-animate-delay="0.2"></i>
+                    <h4 class="mt-2">شیمی</h4>
+                    <p>توضیح گروه همایشی در این قسمت درج میگردد</p>
+                    <a class="text-sm font-weight-bold" href="PaperList.aspx">
+                        مشاهده لیست مقالات
+                        <i class="ion-ios-arrow-back pr-1"></i>
+                    </a>
+                </div>
+
+                <div class="col-lg-4 py-2">
+                    <i class="fa fa-thermometer-three-quarters icon-4x icon-sq bg-primary text-white rounded-circle bg-shadow" data-animate="fadeIn" data-animate-delay="0.3"></i>
+                    <h4 class="mt-2">فیزیک و مواد</h4>
+                    <p>توضیح گروه همایشی در این قسمت درج میگردد</p>
+                    <a class="text-sm font-weight-bold" href="PaperList.aspx">
+                        مشاهده لیست مقالات
+                        <i class="ion-ios-arrow-back pr-1"></i>
+                    </a>
+                </div>@*@
+        </div>
+    </div>
+
+    <!-- Why AppStrap -->
+    <div class="bg-inverse">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-7 py-5 ">
+                    <div class="mx-5">
+                        <hr class="hr-lg mt-0 mb-2 w-10 mx-0 hr-primary" />
+                        <h3 class="text-white text-uppercase mt-0 mb-5">
+                            موضاعات <span class="text-primary font-weight-bold">همایش</span>
+                        </h3>
+
+                        @Html.Action("DynamicPageBlockUI", "Home", new { id = 30 })
+
+                        @*@ <div class="row mb-3">
+                                <div class="col-2 col-md-1 text-center">
+                                    <i class="fa fa-check text-primary icon-2x"></i>
+                                </div>
+                                <div class="col-10 col-md-11 text-grey">
+                                    <h5 class="font-weight-bold text-white text-uppercase">رشد، خواص فیزیکی و شیمیایی بلورها</h5>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-2 col-md-1 text-center">
+                                    <i class="fa fa-check text-primary icon-2x"></i>
+                                </div>
+                                <div class="col-10 col-md-11 text-grey">
+                                    <h5 class="font-weight-bold text-white text-uppercase">روش های تجربی در پراش پرتو ایکس، الکترون و نوترون</h5>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-2 col-md-1 text-center">
+                                    <i class="fa fa-check text-primary icon-2x"></i>
+                                </div>
+                                <div class="col-10 col-md-11 text-grey">
+                                    <h5 class="font-weight-bold text-white text-uppercase">روش های تحلیل ساختار بلورها</h5>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-2 col-md-1 text-center">
+                                    <i class="fa fa-check text-primary icon-2x"></i>
+                                </div>
+                                <div class="col-10 col-md-11 text-grey">
+                                    <h5 class="font-weight-bold text-white text-uppercase">هندسه بلور و تعیین ساختار بلوری مولکول های معدنی، آلی و لایه های نازک آن</h5>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-2 col-md-1 text-center">
+                                    <i class="fa fa-check text-primary icon-2x"></i>
+                                </div>
+                                <div class="col-10 col-md-11 text-grey">
+                                    <h5 class="font-weight-bold text-white text-uppercase">زمین شناسی و کانی شناسی و تعیین ساختار بلوری کانی های ناشناخته</h5>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-2 col-md-1 text-center">
+                                    <i class="fa fa-check text-primary icon-2x"></i>
+                                </div>
+                                <div class="col-10 col-md-11 text-grey">
+                                    <h5 class="font-weight-bold text-white text-uppercase">بلورهای مایع و نانو بلورها</h5>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-2 col-md-1 text-center">
+                                    <i class="fa fa-check text-primary icon-2x"></i>
+                                </div>
+                                <div class="col-10 col-md-11 text-grey">
+                                    <h5 class="font-weight-bold text-white text-uppercase">سایر زمینه های مرتبط با علوم</h5>
+                                </div>
+                            </div>@*@
+                    </div>
+                </div>
+                <div ng-controller="translateCtrl" class="col-lg-5 divider-diagonal  divider-dark" ng-class="{'divider-diagonal-r': isActive('fa'),'divider-diagonal-l': isActive('en')}" data-bg-img="@Url.Content("~/assets/img/backgrounds/computer-screens.jpg")"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Steps -->
+    <div class="container animated fadeIn animation-delay-7">
+        <div class="py-3 py-lg-6">
+            <hr class="hr-lg mt-0 mb-3 w-10 mx-auto hr-primary" />
+            <h3 class="text-center text-uppercase font-weight-bold my-0">
+                راهنمای ارسال مقاله
+            </h3>
+            @Html.Action("DynamicPageBlockUI", "Home", new { id = 31 })
+
+            @*@ <ul class="nav nav-steps nav-steps-circles flex-column flex-lg-row justify-content-around w-80 mx-auto">
+                    <li class="nav-item">
+                        <a href="#tab-steps1" class="nav-link active" data-toggle="tab"><i class="fa fa-user-plus icon-2x mb-05"></i><span class="font-weight-bold d-block">گام 1</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#tab-steps2" class="nav-link" data-toggle="tab"><i class="fa fa-graduation-cap icon-2x mb-05"></i><span class="font-weight-bold d-block">گام 2</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#tab-steps3" class="nav-link" data-toggle="tab"><i class="fa fa-gavel icon-2x mb-05"></i><span class="font-weight-bold d-block">گام 3</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#tab-steps4" class="nav-link" data-toggle="tab"><i class="fa fa-flag icon-2x mb-05"></i><span class="font-weight-bold d-block">گام 4</span> </a>
+                    </li>
+                </ul>
+                <div class="tab-content text-center pb-2 px-md-6">
+                    <div class="tab-pane fade active show" id="tab-steps1">
+                        <h3>
+                            ثبت نام در سامانه
+                        </h3>
+                        <p>برای ارسال مقاله در همایش، باید ابتدا در سامانه ثبت نام کنید تا پس از تایید عضویت شما از امکانات وب سایت برخوردار گردید. شما می توانید از طریق لینک زیر در سامانه ثبت نام کنید.</p>
+                        <a href="#/Signup" class="btn btn-lg btn-outline-primary">ثبت نام در سامانه</a>
+                    </div>
+                    <div class="tab-pane fade" id="tab-steps2">
+                        <h3>
+                            ارسال مقاله
+                        </h3>
+                        <p>برای فرستادن مقاله‌ی خود باید از طریق فرم ارسال مقاله که در صفحه کاربری شما وجود دارد اقدام کنید. پس از ورود به فرم ارسال مقاله، مراحل زیر برای دریافت مشخصات و پرونده‌ی مقاله در دسترس شما قرار می‌گیرد.</p>
+                        <p><span class="font-weight-bold tx">1. </span>تعیین مشخصات اصلی مقاله</p>
+                        <p><span class="font-weight-bold ">2. </span>بارگذاری مقاله</p>
+                        <p><span class="font-weight-bold ">3. </span>درج نویسندگان مقاله</p>
+                        <p><span class="font-weight-bold ">4. </span>شرکت در همایش</p>
+                        <a href="Login.aspx" class="btn btn-lg btn-outline-primary">عضویت در انجمن</a>
+                        <a href="#/Signup" class="btn btn-lg btn-outline-primary">ثبت نام در سامانه</a>
+                    </div>
+                    <div class="tab-pane fade" id="tab-steps3">
+                        <h3>
+                            پیگیری نتیجه داوری
+                        </h3>
+                        <p>برای آگاهی از آخرین وضعیت مقاله به صفحه‌ی شخصی خود بروید. در این صفحه فهرست مقالات فرستاده از سوی شما و همچنین وضعیت و نظر داوران همایش درباره‌ی هر مقاله دیده می‌شود. همچنین امکان ویرایش اطلاعات مقاله تا قبل از پایان مهلت ارسال یا بعد از اتمام داوری برای فرستنده ی مقاله وجود دارد.</p>
+                        <a href="#/Signup" class="btn btn-lg btn-outline-primary">ثبت نام در سامانه</a>
+                    </div>
+                    <div class="tab-pane fade" id="tab-steps4">
+                        <h3>
+                            شرکت در همایش
+                        </h3>
+                        <p>
+                            کاربران علاقه مند به شرکت در همایش پس تایید نهایی داوران منتخب، می توانند با تکمیل فرم شرکت در همایش جهت ارائه شفاهی و پوستر در همایش حضور یابند.
+                            همچنین افراد فاقد مقاله نیز قادر به ثبت نام در همایش هستند.
+                        </p>
+                        <p>شایان ذکر است که تعرفه ی های شرکت در همایش بنابر مصوبه هیات رئیسه انجمن بلورشناسی و کانی شناسی ایران محاسبه می گردد.</p>
+                        <a href="#/Signup" class="btn btn-lg btn-outline-primary">ثبت نام در سامانه</a>
+                    </div>
+                </div>@*@
+        </div>
+    </div>
+
+    <!-- Hiring MDR block -->
+    <div class="p-3 bg-inverse text-white overlay overlay-primary overlay-op-9" data-animate="fadeIn">
+        <div class="container animated fadeIn animation-delay-7">
+            <div class="row">
+                <div class="col-md-1 d-none d-lg-block px-0">
+                    <i class="fa fa-telegram icon-4x op-4 d-flex justify-content-end"></i>
+                </div>
+                <div class="col-md-9 col-sm-10 py-2">
+                    <h4 class="text-uppercase font-weight-bold mt-0 mb-2">
+                        {{ 'TelegramFlow' | translate }}
+                    </h4>
+                    <h5 class="mb-0">
+                        {{ 'TelegramFlowExplain' | translate }}
+                    </h5>
+                </div>
+                <div class="col-md-2 py-2 d-flex justify-content-center">
+                    <a href="#" class="btn btn-lg btn-rounded btn-primary px-4">{{ 'TelegramFlowButton' | translate }}<i class="fa fa-thumbs-up mx-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

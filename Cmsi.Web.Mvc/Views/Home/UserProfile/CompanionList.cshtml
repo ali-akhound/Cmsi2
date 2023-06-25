@@ -1,0 +1,49 @@
+﻿@model AVA.Web.Mvc.Models.CompanionListViewModel
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Controller;
+<update-title title="{{'CompanionList' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'CompanionList' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'CompanionList' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'CompanionList' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'CompanionList' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<div id="content" ng-controller="ListController">
+    <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+    <h4>{{'CompanionList'| translate}}</h4>
+    <div class="row">
+        <table class="table table-bordered text-sm">
+            <thead class="thead-default">
+                <tr>
+                    <th>#</th>
+                    <th>@(CommonHelper.GetDisplayName(Model.SingleDataModel, m => m.FirstName))</th>
+                    <th>@(CommonHelper.GetDisplayName(Model.SingleDataModel, m => m.LastName))</th>
+                    <th class="w-5">@(CommonHelper.GetDisplayName(Model.SingleDataModel, m => m.CreateDateConverted))</th>
+                    <th>@(CommonHelper.GetDisplayName(Model.SingleDataModel.SelectedPackageObject, m => m.Name))</th>
+                    <th>@(CommonHelper.GetDisplayName(Model.SingleDataModel.SelectedPackageObject, m => m.Price))</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr dir-paginate="item in DataModel | itemsPerPage: pageSize" total-items="totalRecords" current-page="pagination.current">
+                    <th scope="row">{{$index+1}}</th>
+                    <td>{{item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleDataModel, m => m.FirstName).Name}}</td>
+                    <td>{{item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleDataModel, m => m.LastName).Name}}</td>
+                    <td>{{item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleDataModel, m => m.CreateDateConverted).Name}}</td>
+                    <td>{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleDataModel, m => m.SelectedPackageObject).Name).@CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleDataModel.SelectedPackageObject, m => m.Name).Name}}</td>
+                    <td>{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleDataModel, m => m.SelectedPackageObject).Name).@CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleDataModel.SelectedPackageObject, m => m.Price).Name}}</td>
+                    <td>
+                        @*<button type="submit" class="btn btn-primary btn-sm btn-block"><i class="fa fa-edit pl-2"></i>ویرایش</button>*@
+                        <button type="submit" class="btn btn-danger btn-sm btn-block" ng-click="DeleteAction('@Url.Action("DeleteCompanion", "Home")',item.ID)"><i class="fa fa-times pl-2"></i>حذف</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" template-url="@Url.Content("~/assets/template/dirPagination.tpl.html")"></dir-pagination-controls>
+
+</div>
+<script>
+    var PageChangeActionUrl ='@Url.Action("CompanionListFeed", "Home")';
+    var ListModel=@Html.Raw(Json.Encode(Model));
+    var ListName='DataModel';
+</script>

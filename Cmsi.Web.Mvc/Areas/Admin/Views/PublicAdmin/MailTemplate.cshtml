@@ -1,0 +1,125 @@
+﻿@model AVA.Web.Mvc.Models.Admin.MailTemplateViewModel
+@using AVA.UI.Helpers.Controller;
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Base;
+@{
+    string ModuleName = "MailTemplate";
+    int CurrentID = Model.CurrentID;
+}
+@using (Html.BeginForm("Submit" + ModuleName, "PublicAdmin", null, FormMethod.Post, new { id = "form-" + ModuleName, ng_controller = "MySubmitController" }))
+{
+    <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+    @Html.HiddenFor(model => model.SingleMailTemplate.Template, new
+{
+    id = "MailTemplate",
+    ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SingleMailTemplate).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleMailTemplate, m => m.Template).Name
+})
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>{{ 'MailTemplate' | translate }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a ui-sref="Home">{{ 'Home' | translate }}</a>
+                </li>
+                <li class="active">
+                    <strong>{{ 'MailTemplate' | translate }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content text-center p-md">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.DprItems, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-5">
+                                    @Html.DropDownListFor(model => model.SelectedID, new List<SelectListItem>(), new
+                               {
+                                   @class = "form-control",
+                                   ng_change = "updateTemplate(this)",
+                                   ng_model = "model.SelectedItem",
+                                   ng_options = "s.Value as s.Text for s in model.DprItems track by s.Value",
+                               })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.SingleMailTemplate.Params, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-5">
+                                    <tags-input ng-model="model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model
+                                                                , m => m.SingleMailTemplate).Name).@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleMailTemplate, m => m.Params).Name).@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleMailTemplate.Params, m => m.Data).Name)" ng-disabled="true" placeholder="-">
+                                    </tags-input>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.SingleMailTemplate.Subject, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-5">
+                                    @Html.TextBoxFor(model => model.SingleMailTemplate.Subject, new
+                               {
+                                   @class = "form-control",
+                                   ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SingleMailTemplate).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleMailTemplate, m => m.Subject).Name
+                               })
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.ValidationMessageFor(model => model.SingleMailTemplate.Subject, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.Action("HtmlEditorPartial")
+                                }
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.SingleMailTemplate.SMS, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.SingleMailTemplate.SMS, new
+                               {
+                                   @class = "form-control",
+                                   ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SingleMailTemplate).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleMailTemplate, m => m.SMS).Name
+                               })
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-3 col-sm-offset-3">
+                                    <button class="btn btn-primary" id="SubmitBtn" ng-click="submitForm($event,'@Url.Action("SubmitMailTemplate", "PublicAdmin")','form-@ModuleName')">ویرایش</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+    CurrentModel.DprItems=new Object();
+    CurrentModel.FormItems=new Object();
+    CurrentModel.FormItems=@Html.Raw(Json.Encode(Model.TotalMailTemplate[CurrentID]));
+    CurrentModel.DprItems=@Html.Raw(Json.Encode(Model.DprItems));
+    CurrentModel.SelectedItem = CurrentModel.DprItems[0];
+    CurrentModel.@CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SingleMailTemplate).Name=CurrentModel.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.TotalMailTemplate).Name)[0];
+    function OnHtmlChangedChanged(s, e) {
+        CurrentModel.@CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SingleMailTemplate).Name.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleMailTemplate, m => m.Template).Name=HtmlEditor.GetHtml();
+    }
+    function OnInit() {
+        HtmlEditor.SetHtml(CurrentModel.@CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SingleMailTemplate).Name.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleMailTemplate, m => m.Template).Name);
+    }
+    //GetValue
+</script>

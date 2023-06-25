@@ -1,0 +1,143 @@
+﻿@model AVA.Web.Mvc.Models.ArticleClientListViewModel
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Controller;
+<update-title title="{{'@(Model.FilterForm.ShowPosterArticle?"VirtualBoard":"ArticleList")' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'@(Model.FilterForm.ShowPosterArticle?"VirtualBoard":"ArticleList")' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'@(Model.FilterForm.ShowPosterArticle?"VirtualBoard":"ArticleList")' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'@(Model.FilterForm.ShowPosterArticle?"VirtualBoard":"ArticleList")' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'@(Model.FilterForm.ShowPosterArticle?"VirtualBoard":"ArticleList")' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<div id="content pt-0">
+    <div class="container  animated fadeIn animation-delay-7">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="title-divider">
+                    <span>{{'@(Model.FilterForm.ShowPosterArticle?"VirtualBoard":"ArticleList")' | translate}}</span>
+                    @{
+                        if (Model.FilterForm.ConferenceID != 0)
+                        {
+                            <small>
+                                <a ui-sref="ConferenceList"><i class="mx-1" ng-controller="translateCtrl" ng-class="{'fa fa-arrow-right': isActive('fa'),'fa fa-arrow-left': isActive('en')}"></i>{{'ConferenceList' | translate}}</a>
+                            </small>
+                        }
+                    }
+                </h3>
+                <div class="row" ng-controller="ListController">
+                    <!-- Products sidebar -->
+                    <div class="col-lg-3 order-lg-1">
+                        <!-- Products filters -->
+                        <div class="row">
+                            <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+                            <div class="p-3 bg-faded">
+                                <div class="form-group">
+                                    <h5>@CommonHelper.GetDisplayName(Model.FilterForm, m => m.Title)</h5>
+                                    @Html.TextBoxFor(model => model.FilterForm.Title, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.FilterForm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.FilterForm, m => m.Title).Name,
+                                        placeholder = CommonHelper.GetDisplayName(Model.FilterForm, m => m.Title)
+                                    })
+                                </div>
+                                <div class="form-group">
+                                    <h5>@CommonHelper.GetDisplayName(Model.FilterForm, m => m.Writer)</h5>
+                                    @Html.TextBoxFor(model => model.FilterForm.Writer, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.FilterForm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.FilterForm, m => m.Writer).Name,
+                                        placeholder = CommonHelper.GetDisplayName(Model.FilterForm, m => m.Writer)
+                                    })
+                                </div>
+                                <div class="form-group">
+                                    <h5>@CommonHelper.GetDisplayName(Model.FilterForm, m => m.Keyword)</h5>
+                                    @Html.TextBoxFor(model => model.FilterForm.Keyword, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.FilterForm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.FilterForm, m => m.Keyword).Name,
+                                        placeholder = CommonHelper.GetDisplayName(Model.FilterForm, m => m.Keyword)
+                                    })
+                                </div>
+                                <div class="form-group">
+                                    <h5>@CommonHelper.GetDisplayName(Model.FilterForm, m => m.ConferenceName)</h5>
+                                    @Html.TextBoxFor(model => model.FilterForm.ConferenceName, new
+                                    {
+                                        @class = "form-control",
+                                        ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.FilterForm).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.FilterForm, m => m.ConferenceName).Name,
+                                        placeholder = CommonHelper.GetDisplayName(Model.FilterForm, m => m.ConferenceName)
+                                    })
+                                </div>
+
+                                <hr class="my-3">
+
+                                <div class="form-group">
+                                    <h5>{{'ArticleFields' | translate}}</h5>
+                                    <div class="checkboxes">
+                                        <div class="form-check" ng-repeat="item in model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.FilterForm).Name).@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.FilterForm, m => m.Fields).Name)">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"
+                                                       ng-model="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.FilterForm.Fields[0], m => m.IsChecked).Name)"
+                                                       value="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.FilterForm.Fields[0], m => m.Value).Name)">
+                                                {{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.FilterForm.Fields[0], m => m.Text).Name)}}
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr class="my-3">
+                                <a ng-click="ArticlePageChanged(1)" class="btn btn-primary btn-block btn-rounded">{{'Search' | translate}} ...</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Products grid -->
+                    <div class="col-lg-9 order-lg-2">
+                        <!-- Jobs list -->
+                        <hr class="hr-lg mt-0 mb-2 w-10 mr-0 hr-primary" />
+                        <h4 class="mb-3 font-weight-bold text-uppercase text-md-right">{{'@(Model.FilterForm.ShowPosterArticle?"VirtualBoard":"ArticleList")' | translate}} @(Model.ConferenceName) <span class="text-xs text-muted font-weight-normal text-normalcase op-7 text-md-left">  @(Model.ConferenceDate) </span></h4>
+                        <div class="card px-3 py-4 mb-3 row-hover pos-relative" dir-paginate="item in DataModel | itemsPerPage: pageSize" total-items="totalRecords" current-page="pagination.current">
+                            <div class="row align-items-center ">
+                                <div class="col-md-10">
+                                    <h4 class="mb-3 text-left">{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleArticle, m => m.EnglishTitle).Name)}}</h4>
+                                    <h5 class="mb-3">{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleArticle, m => m.Title).Name)}}</h5>
+                                    <p class="text-muted mb-2 text-sm">
+                                        @*{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleArticle, m => m.OwnerName).Name)}}-*@
+                                        {{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleArticle, m => m.WriterNames).Name)}}
+                                    </p>
+                                    <p class="text-muted mb-2 text-sm">
+                                        <span class="d-block d-md-inline"><i class="fa fa-map-marker ml-1"></i>{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleArticle, m => m.ConferenceName).Name)}}</span>
+                                        <span class="d-block d-md-inline"><i class="fa fa-globe text-primary mr-md-3 ml-1"></i>{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleArticle, m => m.FieldNames).Name)}}</span>
+                                        <span class="d-block d-md-inline"><i class="fa fa-diamond mr-md-3 ml-1"></i> {{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleArticle, m => m.Keywords).Name)}}</span>
+                                    </p>
+                                    <hr class="my-3" />
+                                    <p class="text-muted mb-2 text-sm" ng-show="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleArticle, m => m.PosterUrl).Name)!=''">
+                                        <i class="fa fa-fw icon-1x fa-slideshare"></i>کانال ارتباطی<span class="text-primary font-weight-bold">/</span>
+                                        <a href="{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleArticle, m => m.PresentLocation).Name)}}" target="_blank">{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleArticle, m => m.PresentLocation).Name)}}.</a>
+                                    </p>
+                                </div>
+                                <div class="col-md-2 text-md-center">
+                                    <div class="date-wrapper" ng-show="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleArticle, m => m.PresentDate).Name)!=''">
+                                        <span class="date-m bg-secondary">زمان ارائه</span>
+                                        <span class="date-d"> {{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleArticle, m => m.PresentDate).Name)}}</span>
+                                        <span class="date-d"> {{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleArticle, m => m.PresentTime).Name)}}</span>
+                                    </div>
+                                    <a ng-show="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleArticle, m => m.PosterUrl).Name)!=''" href="{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleArticle, m => m.PosterUrl).Name)}}" target="_blank" class="btn btn-info mb-2 text-uppercase font-weight-bold d-lg-block">{{'PosterDownload' | translate}}</a>
+                                    <a ui-sref="ArticleDetails({ArticleID:item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleArticle, m => m.ID).Name)})" class="btn  btn-primary text-uppercase mb-2 font-weight-bold d-lg-block">{{'More' | translate}} ...</a>
+                                    <a class="btn btn-sm d-lg-block mb-2" ng-init="ArticleLikeInit(item)" ng-class="{'btn-secondary' : item.AllowLike, 'btn-link' : !item.AllowLike}"
+                                       ng-click="ArticleLikeChange('@Url.Action("LikeArticle","Csmi")',item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleArticle, m => m.ID).Name))">
+                                        <i class="fa fa-thumbs-up ml-2"></i>
+                                        {{item.LikeCnt}} نفر پسندید
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <dir-pagination-controls on-page-change="ArticlePageChanged(newPageNumber)" template-url="@Url.Content("~/assets/template/dirPagination.tpl.html")"></dir-pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var PageChangeActionUrl ='@Url.Action("ArticleListPageChange", "Csmi")';
+    var ListModel=@Html.Raw(Json.Encode(Model));
+    var ListName='@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Articles).Name)';
+</script>

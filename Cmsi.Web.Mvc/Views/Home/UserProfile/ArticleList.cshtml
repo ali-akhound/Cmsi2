@@ -1,0 +1,50 @@
+﻿@model AVA.Web.Mvc.Models.ArticleListViewModel
+@using AVA.UI.Helpers.Common;
+<update-title title="{{'ArticleList' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'ArticleList' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'ArticleList' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'ArticleList' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'ArticleList' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+<div id="content" ng-controller="ListController">
+    <h4>پیگیری مقالات ارسال شده</h4>
+    <div class="row">
+        <table class="table table-bordered text-sm">
+            <thead class="thead-default">
+                <tr>
+                    <th>ردیف</th>
+                    <th class="w-30">عنوان مقاله</th>
+                    <th class="w-5">تاریخ ثبت</th>
+                    <th class="w-15">وضعیت مقاله</th>
+                    <th class="w-15">نحوه ارائه</th>
+                    <th class="w-50">توضیحات</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr dir-paginate="item in DataModel | itemsPerPage: pageSize" total-items="totalRecords" current-page="pagination.current">
+                    <th scope="row">{{$index+1}}</th>
+                    <td>{{item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleDataModel, m => m.Title).Name}}</td>
+                    <td>{{item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleDataModel, m => m.CreateDateConverted).Name}}</td>
+                    <td>{{item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleDataModel, m => m.ArticleStatusName).Name}}</td>
+                    <td>{{item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleDataModel, m => m.ArticlePresentTypeName).Name}}</td>
+                    <td>
+                        <p ng-bind-html="item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleDataModel, m => m.ArticlePresentTypeNameExpain).Name"></p>
+                    </td>
+                    <td>
+
+                        <button ng-click="GotoState('UserProfile.Article',{id:item.@CommonHelper.ExposeProperty.GetPropertyInfo(Model.SingleDataModel, m => m.ID).Name})" class="btn btn-primary btn-sm btn-block "><i class="fa fa-edit pl-2"></i>ویرایش</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" template-url="@Url.Content("~/assets/template/dirPagination.tpl.html")"></dir-pagination-controls>
+
+    <a class="mb-1 btn btn-primary" ui-sref="UserProfile.Article">افزودن مقاله جدید</a>
+</div>
+<script>
+    var PageChangeActionUrl ='@Url.Action("ArticleListFeed", "Home")';
+    var ListModel=@Html.Raw(Json.Encode(Model));
+    var ListName='DataModel';
+</script>

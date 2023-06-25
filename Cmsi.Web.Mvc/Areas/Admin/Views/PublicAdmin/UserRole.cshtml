@@ -1,0 +1,97 @@
+﻿@model AVA.Web.Mvc.Models.Admin.UserRoleViewModel
+@using AVA.UI.Helpers.Controller;
+@using AVA.UI.Helpers.Base;
+@using System.Web.Mvc;
+@{
+    string ModuleName = "UserRole";
+}
+@using (Html.BeginForm("SubmitUserRole", "PublicAdmin", null, FormMethod.Post, new { id = "form-UserRole", ng_controller = "MySubmitController" }))
+{
+    <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.ObjectState)
+    @Html.HiddenFor(model => model.UserID)
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>{{ 'UserRole' | translate }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a ui-sref="Home">{{ 'Home' | translate }}</a>
+                </li>
+                <li class="active">
+                    <strong>{{ 'UserRole' | translate }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content text-center p-md">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.Roles, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    <ui-select multiple ng-model="model.Roles" theme="select2" style="min-width: 300px;">
+                                        <ui-select-match placeholder="نقش را انتخاب کنید...">{{$item.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="role in model.RolesFeed | filter:{Name: $select.search}" refresh="searchRole($select)" refresh-delay="300">
+                                            <div ng-bind-html="role.Name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    @*<ajax-search-input url="~/Admin/PublicAdmin/UserRoleFeed"
+                                                           url-query-string="@FeedUrl"
+                                                           multiple="multiple"
+                                                           text-attr="code"
+                                                           container-css-class="form-control"
+                                                           query-param="RoleName"
+                                                           minimum-input-length="0"
+                                                           selected-item="model.Roles"
+                                                           directive-model="model.Roles">
+                                        </ajax-search-input>*@
+                                </div>
+                            </div>
+                            @*<div class="form-group">
+                                    @{
+                                        var index = 0;
+                                        foreach (var role in Model.Roles)
+                                        {
+                                            <div class="col-sm-2">
+                                                <label>
+                                                    <input icheck type="checkbox" name="Model.Roles[@index]" value="@role.id" id="@role.id" ng-model="model.Roles[@index].HasRole">
+                                                    @role.text
+                                                </label>
+                                            </div>
+                                            index++;
+                                        }
+                                    }
+                                </div>*@
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-3 col-sm-offset-3">
+                                    <button class="btn btn-primary" id="SubmitBtn" ng-click="submitForm($event,'@Url.Action("SubmitUserRole", "PublicAdmin")','form-@ModuleName')">@(Model.ObjectState == ObjectState.Update ? "ویرایش" : " ثبت")</button>
+                                    <a class="btn btn-white" ui-sref="UserManagement">بازگشت</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+}
+
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+    var feedUrl= '@Url.Action("UserRoleFeed", "PublicAdmin", new { uid = Model.UserID })';
+</script>

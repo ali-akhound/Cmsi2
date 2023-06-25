@@ -1,0 +1,200 @@
+﻿<update-title title="{{'SocietyChart' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'SocietyChart' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'SocietyChart' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'SocietyChart' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'SocietyChart' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+@Html.Action("DynamicPageBlockUI", "Home", new { id = 38 })
+@*<div id="content">
+        <div class="container">
+            <div class="content">
+                <figure class="org-chart cf">
+                    <div class="board ">
+                        <ul class="columnOne">
+                            <li>
+                                <span class="lvl-b">
+                                    <h4>ﻫﻴﺖ ﻣﺪﻳﺮﻩ</h4>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="departments1 ">
+                        <li class="department1 ">
+                            <span class="lvl-b ">
+                                <strong>ﻋﻀﻮ ﺍﺻﻠﻲ</strong>
+                                <br>
+                                ﺩﮐﺘﺮ ﻣﺮﺗﻀﻲ ﺯﺭﮔﺮﺷﻮﺷﺘﺮ
+                            </span>
+                        </li>
+                        <li class="department1 ">
+                            <span class="lvl-b">
+                                <strong>ﻋﻀﻮ ﺍﺻﻠﻲ</strong>
+                                <br>
+                                ﺩﮐﺘﺮ ﻓﺮﻫﺎﺩ ﺷﻴﺨﻲ
+                            </span>
+                        </li>
+                        <li class="department1 central">
+                            <span class="lvl-b">
+                                <strong>
+                                    ﺭﻳﺲ ﻫﻴﺎﺕ ﻣﺪﻳﺮﻩ
+                                </strong>
+                                <br>
+                                ﺩﮐﺘﺮ ﺍﻣﻴﺮﺣﺴﻴﻦ ﮐﻮﻫﺴﺎﺭ
+                            </span>
+                        </li>
+                        <li class="department1 ">
+                            <span class="lvl-b">
+                                <strong>ﻋﻀﻮ ﺍﺻﻠﻲ</strong>
+                                <br>
+                                ﺩﮐﺘﺮ ﻓﺮﻫﺎ ﺁﻟﻴﺎﻧﻲ
+                            </span>
+                        </li>
+                        <li class="department1 ">
+                            <span class="lvl-b">
+                                <strong>ﻋﻀﻮ ﺍﺻﻠﻲ</strong>
+                                <br>
+                                ﺩﮐﺘﺮ ﺑﻴﮋﻥ ﺍﻋﺘﻤﺎﺩ
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="board ">
+                        <ul class="columnTwo">
+                            <li>
+                                <span>
+                                    <strong>ﻣﺴﺌﻮل ﮐﻤﯿﺘﻪ ﻧﻈﺎرت و ارزﺷﯿﺎﺑﯽ ﻣﻘﺎﻻت و ﮔﺰارﺷﺎت</strong>
+                                    <br>
+                                    دﮐﺘﺮ ﻓﺮﻫﺎد آﻟﯿﺎﻧﯽ
+                                </span>
+                            </li>
+                            <li>
+                                <span>
+                                    <strong>ﻣﺴﺌﻮل ﮐﻤﯿﺘﻪ ﻋﻠﻤﯽ و ﺑﺮﮔﺰاري ﮐﺎرﮔﺎه ﻫﺎي آﻣﻮزﺷﯽ</strong>
+                                    <br>
+                                    دﮐﺘﺮ ﻣﺮﺗﻀﯽ زرﮔﺮ ﺷﻮﺷﺘﺮي
+                                </span>
+                            </li>
+                        </ul>
+                        <ul class="columnTwo">
+                            <li>
+                                <span>
+                                    <strong>ﻣﺴﺌﻮل ﮐﻤﯿﺘﻪ ﺑﯿﻦ اﻟﻤﻠﻞ</strong>
+                                    <br>
+                                    دﮐﺘﺮ زﻫﺮه اﻋﻠﻤﯽ ﻧﯿﺎ
+                                </span>
+                            </li>
+                            <li>
+                                <span>
+                                    <strong>ﻣﺴﺌﻮل ﮐﻤﯿﺘﻪ رواﺑﻂ ﻋﻤﻮﻣﯽ و ﺑﺮﮔﺰاري ﻫﻤﺎﯾﺶ ﻫﺎ</strong>
+                                    <br>
+                                    ﻣﻬﻨﺪس ﻓﺮﻫﺎد ﺷﯿﺨﯽ
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="departments1 ">
+                        <li class="department1 ">
+                            <span class="lvl-b ">
+                                <strong>ﺑﺎزرس</strong>
+                                <br>
+                                ﺩﮐﺘﺮ ﻣﻨﻮﭼﻬﺮﺑﺎﺑﺎﻳﻲ ﭘﻮﺭ
+                            </span>
+                        </li>
+                        <li class="department1 ">
+                            <span class="lvl-b">
+                                <strong>ﺧﺰاﻧﻪ دار</strong>
+                                <br>
+                                ﺩﮐﺘﺮ ﻣﺮﺗﻀﻲ ﺯﺭﮔﺮﺷﻮﺷﺘﺮی
+                            </span>
+                        </li>
+                        <li class="department1 central">
+                            <span class="lvl-b text-xs">
+                                <i class="fa fa-diamond fa-3x mr-4-neg"></i>
+                                <br />
+                                <strong>
+                                    ﻣﺠﻠﻪ اﻧﺠﻤﻦ ﺑﻠﻮرﺷﻨﺎﺳﯽ و ﮐﺎﻧﯽ ﺷﻨﺎﺳﯽ اﯾﺮان
+                                </strong>
+                            </span>
+                        </li>
+                        <li class="department1 ">
+                            <span class="lvl-b">
+                                <strong>ﻣﺴﺌﻮل دﻓﺘﺮ ﻣﺸﻬﺪ</strong>
+                                <br>
+                                ﺳﻌﯿﺪه ﻗﻮاﻣﯽ ﺻﺒﻮري
+                            </span>
+                        </li>
+                        <li class="department1 ">
+                            <span class="lvl-b">
+                                <strong>ﻣﺪﯾﺮ اﺟﺮاﯾﯽ اﻧﺠﻤﻦ  دﻓﺘﺮ ﻣﺮﮐﺰي </strong>
+                                <br>
+                                ﻣﻬﻨﺪس ﻓﺮﻫﺎد ﺷﯿﺨﯽ
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="board1 ">
+                        <ul class="columnOne1">
+                            <li>
+                                <span class="lvl-b ">
+                                    <strong>ﺳﺮدﺑﯿﺮ و ﻣﺪﯾﺮ ﻣﺴﺌﻮل ﻣﺠﻠﻪ </strong>
+                                    <br>
+                                    دﮐﺘﺮ ﻧﺎﺻﺮ ﺗﺠﺒﺮ
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="departments ">
+                        <li class="department ">
+                            <span class="lvl-b">
+                                <strong>ﻣﺴﺌﻮل ﻓﻨﺎوري اﻃﻼﻋﺎت</strong>
+                                <br>
+                                علی آخوند
+                            </span>
+                        </li>
+                        <li class="department ">
+                            <span class="lvl-b">
+                                <strong>ﻣﺴﺌﻮل ﻓﻨﯽ و اﺟﺮا</strong>
+                                <br>
+                                ﺣﻤﯿﺪه ﻗﻮاﻣﯽ ﺻﺒﻮري
+                            </span>
+                        </li>
+                        <li class="department ">
+                            <span class="lvl-b">
+                                <strong>ﺗﺎﯾﭗ و ﺻﻔﺤﻪ آرا</strong>
+                                <br>
+                                ﺳﻌﯿﺪه ﻗﻮاﻣﯽ ﺻﺒﻮري
+                            </span>
+                        </li>
+                        <li class="department central">
+                            <span class="lvl-b  px-0">
+                                <strong>ﻫﯿﺎت ﺗﺤﺮﯾﺮﯾﻪ</strong>
+                                <br>
+                                <i class="text-xs text-normalcase">
+                                    ﺑﺮاﺳﺎس ﻟﯿﺴﺖ ﺻﻔﺤﻪﻧﺨﺴﺖ ﻣﺠﻠﻪ
+                                </i>
+                            </span>
+                        </li>
+                        <li class="department ">
+                            <span class="lvl-b">
+                                <strong>ﻣﺪﯾﺮ اﺟﺮاﯾﯽ</strong>
+                                <br>
+                                دﮐﺘﺮﺳﯿﺪﻣﺴﻌﻮد ﻫﻤﺎم
+                            </span>
+                        </li>
+                        <li class="department ">
+                            <span class="lvl-b">
+                                <strong>وﯾﺮاﺳﺘﺎر ﻣﺘﻦ ﻓﺎرﺳﯽ</strong>
+                                <br>
+                                دﮐﺘﺮﻣﯿﺮﻋﺒﺎس رﺣﻤﺘﯽ
+                            </span>
+                        </li>
+                        <li class="department ">
+                            <span class="lvl-b">
+                                <strong>وﯾﺮاﺳﺘﺎر ﻣﺘﻦ اﻧﮕﻠﯿﺴﯽ</strong>
+                                <br>
+                                دﮐﺘﺮ ﺳﯿﺪرﺿﺎ ﻣﻮﺳﻮي ﺣﺮﻣﯽ
+                            </span>
+                        </li>
+                    </ul>
+                </figure>
+            </div>
+        </div>
+    </div>*@

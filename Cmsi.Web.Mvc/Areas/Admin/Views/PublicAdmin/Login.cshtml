@@ -1,0 +1,57 @@
+﻿@model AVA.Web.Mvc.Models.Admin.MembershipViewModel
+@using AVA.UI.Helpers.Controller;
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Base;
+@{
+    string ModuleName = "Login";
+}
+<div class="middle-box text-center loginscreen  animated fadeInDown" ng-controller="MySubmitController">
+    <div>
+        <div>
+            <h1 class="logo-name">AVA</h1>
+        </div>
+
+        @{if (ViewBag.Mode == "Admin")
+            {
+                <p>
+                    به سیستم مدیریت پورتال آوا خوش آمدید
+
+                </p>
+            }
+            else
+            {
+                <p>
+                    به سیستم مدیریت داوری آوا خوش آمدید
+                </p>
+            }
+        }
+        @*<p>Login in. To see it in action.</p>*@
+        @using (Html.BeginForm("SubmitLogin", "PublicAdmin", null, FormMethod.Post, new { id = "form-Login", ng_controller = "MySubmitController" }))
+        {
+            <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+            <div class="form-group">
+                @Html.TextBoxFor(model => model.Username, new
+           {
+               @class = "form-control",
+               ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Username).Name,
+               placeholder = "نام کاربری"
+           })
+            </div>
+            <div class="form-group">
+                @Html.PasswordFor(model => model.Password, new
+           {
+               @class = "form-control",
+               ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Password).Name,
+               placeholder = "رمز عبور"
+           })
+            </div>
+            <button type="submit" class="btn btn-primary block full-width m-b" ng-click="SignIn($event,'@Url.Action("SignIn", "PublicAdmin")','form-@ModuleName')">ورود</button>
+            <a ui-sref="ForgotPassword"><small>فراموشی رمز عبور</small></a>
+        }
+        <p class="m-t"> <small>Ava Develop Team &copy; 2017</small> </p>
+    </div>
+</div>
+
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+</script>

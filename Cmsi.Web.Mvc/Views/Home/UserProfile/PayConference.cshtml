@@ -1,0 +1,90 @@
+﻿@model AVA.Web.Mvc.Models.PayConferenceViewModel
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Controller;
+@{
+    string ModuleName = "PayConference";
+}
+<update-title title="{{'PayConference' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'PayConference' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'PayConference' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'PayConference' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'PayConference' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+@using (Html.BeginForm("Submit" + ModuleName, "", null, FormMethod.Post, new { id = "form-" + ModuleName, ng_controller = "MySubmitController" }))
+{
+    <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+    <h4>{{'PayConference'|translate}}</h4>
+    <!--Shopping cart items-->
+    <table class="table table-responsive mb-0 cart-table">
+        <thead>
+            <tr>
+                <th class="w-20">موارد</th>
+                <th class="w-20">قیمت واحد</th>
+                <th class="w-20 text-md-center">تعداد</th>
+                <th class="w-20 text-md-left">هزینه</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Cart item 1 -->
+            <tr ng-repeat="item in model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.ConferencePackages).Name)">
+                <td> <span class="text-sm">{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.ConferencePackage, m => m.Name).Name)}}</span> </td>
+                <td><span class="text-sm">{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.ConferencePackage, m => m.Price).Name) | number : 0}}</span></td>
+                <td>
+                    <div class="input-group input-group-quantity">
+                        <span class="input-group-btn">
+                            <input type="button" ng-click="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.ConferencePackage, m => m.Count).Name)=item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.ConferencePackage, m => m.Count).Name)-1>0?item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.ConferencePackage, m => m.Count).Name)-1:0"
+                                   class="btn btn-secondary quantity-down" value="-" />
+                        </span>
+                        <input type="text" ng-model="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.ConferencePackage, m => m.Count).Name)" class="quantity form-control" />
+                        <span class="input-group-btn">
+                            <input type="button" value="+" ng-click="item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.ConferencePackage, m => m.Count).Name)=item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.ConferencePackage, m => m.Count).Name)+1" class="btn btn-secondary quantity-up" />
+                        </span>
+                    </div>
+                </td>
+                <td class="text-md-left">{{item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.ConferencePackage, m => m.Count).Name)* item.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model.ConferencePackage, m => m.Price).Name) | number : 0}} ریال</td>
+            </tr>
+            <tr>
+                <td> <span class="text-sm">هزینه بسته های انتخاب شده</span> </td>
+                <td><span class="text-sm">بر اساس تعرفه</span></td>
+                <td>
+                    <div class="input-group input-group-quantity">
+                        <a type="button" ui-sref="UserProfile.CompanionList({pageNumber: '1'})" class="mb-1 btn btn-secondary  btn-block" href="RegisterList.aspx"><i class="fa fa-list pl-2"></i>لیست بسته های انتخابی</a>
+                    </div>
+                </td>
+                <td class="text-md-left">{{ model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.CompanionPackage).Name + "." + CommonHelper.ExposeProperty.GetPropertyInfo(Model.CompanionPackage, m => m.Price).Name) | number : 0}} ریال</td>
+            </tr>
+        </tbody>
+    </table>
+    <!--End of Shopping cart items-->
+    <hr class="my-4 hr-lg" />
+    <div class="cart-content-footer">
+        <div class="row">
+            <div class="col-md-8 text-md-right mt-3 mt-md-0">
+                <div class="cart-content-totals">
+                    @*<h4 class="font-weight-light">
+                            مجموع: 00 ریال
+                        </h4>
+                        <h4 class="font-weight-light">
+                            تخفیف سیستم (10%): <span class="text-danger">00 ریال</span>
+                        </h4>*@
+                    <hr class="my-3 w-50 ml-0 ml-md-auto mr-md-0" />
+                    <h3>
+                        جمع کل هزینه: <span class="text-primary">
+                            {{ getTotal()| number : 0}}
+                            ریال
+                        </span>
+                    </h3>
+                    <hr class="my-3 w-50 ml-0 ml-md-auto mr-md-0" />
+                </div>
+                <!-- Proceed to checkout -->
+                @if (Model.Enable)
+                {
+                    <a class="btn btn-primary" ng-click="submitPayForm($event,'@Url.Action("SubmitPayConference", "Home")','form-@ModuleName')">پرداخت هزینه</a>
+                }
+            </div>
+        </div>
+    </div>
+}
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+</script>

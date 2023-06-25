@@ -1,0 +1,124 @@
+﻿@model AVA.Web.Mvc.Models.Admin.ElectionResultViewModel
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>{{ 'ElectionResult' | translate }}</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="Home">{{ 'Home' | translate }}</a>
+            </li>
+            <li>
+                <a ui-sref="ElectionManagement">@Model.ElectionName</a>
+            </li>
+            <li class="active">
+                <strong>{{ 'ElectionResult' | translate }}</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content p-md">
+                    <div class="form-horizontal">
+                        <div id="container">
+
+                        </div>
+                        <div id="container2">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var CurrentModel =@Html.Raw(Json.Encode(Model));
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column',
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: 'نتایج رای گیری اعضا'
+        },
+        xAxis: {
+            categories:@Html.Raw(Model.CandidCategories),
+            crosshair: true,
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'تعداد'
+            },
+            allowDecimals: false
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'اعضا',
+            data: @Html.Raw(Model.CandidVoteCount)
+
+        }
+        ]
+    });
+     Highcharts.chart('container2', {
+        chart: {
+            type: 'column',
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: 'نتایج رای گیری بازرس'
+        },
+        xAxis: {
+            categories:@Html.Raw(Model.InspectorCategories),
+            crosshair: true,
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'تعداد'
+            },
+            allowDecimals: false
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'بازرس',
+            data: @Html.Raw(Model.InspectorVoteCount)
+
+        }
+        ]
+    });
+</script>

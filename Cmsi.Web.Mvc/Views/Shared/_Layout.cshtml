@@ -1,0 +1,248 @@
+﻿@using AVA.Web.Mvc.Models;
+@using System.Configuration;
+<!DOCTYPE html>
+<html ng-app="CSMI">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    @*<meta name="description" content="">*@
+    <meta name="author" content="Ali Akhound-Ali.akhound@gmail.com">
+    <meta name="fragment" content="!">
+    <meta http-equiv="Content-Language" content="fa" />
+    <meta property="og:title" content="" />
+    <meta itemprop="description" content="@ConfigurationManager.AppSettings["description"].ToString()">
+    <meta name="description" content="" />
+    <meta name="keywords" content="@ConfigurationManager.AppSettings["keyword"].ToString()">
+    <script type="application/ld+json">
+    </script>
+    <base href="/" />
+    <!-- Le fav and touch icons - todo: fill with your icons or remove -->
+    <link rel="shortcut icon" href="/assets/img/icons/favicon.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/icons/114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/icons/72x72.png">
+    <link rel="apple-touch-icon" href="/assets/img/icons/default.png">
+
+    <!-- Optional: ICON SETS -->
+    <!-- Iconset: Font Awesome 4.7.0 via CDN -->
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/assets/plugins/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+    <link href="/assets/css/icon-font.min.css" rel="stylesheet" />
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    @*<link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">*@
+    <link href="/assets/css/FontIranSans.css" rel="stylesheet" />
+    @*------------------------------------------------------------------*@
+    @Styles.Render("~/CsmiBundles/core-css")
+    <link href="/assets/css/animate.min.css" rel="stylesheet" />
+    <!--My own custom override -->
+    @{
+        if (Request.Cookies["Lang"] != null)
+        {
+            if (Request.Cookies["Lang"].Value == "fa")
+            {
+                <link href="/assets/css/customFa.css" id="customFa" rel="stylesheet" />
+            }
+            else if (Request.Cookies["Lang"].Value == "en")
+            {
+                <link href="/assets/css/customEn.css" id="customFa" rel="stylesheet" />
+
+            }
+        }
+    }
+    <link rel="apple-touch-icon" sizes="57x57" href="~/assets/img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/assets/img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/assets/img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/assets/img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/assets/img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/assets/img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/assets/img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/assets/img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/assets/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/assets/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/assets/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/assets/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+</head>
+<body class="page page-shop header-compact-sticky page-shop navbar-layout-navbar-below {{$state.current.data.specialClass}}" ng-controller="MainCtrl as main" id="page-top">
+    <update-meta charset="utf-8"></update-meta>
+    <div class="page-loader" data-toggle="page-loader"></div>
+    <!-- ======== Region: #header ======== -->
+    @Html.Partial("~/Views/Shared/_Header.cshtml")
+    <div id="Mytop">
+        <toaster-container></toaster-container>
+        <div ui-view autoscroll="true">
+            @RenderBody()
+        </div>
+        <!-- ======== Region: #footer ======== -->
+        @Html.Partial("~/Views/Shared/_Footer.cshtml", new FooterViewModel())
+    </div>
+    <!--Hidden elements - excluded from jPanel Menu on mobile-->
+    @*<div class="hidden-elements jpanel-menu-exclude">
+             <!--modal - signup modal-->
+             <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                 <div class="modal-dialog">
+                     <div class="modal-content">
+                         <div class="modal-header">
+                             <h4 class="modal-title">
+                                 ثبت نام کاربر عادی
+                             </h4>
+                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                         </div>
+                         <div class="modal-body">
+                             <form action="signup.aspx">
+                                 <div class="form-group">
+                                     <label class="sr-only" for="signup-first-name">نام</label>
+                                     <input type="text" class="form-control" id="signup-first-name" placeholder="نام">
+                                 </div>
+                                 <div class="form-group">
+                                     <label class="sr-only" for="signup-last-name">نام خانوادگی</label>
+                                     <input type="text" class="form-control" id="signup-last-name" placeholder="نام خانوادگی">
+                                 </div>
+                                 <div class="form-group">
+                                     <label class="sr-only" for="signup-username">نام کاربری</label>
+                                     <input type="text" class="form-control" id="signup-username" placeholder="نام کاربری">
+                                 </div>
+                                 <div class="form-group">
+                                     <label class="sr-only" for="signup-email">پست الکترونیکی</label>
+                                     <input type="email" class="form-control" id="signup-email" placeholder="پست الکترونیکی">
+                                 </div>
+                                 <div class="form-group">
+                                     <label class="sr-only" for="signup-password">رمزعبور</label>
+                                     <input type="password" class="form-control" id="signup-password" placeholder="رمزعبور">
+                                 </div>
+                                 <div class="form-group">
+                                     <label class="sr-only" for="signup-password">تکرار رمزعبور</label>
+                                     <input type="password" class="form-control" id="resignup-password" placeholder="تکرار رمزعبور">
+
+                                 </div>
+                                 <div class="form-check">
+                                     <label class="form-check-label">
+                                         <input type="checkbox" value="term" class="form-check-input">
+                                         با قوانین این سایت موافقم.
+
+                                     </label>
+                                 </div>
+                                 <hr />
+                                 <button class="btn btn-primary" type="submit">ثبت نام</button>
+                             </form>
+                         </div>
+                         <div class="modal-footer">
+                             <small>آیا عضو سامانه هستید؟<a href="Login.aspx">ورود به سامانه</a>.</small>
+                         </div>
+                     </div>
+                     <!-- /.modal-content -->
+                 </div>
+                 <!-- /.modal-dialog -->
+             </div>
+             <!-- /.modal -->
+             <!--modal - login modal-->
+             <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                 <div class="modal-dialog">
+                     <div class="modal-content">
+                         <div class="modal-header">
+                             <h4 class="modal-title">
+                                 ورود
+                             </h4>
+                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                         </div>
+                         <div class="modal-body">
+                             <form action="login.html">
+                                 <div class="form-group">
+                                     <h5>ورود به عنوان</h5>
+                                     <select class="form-control">
+                                         <option>کابر عادی</option>
+                                         <option>داوران</option>
+                                     </select>
+                                 </div>
+                                 <hr />
+                                 <h5>اطلاعات حساب کاربری</h5>
+                                 <div class="form-group">
+                                     <label class="sr-only" for="login-email">پست الکترونیکی</label>
+                                     <input type="email" id="login-email" class="form-control email" placeholder="پست الکترونیکی">
+                                 </div>
+                                 <div class="form-group">
+                                     <label class="sr-only" for="login-password">رمز ورود</label>
+                                     <input type="password" id="login-password" class="form-control password" placeholder="رمز ورود">
+                                 </div>
+                                 <button type="button" class="btn btn-primary">ورود</button>
+                             </form>
+                         </div>
+                         <div class="modal-footer">
+                             <small>اگر عضو سامانه نیستید لطفاً <a href="#" class="signup">ثبت نام </a>کنید.</small>
+                             <br />
+                             <small><a href="#">فراموشی رمز عبود؟</a></small>
+                         </div>
+                     </div>
+                     <!-- /.modal-content -->
+                 </div>
+                 <!-- /.modal-dialog -->
+             </div>
+             <!-- /.modal -->
+         </div>
+        <script src='<%#Page.ResolveUrl("~/assets/js/jquery.min.js") %>'></script>
+             <script src='<%#Page.ResolveUrl("~/assets/js/popper.min.js") %>'></script>
+             <script src='<%#Page.ResolveUrl("~/assets/js/bootstrap.min.js") %>'></script>
+             <script src='<%#Page.ResolveUrl("~/assets/js/custom-script.js") %>'></script>
+             <script src='<%#Page.ResolveUrl("~/assets/js/script.min.js") %>'></script>
+             <script src='<%#Page.ResolveUrl("~/assets/js/retina.min.js") %>'></script>*@
+
+    <script>
+        var PLUGINS_LOCALPATH_URL = '/assets/plugins/'
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124678523-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-124678523-1');
+    </script>
+    @Scripts.Render("~/CsmiBundles/core-js")
+    @Scripts.Render("~/assets/js/bootstrap.min.js")
+    @*<script src="~/assets/js/bootstrap.min.js"></script>*@
+    @Scripts.Render("~/CsmiBundles/app-js")
+    @*<script src="~/assets/js/jquery.min.js"></script>
+        <script src="~/assets/js/popper.min.js"></script>
+        <script src="~/assets/js/bootstrap.min.js"></script>
+        <script src="~/assets/js/retina.min.js"></script>
+        <script src="~/assets/plugins/jPanelMenu/jquery.jpanelmenu.min.js"></script>
+        <script src="~/assets/plugins/fixto/fixto.js"></script>
+        <script src="~/assets/plugins/carousel/owl.carousel.min.js"></script>
+        <script src="~/assets/js/jquery.mask.min.js"></script>
+        <script src="~/assets/js/script.min.js"></script>
+        <script src="~/assets/js/custom-script.js"></script>*@
+
+
+    @Scripts.Render("~/CsmiBundles/core-Myangular")
+    @*<script src="~/Areas/Admin/assets/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+        <script src="~/Areas/Admin/assets/js/jquery.validate.min.js"></script>
+        <script src="~/Areas/Admin/assets/js/jquery.validate.unobtrusive.js"></script>
+        <script src="~/Areas/Admin/assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="~/Areas/Admin/assets/js/plugins/pace/pace.min.js"></script>
+        <script src="~/Areas/Admin/assets/js/angular/angular.min.js"></script>
+        <script src="~/Areas/Admin/assets/js/angular/angular-sanitize.js"></script>
+        <script src="~/Areas/Admin/assets/js/plugins/oclazyload/dist/ocLazyLoad.min.js"></script>
+        <script src="~/Areas/Admin/assets/js/angular-translate/angular-translate.min.js"></script>
+        <script src="~/Areas/Admin/assets/js/ui-router/angular-ui-router.min.js"></script>
+        <script src="~/Areas/Admin/assets/js/bootstrap/ui-bootstrap-tpls-1.1.2.min.js"></script>
+        <script src="~/Areas/Admin/assets/js/plugins/angular-idle/angular-idle.js"></script>
+        <script src="~/Areas/Admin/assets/js/plugins/angular-block-ui/angular-block-ui.min.js"></script>
+        <script src="~/Areas/Admin/assets/js/plugins/toastr/toastr.min.js"></script>
+        <script src="~/Areas/Admin/assets/js/plugins/sweetalert/sweetalert.min.js"></script>
+        <script src="~/Areas/Admin/assets/js/plugins/sweetalert/angular-sweetalert.min.js"></script>*@
+
+    @Scripts.Render("~/Areas/Admin/assets/js/plugins/angular1-star-rating/index.js")
+    @Scripts.Render("~/assets/js/Csmi/app.js")
+    @Scripts.Render("~/assets/js/Csmi/translations.js")
+    @Scripts.Render("~/assets/js/Csmi/config.js")
+    @Scripts.Render("~/assets/js/Csmi/directives.js")
+    @Scripts.Render("~/assets/js/Csmi/controllers.js")
+    @Scripts.Render("~/assets/js/Csmi/dirPagination.js")
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+﻿@model AVA.Web.Mvc.Models.CompanionViewModel
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Controller;
+<update-title title="{{'RegisterCompanion' | translate}}"></update-title>
+<update-meta property="og:title" content="{{'RegisterCompanion' | translate}}"></update-meta>
+<update-meta name="description" content="{{'HeaderTitle'| translate}}-{{'RegisterCompanion' | translate}}"></update-meta>
+<update-meta itemprop="description" content="{{'HeaderTitle'| translate}}-{{'RegisterCompanion' | translate}}"></update-meta>
+<update-meta name="keywords" content="{{'HeaderTitle'| translate}},{{'RegisterCompanion' | translate}}"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
+@{
+    string ModuleName = "RegisterCompanion";
+}
+@using (Html.BeginForm("Submit" + ModuleName, "", null, FormMethod.Post, new { id = "form-" + ModuleName, ng_controller = "MySubmitController" }))
+{
+    <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+    <h4>
+        {{'RegisterCompanion'| translate}}
+    </h4>
+
+    <div class="mb-4 bg-faded p-3 rounded mb-4 text-sm">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.FirstName, new { @class = "" })
+                @Html.TextBoxFor(model => model.FirstName, new
+           {
+               @class = "form-control",
+               ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.FirstName).Name,
+               ng_disabled = "!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name,
+               placeholder = CommonHelper.GetDisplayName(Model, m => m.FirstName)
+           })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.LastName, new { @class = "" })
+                @Html.TextBoxFor(model => model.LastName, new
+           {
+               @class = "form-control",
+               ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.LastName).Name,
+               ng_disabled = "!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name,
+               placeholder = CommonHelper.GetDisplayName(Model, m => m.LastName)
+           })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.University, new { @class = "" })
+                @Html.TextBoxFor(model => model.University, new
+           {
+               @class = "form-control",
+               ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.University).Name,
+               ng_disabled = "!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name,
+               placeholder = CommonHelper.GetDisplayName(Model, m => m.University)
+           })
+                @Html.ValidationMessageFor(model => model.University, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.FieldOfStudy, new { @class = "" })
+                @Html.TextBoxFor(model => model.FieldOfStudy, new
+           {
+               @class = "form-control",
+               ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.FieldOfStudy).Name,
+               ng_disabled = "!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name,
+               placeholder = CommonHelper.GetDisplayName(Model, m => m.FieldOfStudy)
+           })
+                @Html.ValidationMessageFor(model => model.FieldOfStudy, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.Degree, new { @class = "" })
+                <select class="form-control" id="exampleSelect5"
+                        ng-model="model.@( CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Degree).Name)"
+                        ng-disabled="!model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name)">
+                    <option value="فوق دیپلم" selected="selected">فوق دیپلم</option>
+                    <option value="کارشناسی">کارشناسی</option>
+                    <option value="کارشناسی ارشد">کارشناسی ارشد</option>
+                    <option value="دکتری">دکتری</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.Degree, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.BornDate, new { @class = "" })
+                @Html.TextBoxFor(model => model.BornDate, new
+           {
+               @class = "form-control",
+               ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.BornDate).Name,
+               ng_disabled = "!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name,
+               placeholder = "1300/01/01",
+           })
+                @Html.ValidationMessageFor(model => model.BornDate, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.Email, new { @class = "" })
+                @Html.TextBoxFor(model => model.Email, new
+           {
+               @class = "form-control",
+               ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Email).Name,
+               placeholder = CommonHelper.GetDisplayName(Model, m => m.Email),
+               ng_disabled = "!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name
+           })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.Melicode, new { @class = "" })
+                @Html.TextBoxFor(model => model.Melicode, new
+           {
+               @class = "form-control",
+               ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Melicode).Name,
+               placeholder = CommonHelper.GetDisplayName(Model, m => m.Melicode),
+               ng_disabled = "!model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.AllowEdit).Name
+           })
+                @Html.ValidationMessageFor(model => model.Melicode, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6 mb-3">
+                @Html.LabelFor(model => model.Cellphone, new { @class = "" })
+                @Html.TextBoxFor(model => model.Cellphone, new
+           {
+               @class = "form-control",
+               ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Cellphone).Name,
+               placeholder = CommonHelper.GetDisplayName(Model, m => m.Cellphone)
+           })
+                @Html.ValidationMessageFor(model => model.Cellphone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+            <!-- Payment Options -->
+    <h4 class="mt-4">
+        بسته های شرکت در همایش
+    </h4>
+    <div id="payment-options" class="bg-faded p-3 rounded mb-4">
+        <div class="form-check">
+            <label class="form-check-label" data-toggle="radio-collapse" data-target="#credit-card" data-parent="#payment-options">
+                <input class="form-check-input" type="radio" ng-model="model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedPackage).Name)"
+                       name="PackageType"
+                       value="@Model.RegisterUserPackage.ID">
+                @(Model.RegisterUserPackage.Name + "-" + string.Format("{0:n0}", Model.RegisterUserPackage.Price)) ریال
+            </label>
+            <div class="collapse show" id="credit-card">
+                <div class="bg-white p-3 mt-2 rounded">
+                    <small>در صورت انتخاب این بسته، ارائه رسید پرداخت عضویت در انجمن بلورشناسی و کانی شناسی ایران الزامی است. </small>
+                    <div class="container animated fadeIn animation-delay-7">
+                        <hr class="mb-3" />
+                        <div class="row pt-2">
+                            <div class="col-md-12 mb-3">
+                                <div class="row">
+                                    <div class="row">
+                                        @Html.LabelFor(model => model.PayReceiptFileImage, new { @class = "col-md-5" })
+                                        <input type="file" class="form-control-file col-md-7"
+                                               name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.PayReceiptFileImage).Name)" />
+                                    </div>
+                                </div>
+                                <small id="fileHelp2" class="form-text text-muted">حداکثر حجم فایل باید 512 کیلوبایت و پسوند آن jpg یا png باشد.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label" data-toggle="radio-collapse" data-target="#paypal2" data-parent="#payment-options">
+                <input class="form-check-input" type="radio"
+                       ng-model="model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedPackage).Name)"
+                       name="PackageType"
+                       value="@Model.UniversityUserPackage.ID">
+                @(Model.UniversityUserPackage.Name + "-" + string.Format("{0:n0}", Model.UniversityUserPackage.Price)) ریال
+            </label>
+            <div class="collapse" id="paypal2">
+                <div class="bg-white p-3 mt-2 rounded">
+                    <small>استفاده از این بسته مستلزم ارائه کارت دانشجویی معتبر می باشد. </small>
+                    <div class="container animated fadeIn animation-delay-7">
+                        <hr class="mb-3" />
+                        <div class="row pt-2">
+                            <div class="col-md-12 mb-3">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.UniversityCardFileImage, new { @class = "col-md-5" })
+                                    <input type="file" class="form-control-file col-md-7"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.UniversityCardFileImage).Name)" />
+                                </div>
+                                <small id="fileHelp2" class="form-text text-muted">حداکثر حجم فایل باید 512 کیلوبایت و پسوند آن jpg یا png باشد.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label" data-toggle="radio-collapse" data-target="#paypal3" data-parent="#payment-options">
+                <input class="form-check-input"
+                       ng-model="model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedPackage).Name)" type="radio"
+                       name="PackageType"
+                       value="@Model.RegularUserPackage.ID">
+                @(Model.RegularUserPackage.Name + "-" + string.Format("{0:n0}", Model.RegularUserPackage.Price)) ریال
+            </label>
+            <div class="collapse" id="paypal3">
+                <div class="bg-white p-3 mt-2 rounded">
+                    <small>این بسته مخصوص پژوهشگرانی است که عضو انجمن بلورشناسی و کانی شناسی ایران نیستند.(شرکت در همایش به صورت آزاد) </small>
+                </div>
+            </div>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label" data-toggle="radio-collapse" data-target="#paypal4" data-parent="#payment-options">
+                <input class="form-check-input"
+                       ng-model="model.@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.SelectedPackage).Name)" type="radio"
+                       name="PackageType"
+                       value="@Model.SecondArticlePackage.ID">
+                @(Model.SecondArticlePackage.Name + "-" + string.Format("{0:n0}", Model.SecondArticlePackage.Price)) ریال
+            </label>
+            <div class="collapse" id="paypal4">
+                <div class="bg-white p-3 mt-2 rounded">
+                    <small>این بسته مخصوص پژوهشگرانی است که بیش از یک مقاله برای ارائه در همایش ارسال می کنند.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="mb-1 btn-lg btn btn-block btn-green-bright" ng-click="submitForm($event,'@Url.Action("Submit" + ModuleName, "Home")','form-@ModuleName')">ثبت اطلاعات</button>
+}
+
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+    $('input[name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.BornDate).Name)"]').mask('9999/99/99');
+    $('input[name="@( CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Melicode).Name)"]').mask('9999999999');
+</script>

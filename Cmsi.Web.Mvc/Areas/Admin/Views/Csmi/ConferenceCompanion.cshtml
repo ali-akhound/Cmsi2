@@ -1,0 +1,208 @@
+﻿@model AVA.Web.Mvc.Models.CompanionViewModel
+@using AVA.UI.Helpers.Controller;
+@using AVA.UI.Helpers.Common;
+@using AVA.UI.Helpers.Base;
+@{
+    string ModuleName = "ConferenceCompanion";
+}
+@using (Html.BeginForm("Submit" + ModuleName, "PublicAdmin", null, FormMethod.Post, new { id = "form-" + ModuleName, ng_controller = "MySubmitController" }))
+{
+    <input type="hidden" id="forgeryToken" value="@ControllerHelper.GetAntiForgeryToken()" />
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.ObjectState)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>{{ '@(ModuleName)' | translate }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a ui-sref="Home">{{ 'Home' | translate }}</a>
+                </li>
+                <li class="active">
+                    <strong>{{ '@(ModuleName)' | translate }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content text-center p-md">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.FirstName, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.FirstName, new
+                               {
+                                   @class = "form-control",
+                                   ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.FirstName).Name,
+                                   placeholder = CommonHelper.GetDisplayName(Model, m => m.FirstName),
+                               })
+                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.LastName, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.LastName, new
+                               {
+                                   @class = "form-control",
+                                   ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.LastName).Name,
+                                   placeholder = CommonHelper.GetDisplayName(Model, m => m.LastName),
+                               })
+                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.University, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.University, new
+                               {
+                                   @class = "form-control",
+                                   ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.University).Name,
+                                   placeholder = CommonHelper.GetDisplayName(Model, m => m.University),
+                               })
+                                    @Html.ValidationMessageFor(model => model.University, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.FieldOfStudy, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.FieldOfStudy, new
+                               {
+                                   @class = "form-control",
+                                   ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.FieldOfStudy).Name,
+                                   placeholder = CommonHelper.GetDisplayName(Model, m => m.FieldOfStudy),
+                               })
+                                    @Html.ValidationMessageFor(model => model.FieldOfStudy, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.Degree, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    <select class="form-control" id="exampleSelect5"
+                                            ng-model="model.@( CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Degree).Name)">
+                                        <option value="فوق دیپلم" selected="selected">فوق دیپلم</option>
+                                        <option value="کارشناسی">کارشناسی</option>
+                                        <option value="کارشناسی ارشد">کارشناسی ارشد</option>
+                                        <option value="دکتری">دکتری</option>
+                                    </select>
+                                    @Html.ValidationMessageFor(model => model.Degree, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.BornDate, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.BornDate, new
+                               {
+                                   @class = "form-control",
+                                   ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.BornDate).Name,
+                                   placeholder = CommonHelper.GetDisplayName(Model, m => m.BornDate),
+                               })
+                                    @Html.ValidationMessageFor(model => model.BornDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.Email, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.Email, new
+                               {
+                                   @class = "form-control",
+                                   ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Email).Name,
+                                   placeholder = CommonHelper.GetDisplayName(Model, m => m.Email),
+                               })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.Melicode, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.Melicode, new
+                               {
+                                   @class = "form-control",
+                                   ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Melicode).Name,
+                                   placeholder = CommonHelper.GetDisplayName(Model, m => m.Melicode),
+                               })
+                                    @Html.ValidationMessageFor(model => model.Melicode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.Cellphone, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(model => model.Cellphone, new
+                               {
+                                   @class = "form-control",
+                                   ng_model = "model." + CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.Cellphone).Name,
+                                   placeholder = CommonHelper.GetDisplayName(Model, m => m.Cellphone),
+                               })
+                                    @Html.ValidationMessageFor(model => model.Cellphone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.UniversityCardFileImage, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.UniversityCardFileImage).Name)" />
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.PayReceiptFileImage, new { @class = "control-label" }):
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control"
+                                           name="@(CommonHelper.ExposeProperty.GetPropertyInfo(Model, m => m.PayReceiptFileImage).Name)" />
+                                </div>
+                            </div>
+                            @{
+                                if (Model.ObjectState == ObjectState.Update)
+                                {
+                                    <div class="form-group">
+                                        <div class="col-sm-2">
+                                            @Html.LabelFor(model => model.UniversityCardFileImageUrl, new { @class = "control-label" }):
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <img src="@Model.UniversityCardFileImageUrl" class="img-responsive" alt="@(CommonHelper.GetDisplayName(Model, m => m.UniversityCardFileImageUrl))">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            @Html.LabelFor(model => model.PayReceiptFileImageUrl, new { @class = "control-label" }):
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <img src="@Model.PayReceiptFileImageUrl" class="img-responsive" alt="@(CommonHelper.GetDisplayName(Model, m => m.PayReceiptFileImageUrl))">
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-3 col-sm-offset-3">
+                                    <button class="btn btn-primary" id="SubmitBtn" ng-click="submitForm($event,'@Url.Action("Submit"+ModuleName, ModuleName)','form-@ModuleName')">@(Model.ObjectState == ObjectState.Update ? "ویرایش" : " ثبت")</button>
+                                    <a class="btn btn-white" ui-sref="@(ModuleName+"Management")({ConferenceID:@Model.ConferenceID})">بازگشت</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                                }
+<script>
+    var CurrentModel=@Html.Raw(Json.Encode(Model));
+</script>
